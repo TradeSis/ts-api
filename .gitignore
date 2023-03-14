@@ -1,2 +1,2 @@
 *.log
-*\*\config.php
+app/services/config.php
