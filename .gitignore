@@ -1,2 +1,4 @@
 *.log
-app/services/config.php
+config.php
+xpto.php
+
