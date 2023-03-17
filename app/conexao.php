@@ -9,10 +9,11 @@
     function defineConexaoProgress()
     {
         $progresscfg = "progress.cfg";
-        $dlc = "/home/tsplaces/dlc";
-        $tmp = "/home/tsplaces/progress/";
-        $pf = "/home/tsplaces/progress/tsrelat/tsrelat.pf";
-        $propath = "/home/tsplaces/tsplaces/dev/app/,";
+        $progresscfg="progress.cfg";
+        $dlc                = "/usr/dlc";
+        $tmp            = "/u/bsweb/works/";
+        $pf                = "/admcom/bases/wsp2k.pf";
+        $propath        = "/u/bsweb/progr/ts/api/app/,/admcom/progr/,";
         $proginicial = "/u/bsweb/progr/ts/api/app/database/progress.p";
     
         return        array(   "progresscfg" => $progresscfg, 

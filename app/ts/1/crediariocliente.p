@@ -1,5 +1,6 @@
 
-def input  parameter vlcentrada as longchar.
+def input param vlcentrada as longchar.
+def input param vtmp       as char.
 
 def var vlcsaida   as longchar.
 def var vsaida as char.
@@ -150,7 +151,8 @@ IMPORT unformatted ppid.
 END.
 INPUT CLOSE.
 
-varquivo  = "apits_crediariocliente" + string(today,"999999") + replace(string(time,"HH:MM:SS"),":","") +
+
+varquivo  = vtmp + "apits_crediariocliente" + string(today,"999999") + replace(string(time,"HH:MM:SS"),":","") +
           trim(ppid) + ".json".
 
 lokJson = hsaida:WRITE-JSON("FILE", varquivo, TRUE).

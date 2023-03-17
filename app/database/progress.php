@@ -22,12 +22,12 @@
                                         
                     $this->progress($dlc,$pf,$propath,$progresscfg,$tmp);
 
-                    $this->parametro = "TERM!ws!acao!entrada!";
+                    $this->parametro = "TERM!ws!acao!entrada!tmp!";
 
                     //  echo $propath;
                     $this->acao = $acao; // 09082022 helio -  para colocar como -param 
 
-                    $this->parametros = "ansi!" . $this->ws . "!" . $acao . "!" . $novaentrada . "!";
+                    $this->parametros = "ansi!" . $this->ws . "!" . $acao . "!"  . $novaentrada . "!" . $tmp . "!";
                   
                     $this->executa($proginicial);
 
