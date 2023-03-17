@@ -1,7 +1,7 @@
 <?php
 // helio 26012023 18:10
 
-include "config.php";
+include "app/conexao.php";
 
 if ($versao==""){$versao="1";}
 
