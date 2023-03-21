@@ -1,4 +1,6 @@
 <?php
+// Lucas 21032023 ajustado estrutura dentro do else, adicionado $where;
+// Lucas 20032023 adicionar if de idCliente
 // Lucas 17022023 adicionado condição else para idContratoStatus
 // Lucas 07022023 criacao
 
@@ -10,11 +12,21 @@ $sql = "SELECT contrato.*, cliente.*, contratostatus.* FROM contrato
         INNER JOIN contratostatus  on  contrato.idContratoStatus = contratostatus.idContratoStatus  ";
 if (isset($jsonEntrada["idContrato"])) {
   $sql = $sql . " where contrato.idContrato = " . $jsonEntrada["idContrato"];
-} else {
+} else{
+  $where = " where ";
+
+  if (isset($jsonEntrada["idCliente"])) {
+    $sql = $sql . $where . " contrato.idCliente = " . $jsonEntrada["idCliente"];
+    $where = " and ";
+  } 
+
   if (isset($jsonEntrada["idContratoStatus"])) {
-    $sql = $sql . " where contrato.idContratoStatus = " . $jsonEntrada["idContratoStatus"];
-  }
+      $sql = $sql . $where . " contrato.idContratoStatus = " . $jsonEntrada["idContratoStatus"];
+      $where = " and ";
+    }
+
 }
+
 
 //echo "-SQL->".$sql."\n";
 
