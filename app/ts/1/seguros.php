@@ -8,14 +8,11 @@ exemplo request:
 ou null para todos
 
 */    
-/*
 $log_datahora_ini = date("dmYHis");
-$acao="segurosH";  
-$arqlog = "/home/tsplaces/tmp/apilog/apits_".date("dmY").".log";
+$acao="seguros"; 
+$arqlog = defineCaminhoLog()."apits_".$acao."_".date("dmY").".log";
 $arquivo = fopen($arqlog,"a");
-
 fwrite($arquivo,$log_datahora_ini."$acao"."-ENTRADA->".json_encode($jsonEntrada)."\n");   
-*/
 
     $seguros = array();
     $produtos = array();
