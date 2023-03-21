@@ -158,4 +158,4 @@ varquivo  = vtmp + "apits_crediariocliente" + string(today,"999999") + replace(s
 lokJson = hsaida:WRITE-JSON("FILE", varquivo, TRUE).
 
 os-command value("cat " + varquivo).
-os-command value("rm -f " + varquivo)
+os-command value("rm -f " + varquivo).
