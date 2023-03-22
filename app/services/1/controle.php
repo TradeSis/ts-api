@@ -1,4 +1,5 @@
 <?php
+// gabriel 200323 11:04 - demanda/retornar
 // Lucas 03032023 - usuario alterar
 // Helio 16022023 - contrato/totais
 // Lucas 06022023 - adicionado contratoStatus (GET)
@@ -137,6 +138,11 @@ if ($metodo == "POST") {
     $parametro = null;
   }
 
+  if ($funcao=="demanda"&&$parametro=="retornar") {
+    $funcao = "demanda/retornar";
+    $parametro = null;
+  }
+
 
 
   switch ($funcao) {
@@ -159,6 +165,10 @@ if ($metodo == "POST") {
     break;
       case "demanda/encerrar":
         include 'demanda_encerrar.php';
+        break;
+    break;
+      case "demanda/retornar":
+        include 'demanda_retornar.php';
         break;
   
     case "contrato":

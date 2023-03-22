@@ -1,4 +1,5 @@
 <?php
+//gabriel 220323 11:10 envio de idcliente
 //Lucas 08032023
 //echo "-ENTRADA->" . json_encode($jsonEntrada) . "\n";
 
@@ -39,6 +40,7 @@ if (!isset($jsonEntrada["usuario"])) {
         $usuarios = $usuarios[0];
         $jsonSaida = array(
             "idUsuario" => $usuarios["idUsuario"],
+            "idCliente" => $usuarios["idCliente"],
             "nomeUsuario" => $usuarios["nomeUsuario"],
             "password" => $usuarios["password"],
             "statusUsuario" => $usuarios["statusUsuario"],
@@ -63,4 +65,3 @@ if (!isset($jsonEntrada["usuario"])) {
 
 
 ?>
-
