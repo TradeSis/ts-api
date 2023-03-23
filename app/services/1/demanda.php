@@ -1,4 +1,5 @@
 <?php
+// Lucas 22032023 adicionado if de tituloDemanda
 // Lucas 21032023 ajustado estrutura dentro do else, para os novos filtros.
 // Lucas 17022023 adicionado condição else para idTipoStatus
 //gabriel 07022023 16:25
@@ -35,6 +36,11 @@ if (isset($jsonEntrada["idDemanda"])) {
 
   if (isset($jsonEntrada["idUsuario"])) {
       $sql = $sql . $where . " demanda.idAtendente = " . $jsonEntrada["idUsuario"];
+      $where = " and ";
+    }
+
+    if (isset($jsonEntrada["tituloDemanda"])) {
+      $sql = $sql . $where . " demanda.tituloDemanda like " . "'%". $jsonEntrada["tituloDemanda"] . "%'";
       $where = " and ";
     }
 
