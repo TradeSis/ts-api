@@ -1,4 +1,5 @@
 <?php
+// Lucas 22032023 adicionado if de tituloContrato
 // Lucas 21032023 ajustado estrutura dentro do else, adicionado $where;
 // Lucas 20032023 adicionar if de idCliente
 // Lucas 17022023 adicionado condição else para idContratoStatus
@@ -22,6 +23,11 @@ if (isset($jsonEntrada["idContrato"])) {
 
   if (isset($jsonEntrada["idContratoStatus"])) {
       $sql = $sql . $where . " contrato.idContratoStatus = " . $jsonEntrada["idContratoStatus"];
+      $where = " and ";
+    }
+
+    if (isset($jsonEntrada["tituloContrato"])) {
+      $sql = $sql . $where . " contrato.tituloContrato like " . "'%". $jsonEntrada["tituloContrato"] . "%'";
       $where = " and ";
     }
 
