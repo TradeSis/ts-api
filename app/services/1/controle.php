@@ -75,6 +75,14 @@ if ($metodo == "GET") {
         include 'aplicativo.php';
       break;
      
+    case "menu":
+        include 'menu.php';
+      break;
+
+      case "menuprograma":
+        include 'menuprograma.php';
+      break;
+
     default:
       $jsonSaida = json_decode(json_encode(
         array(
@@ -121,6 +129,14 @@ if ($metodo == "PUT") {
 
     case "aplicativo":
       include 'aplicativo_inserir.php';
+    break;
+
+    case "menu":
+      include 'menu_inserir.php';
+    break;
+
+    case "menuprograma":
+      include 'menuprograma_inserir.php';
     break;
 
     default:
@@ -195,6 +211,14 @@ if ($metodo == "POST") {
       include 'aplicativo_alterar.php';
     break;
 
+    case "menu":
+      include 'menu_alterar.php';
+    break;
+
+    case "menuprograma":
+      include 'menuprograma_alterar.php';
+    break;
+
     default:
       $jsonSaida = json_decode(json_encode(
         array(
@@ -225,6 +249,18 @@ if ($metodo == "DELETE") {
 
     case "contrato":
       include 'contrato_excluir.php';
+    break;
+
+    case "menu":
+      include 'menu_excluir.php';
+    break;
+
+    case "aplicativo":
+      include 'aplicativo_excluir.php';
+    break;
+
+    case "menuprograma":
+      include 'menuprograma_excluir.php';
     break;
       
     default:

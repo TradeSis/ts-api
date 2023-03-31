@@ -6,10 +6,9 @@
 $conexao = conectaMysql();
 if (isset($jsonEntrada['aplicativo'])) {
     $aplicativo = $jsonEntrada['aplicativo'];
-    $nomeAplicativo = $jsonEntrada['nomeAplicativo'];
-    $imgAplicativo = $jsonEntrada['imgAplicativo'];
     
-    $sql = "INSERT INTO aplicativo(aplicativo, nomeAplicativo, imgAplicativo) VALUES ('$aplicativo','$nomeAplicativo','$imgAplicativo')";
+    $sql = "DELETE FROM aplicativo WHERE aplicativo = '$aplicativo'";
+    echo "-SQL->".json_encode($sql)."\n";
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(
             "status" => 200,

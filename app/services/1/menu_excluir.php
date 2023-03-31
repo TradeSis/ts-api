@@ -4,12 +4,11 @@
 
 
 $conexao = conectaMysql();
-if (isset($jsonEntrada['aplicativo'])) {
-    $aplicativo = $jsonEntrada['aplicativo'];
-    $nomeAplicativo = $jsonEntrada['nomeAplicativo'];
-    $imgAplicativo = $jsonEntrada['imgAplicativo'];
+if (isset($jsonEntrada['IDMenu'])) {
+    $IDMenu = $jsonEntrada['IDMenu'];
     
-    $sql = "INSERT INTO aplicativo(aplicativo, nomeAplicativo, imgAplicativo) VALUES ('$aplicativo','$nomeAplicativo','$imgAplicativo')";
+    $sql = "DELETE FROM menu WHERE IDMenu = $IDMenu";
+    //echo "-SQL->".json_encode($sql)."\n";
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(
             "status" => 200,
