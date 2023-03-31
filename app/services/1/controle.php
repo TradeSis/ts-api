@@ -70,6 +70,10 @@ if ($metodo == "GET") {
       case "usuario/verifica":
         include 'usuario_verifica.php';
       break;
+
+    case "aplicativo":
+        include 'aplicativo.php';
+      break;
      
     default:
       $jsonSaida = json_decode(json_encode(
@@ -114,6 +118,10 @@ if ($metodo == "PUT") {
     case "contrato":
         include 'contrato_inserir.php';
     break;  
+
+    case "aplicativo":
+      include 'aplicativo_inserir.php';
+    break;
 
     default:
       $jsonSaida = json_decode(json_encode(
@@ -181,6 +189,10 @@ if ($metodo == "POST") {
 
     case "usuario":
       include 'usuario_alterar.php';
+    break;
+
+    case "aplicativo":
+      include 'aplicativo_alterar.php';
     break;
 
     default:
