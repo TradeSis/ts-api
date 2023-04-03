@@ -7,10 +7,10 @@ $conexao = conectaMysql();
 if (isset($jsonEntrada['IDMenu'])) {
     $IDMenu = $jsonEntrada['IDMenu'];
     $nomeMenu = $jsonEntrada['nomeMenu'];
-    $aplicativo = $jsonEntrada['aplicativo'];
+    $idAplicativo = $jsonEntrada['idAplicativo'];
     $nivelMenu = $jsonEntrada['nivelMenu'];
     
-    $sql = "UPDATE menu SET nomeMenu = '$nomeMenu',aplicativo = '$aplicativo', nivelMenu = $nivelMenu WHERE IDMenu = $IDMenu";
+    $sql = "UPDATE menu SET nomeMenu = '$nomeMenu',idAplicativo = '$idAplicativo', nivelMenu = $nivelMenu WHERE IDMenu = $IDMenu";
     //echo "-SQL->".json_encode($sql)."\n";
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(

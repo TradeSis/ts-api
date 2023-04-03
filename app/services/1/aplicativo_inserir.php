@@ -4,12 +4,12 @@
 
 
 $conexao = conectaMysql();
-if (isset($jsonEntrada['aplicativo'])) {
-    $aplicativo = $jsonEntrada['aplicativo'];
+if (isset($jsonEntrada['nomeAplicativo'])) {
     $nomeAplicativo = $jsonEntrada['nomeAplicativo'];
     $imgAplicativo = $jsonEntrada['imgAplicativo'];
+    $pathImg = $jsonEntrada['pathImg'];
     
-    $sql = "INSERT INTO aplicativo(aplicativo, nomeAplicativo, imgAplicativo) VALUES ('$aplicativo','$nomeAplicativo','$imgAplicativo')";
+    $sql = "INSERT INTO aplicativo(nomeAplicativo, imgAplicativo, pathImg) VALUES ('$nomeAplicativo','$imgAplicativo', '$pathImg')";
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(
             "status" => 200,

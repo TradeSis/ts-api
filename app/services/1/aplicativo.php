@@ -7,8 +7,8 @@ $conexao = conectaMysql();
 $app = array();
 
 $sql = "SELECT * FROM aplicativo ";
-if (isset($jsonEntrada["aplicativo"])) {
-  $sql = $sql . " where aplicativo. aplicativo = " . "'" .$jsonEntrada["aplicativo"] . "'";
+if (isset($jsonEntrada["idAplicativo"])) {
+  $sql = $sql . " where aplicativo. idAplicativo = " . $jsonEntrada["idAplicativo"];
 }
 //echo "-SQL->".json_encode($sql)."\n";
 $rows = 0;
@@ -18,7 +18,7 @@ while ($row = mysqli_fetch_array($buscar, MYSQLI_ASSOC)) {
   $rows = $rows + 1;
 }
 
-if (isset($jsonEntrada["aplicativo"]) && $rows==1) {
+if (isset($jsonEntrada["idAplicativo"]) && $rows==1) {
   $app = $app[0];
 }
 $jsonSaida = $app;

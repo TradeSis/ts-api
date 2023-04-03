@@ -4,12 +4,12 @@
 
 
 $conexao = conectaMysql();
-if (isset($jsonEntrada['aplicativo'])) {
-    $aplicativo = $jsonEntrada['aplicativo'];
+if (isset($jsonEntrada['idAplicativo'])) {
+    $idAplicativo = $jsonEntrada['idAplicativo'];
     $nomeAplicativo = $jsonEntrada['nomeAplicativo'];
     $imgAplicativo = $jsonEntrada['imgAplicativo'];
     
-    $sql = "UPDATE  `aplicativo` SET aplicativo = '$aplicativo', nomeAplicativo ='$nomeAplicativo', imgAplicativo ='$imgAplicativo' WHERE aplicativo = '$aplicativo'";
+    $sql = "UPDATE aplicativo SET nomeAplicativo ='$nomeAplicativo', imgAplicativo ='$imgAplicativo' WHERE idAplicativo = $idAplicativo";
 
    //echo "-SQL->".json_encode($sql)."\n";
 

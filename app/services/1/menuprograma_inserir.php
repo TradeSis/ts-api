@@ -4,14 +4,14 @@
 
 
 $conexao = conectaMysql();
-if (isset($jsonEntrada['progrNome'])) {
+if (isset($jsonEntrada['IDMenu'])) {
     $IDMenu = $jsonEntrada['IDMenu'];
     $progrNome = $jsonEntrada['progrNome'];
-    $aplicativo = $jsonEntrada['aplicativo'];
+    $idAplicativo = $jsonEntrada['idAplicativo'];
     $progrLink = $jsonEntrada['progrLink'];
     $nivelMenu = $jsonEntrada['nivelMenu'];
     
-    $sql = "INSERT INTO menuprograma(IDMenu, progrNome, aplicativo, progrLink, nivelMenu) VALUES ('$IDMenu','$progrNome','$aplicativo', '$progrLink', $nivelMenu)";
+    $sql = "INSERT INTO menuprograma(IDMenu, progrNome, idAplicativo, progrLink, nivelMenu) VALUES ('$IDMenu','$progrNome','$idAplicativo', '$progrLink', $nivelMenu)";
    // echo "-SQL->".json_encode($sql)."\n";
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(

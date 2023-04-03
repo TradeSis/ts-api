@@ -4,16 +4,16 @@
 
 
 $conexao = conectaMysql();
-if (isset($jsonEntrada['progrNome'])) {
+if (isset($jsonEntrada['IDMenu'])) {
     $IDMenu = $jsonEntrada['IDMenu'];
     $progrNome = $jsonEntrada['progrNome'];
-    $aplicativo = $jsonEntrada['aplicativo'];
+    $idAplicativo = $jsonEntrada['idAplicativo'];
     $progrLink = $jsonEntrada['progrLink'];
     $nivelMenu = $jsonEntrada['nivelMenu'];
     
-    $sql = "UPDATE menuprograma SET IDMenu = '$IDMenu', progrNome ='$progrNome', aplicativo ='$aplicativo', progrLink ='$progrLink', nivelMenu ='$nivelMenu' WHERE progrNome = '$progrNome'";
+    $sql = "UPDATE menuprograma SET IDMenu = '$IDMenu', progrNome ='$progrNome', idAplicativo ='$idAplicativo', progrLink ='$progrLink', nivelMenu = $nivelMenu WHERE IDMenu = $IDMenu";
 
-  // echo "-SQL->".json_encode($sql)."\n";
+   echo "-SQL->".json_encode($sql)."\n";
 
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(

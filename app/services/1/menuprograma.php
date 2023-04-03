@@ -6,7 +6,9 @@
 $conexao = conectaMysql();
 $menuprograma = array();
 
-$sql = "SELECT * FROM menuprograma ";
+$sql = "SELECT menuprograma.*, menu.*, aplicativo.* FROM menuprograma
+        INNER JOIN menu on menu.IDMenu = menuprograma.IDMenu
+        INNER JOIN aplicativo on aplicativo.idAplicativo = menuprograma.idAplicativo";
 if (isset($jsonEntrada["progrNome"])) {
   $sql = $sql . " where menuprograma.progrNome = " . "'". $jsonEntrada["progrNome"]. "'";
 }
