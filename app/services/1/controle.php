@@ -83,6 +83,10 @@ if ($metodo == "GET") {
         include 'menuprograma.php';
       break;
 
+      case "montaMenu":
+        include 'montaMenu.php';
+      break;
+
     default:
       $jsonSaida = json_decode(json_encode(
         array(
