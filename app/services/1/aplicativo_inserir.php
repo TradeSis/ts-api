@@ -1,5 +1,5 @@
 <?php
-
+//Lucas 05042023 criado
 //echo "-ENTRADA->".json_encode($jsonEntrada)."\n";
 
 
