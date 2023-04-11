@@ -8,7 +8,12 @@ if (isset($jsonEntrada['idDemanda'])) {
     $idDemanda = $jsonEntrada['idDemanda'];
     $comentario = $jsonEntrada['comentario'];
     $idUsuario = $jsonEntrada['idUsuario'];
-    $sql = "INSERT INTO comentario(idDemanda, comentario, idUsuario, dataComentario) VALUES ($idDemanda,'$comentario',$idUsuario,CURRENT_TIMESTAMP())";
+    //$idAnexo = $jsonEntrada['idAnexo'];
+    $pathAnexo = $jsonEntrada['pathAnexo'];
+    $nomeAnexo = $jsonEntrada['nomeAnexo'];
+    $sql = "INSERT INTO comentario(idDemanda, comentario, idUsuario, dataComentario, nomeAnexo, pathAnexo) VALUES ($idDemanda,'$comentario',$idUsuario,CURRENT_TIMESTAMP(),'$nomeAnexo', '$pathAnexo')";
+
+  //  echo "-SQL->".json_encode($sql)."\n";
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(
             "status" => 200,
