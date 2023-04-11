@@ -17,8 +17,8 @@ $buscar = mysqli_query($conexao, $sql);
 while ($row = mysqli_fetch_array($buscar, MYSQLI_ASSOC)) {
   
   /* Novo SQL para ler o FILHO */
-  $sql2 = "SELECT menuPrograma.* FROM menuPrograma ";
-  $sql2 = $sql2 . " where menuPrograma.IDMenu = " .$row["IDMenu"];
+  $sql2 = "SELECT menuprograma.* FROM menuprograma ";
+  $sql2 = $sql2 . " where menuprograma.IDMenu = " .$row["IDMenu"];
   $buscar2 = mysqli_query($conexao, $sql2);
   
   $menuPrograma = array();
