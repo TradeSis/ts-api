@@ -1,4 +1,5 @@
 <?php
+// Lucas 05042023 - adicionado aplicativo, menu, menuPrograma e montaMenu
 // gabriel 200323 11:04 - demanda/retornar
 // Lucas 03032023 - usuario alterar
 // Helio 16022023 - contrato/totais
@@ -70,7 +71,23 @@ if ($metodo == "GET") {
       case "usuario/verifica":
         include 'usuario_verifica.php';
       break;
+
+    case "aplicativo":
+        include 'aplicativo.php';
+      break;
      
+    case "menu":
+        include 'menu.php';
+      break;
+
+      case "menuprograma":
+        include 'menuprograma.php';
+      break;
+
+      case "montaMenu":
+        include 'montaMenu.php';
+      break;
+
     default:
       $jsonSaida = json_decode(json_encode(
         array(
@@ -114,6 +131,18 @@ if ($metodo == "PUT") {
     case "contrato":
         include 'contrato_inserir.php';
     break;  
+
+    case "aplicativo":
+      include 'aplicativo_inserir.php';
+    break;
+
+    case "menu":
+      include 'menu_inserir.php';
+    break;
+
+    case "menuprograma":
+      include 'menuprograma_inserir.php';
+    break;
 
     default:
       $jsonSaida = json_decode(json_encode(
@@ -183,6 +212,18 @@ if ($metodo == "POST") {
       include 'usuario_alterar.php';
     break;
 
+    case "aplicativo":
+      include 'aplicativo_alterar.php';
+    break;
+
+    case "menu":
+      include 'menu_alterar.php';
+    break;
+
+    case "menuprograma":
+      include 'menuprograma_alterar.php';
+    break;
+
     default:
       $jsonSaida = json_decode(json_encode(
         array(
@@ -213,6 +254,18 @@ if ($metodo == "DELETE") {
 
     case "contrato":
       include 'contrato_excluir.php';
+    break;
+
+    case "menu":
+      include 'menu_excluir.php';
+    break;
+
+    case "aplicativo":
+      include 'aplicativo_excluir.php';
+    break;
+
+    case "menuprograma":
+      include 'menuprograma_excluir.php';
     break;
       
     default:
