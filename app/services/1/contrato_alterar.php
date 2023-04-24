@@ -28,7 +28,7 @@ if (isset($jsonEntrada['tituloContrato'])) {
             }
         }
 	   
-    $sql = "UPDATE `contrato` SET `tituloContrato`='$tituloContrato',`descricao`='$descricao',`idContratoStatus`='$idContratoStatus' ,`valorContrato`='$valorContrato',`dataPrevisao`='$dataPrevisao',`dataEntrega`='$dataEntrega',`horas`='$horas',`valorHora`='$valorHora' WHERE contrato.idContrato = $idContrato ";
+    $sql = "UPDATE `contrato` SET `tituloContrato`='$tituloContrato',`descricao`='$descricao',`idContratoStatus`='$idContratoStatus' ,`valorContrato`='$valorContrato',`dataPrevisao`='$dataPrevisao',`dataEntrega`='$dataEntrega',`horas`='$horas',`valorHora`='$valorHora',dataAtualizacao=CURRENT_TIMESTAMP() WHERE contrato.idContrato = $idContrato ";
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(
             "status" => 200,
