@@ -1,4 +1,5 @@
 <?php
+// Lucas 20042023 adicionado no if "email"
 //gabriel 220323 11:10 envio de idcliente
 //Lucas 08032023
 //echo "-ENTRADA->" . json_encode($jsonEntrada) . "\n";
@@ -44,6 +45,7 @@ if (!isset($jsonEntrada["usuario"])) {
             "nomeUsuario" => $usuarios["nomeUsuario"],
             "password" => $usuarios["password"],
             "statusUsuario" => $usuarios["statusUsuario"],
+            "email" => $usuarios["email"],
             "status" => 200,
             "retorno" => ""
         );
