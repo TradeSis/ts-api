@@ -6,11 +6,14 @@
 $conexao = conectaMysql();
 $app = array();
 
-$sql = "SELECT aplicativo.*, usuarioaplicativo.idUsuario FROM aplicativo
-        LEFT JOIN usuarioaplicativo on aplicativo.nomeAplicativo = usuarioaplicativo.aplicativo";
 if (isset($jsonEntrada["idUsuario"])) {
-  $sql = $sql . " where usuarioaplicativo.idUsuario = " . $jsonEntrada["idUsuario"];
-} 
+  $sql = "SELECT aplicativo.*, usuarioaplicativo.idUsuario FROM aplicativo
+          LEFT JOIN usuarioaplicativo on aplicativo.nomeAplicativo = usuarioaplicativo.aplicativo";
+  if (isset($jsonEntrada["idUsuario"])) {
+    $sql = $sql . " where usuarioaplicativo.idUsuario = " . $jsonEntrada["idUsuario"];
+  } 
+} else
+$sql = $sql = "SELECT aplicativo.* FROM aplicativo";
 //echo "-SQL->".json_encode($sql)."\n";
 
 $sql = $sql . " order by idAplicativo";
