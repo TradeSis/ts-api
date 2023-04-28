@@ -17,18 +17,19 @@ if (isset($jsonEntrada["idUsuario"])) {
   $nivelMenu = $row["nivelMenu"];
 } 
 
-
-
-$sql = "SELECT menu.* FROM menu";
+$sql = "SELECT menu.*, aplicativo.nomeAplicativo FROM menu
+        LEFT JOIN aplicativo on  menu.idAplicativo = aplicativo.idAplicativo";
 $where = " where ";
-if (isset($jsonEntrada["nomeMenu"])) {
-  $sql = $sql . $where . " menu.nomeMenu = '" . $jsonEntrada["nomeMenu"] . "'";
+if (isset($jsonEntrada["nomeAplicativo"])) {
+  $sql = $sql . $where . " aplicativo.nomeAplicativo = '" . $jsonEntrada["nomeAplicativo"] . "'";
   $where = " and ";
 } 
   if (isset($jsonEntrada["idUsuario"])) {
     $sql = $sql . $where . " menu.nivelMenu <= " . $nivelMenu;
   }
+
 //echo "-SQL->".json_encode($sql)."\n";
+
 $rows = 0;
 $buscar = mysqli_query($conexao, $sql);
 
@@ -37,9 +38,13 @@ while ($row = mysqli_fetch_array($buscar, MYSQLI_ASSOC)) {
   /* Novo SQL para ler o FILHO */
   $sql2 = "SELECT menuprograma.* FROM menuprograma ";
   $sql2 = $sql2 . " where menuprograma.IDMenu = " .$row["IDMenu"];
-  $sql2 = $sql2 . " and menuprograma.nivelMenu <= " . $nivelMenu;
+  if (isset($jsonEntrada["idUsuario"])) {
+    $sql2 = $sql2 . " and menuprograma.nivelMenu <= " . $nivelMenu;
+  }
   $buscar2 = mysqli_query($conexao, $sql2);
-  //echo "-SQL->".json_encode($sql2)."\n";
+
+//echo "-SQL->".json_encode($sql2)."\n";
+
   $menuPrograma = array();
   while ($rowsProgramas = mysqli_fetch_array($buscar2, MYSQLI_ASSOC)) {
     array_push($menuPrograma, $rowsProgramas);
