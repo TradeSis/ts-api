@@ -5,7 +5,8 @@
 $conexao = conectaMysql();
 $app = array();
 
-$sql = "SELECT usuarioaplicativo.* FROM usuarioaplicativo";
+$sql = "SELECT usuarioaplicativo.*, usuario.nomeUsuario FROM usuarioaplicativo
+        LEFT JOIN usuario on usuarioaplicativo.idUsuario = usuario.idUsuario";
 $where = " WHERE ";
 if (isset($jsonEntrada["idUsuario"])) {
   $sql = $sql . $where . " usuarioaplicativo.idUsuario = " . $jsonEntrada["idUsuario"];
