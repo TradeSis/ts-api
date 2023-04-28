@@ -6,9 +6,10 @@
 $conexao = conectaMysql();
 $app = array();
 
-$sql = "SELECT DISTINCT aplicativo.* FROM aplicativo";
-if (isset($jsonEntrada["idAplicativo"])) {
-  $sql = $sql . " where aplicativo. idAplicativo = " . $jsonEntrada["idAplicativo"];
+$sql = "SELECT aplicativo.*, usuarioaplicativo.idUsuario FROM aplicativo
+        LEFT JOIN usuarioaplicativo on aplicativo.nomeAplicativo = usuarioaplicativo.aplicativo";
+if (isset($jsonEntrada["idUsuario"])) {
+  $sql = $sql . " where usuarioaplicativo.idUsuario = " . $jsonEntrada["idUsuario"];
 } 
 //echo "-SQL->".json_encode($sql)."\n";
 
@@ -20,7 +21,7 @@ while ($row = mysqli_fetch_array($buscar, MYSQLI_ASSOC)) {
   $rows = $rows + 1;
 }
 
-if (isset($jsonEntrada["idAplicativo"]) && $rows==1) {
+if (isset($jsonEntrada["idUsuario"]) && $rows==1) {
   $app = $app[0];
 }
 $jsonSaida = $app;
