@@ -9,7 +9,7 @@
 $conexao = conectaMysql();
 $demanda = array();
 
-$sql = "SELECT demanda.*, cliente.nomeCliente, tipoocorrencia.nomeTipoOcorrencia, tipostatus.nomeTipoStatus, tipostatus.mudaStatusPara, usuario.nomeUsuario FROM demanda
+$sql = "SELECT demanda.*, cliente.nomeCliente, tipoocorrencia.nomeTipoOcorrencia, tipostatus.nomeTipoStatus, usuario.nomeUsuario FROM demanda
         INNER JOIN cliente on  demanda.idCliente = cliente.idCliente 
         LEFT JOIN usuario on  demanda.idAtendente = usuario.idUsuario 
         INNER JOIN tipoocorrencia on demanda.idTipoOcorrencia = tipoocorrencia.idTipoOcorrencia 
@@ -39,10 +39,10 @@ if (isset($jsonEntrada["idDemanda"])) {
       $where = " and ";
     }
 
-    if (isset($jsonEntrada["mudaStatusPara"])) {
-      $sql = $sql . $where . " tipostatus.mudaStatusPara = " . $jsonEntrada["mudaStatusPara"];
+    if (isset($jsonEntrada["statusDemanda"])) {
+      $sql = $sql . $where . " demanda.statusDemanda = " . $jsonEntrada["statusDemanda"];
       $where = " and ";
-    }  
+    } 
 
   if (isset($jsonEntrada["tituloDemanda"])) {
       $sql = $sql . $where . " demanda.tituloDemanda like " . "'%". $jsonEntrada["tituloDemanda"] . "%'";

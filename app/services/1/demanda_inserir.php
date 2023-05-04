@@ -4,15 +4,27 @@
 
 
 $conexao = conectaMysql();
-if (isset($jsonEntrada['tituloDemanda'])) {
-    $idCliente = $jsonEntrada['idCliente'];
-    $idUsuario = $jsonEntrada['idUsuario'];
+$posicao = null;
+$statusDemanda = null;
+
+if (isset($jsonEntrada['idDemanda'])) {
+    $idDemanda = $jsonEntrada['idDemanda'];
     $tituloDemanda = $jsonEntrada['tituloDemanda'];
     $descricao = $jsonEntrada['descricao'];
+    $prioridade = $jsonEntrada['prioridade'];
     $idTipoStatus = $jsonEntrada['idTipoStatus'];
     $idTipoOcorrencia = $jsonEntrada['idTipoOcorrencia'];
-    $sql = "INSERT INTO demanda(prioridade, tituloDemanda, descricao, dataAbertura, idTipoStatus, idTipoOcorrencia, statusDemanda, idCliente, idUsuario) VALUES (99, '$tituloDemanda','$descricao', CURRENT_TIMESTAMP(), $idTipoStatus, $idTipoOcorrencia, 1, $idCliente, $idUsuario)";
-    if ($atualizar = mysqli_query($conexao, $sql)) {
+    $tamanho = $jsonEntrada['tamanho'];
+    $idAtendente = $jsonEntrada['idAtendente'];
+
+    //busca dados tipostatus
+        $sql2 = "SELECT * FROM tipostatus WHERE idTipoStatus = $idTipoStatus";
+        $buscar2 = mysqli_query($conexao, $sql2);
+        $row = mysqli_fetch_array($buscar2, MYSQLI_ASSOC);
+        $posicao = $row["mudaPosicaoPara"];
+        $statusDemanda = $row["mudaStatusPara"];
+
+    $sql = "UPDATE demanda SET prioridade=$prioridade, tituloDemanda='$tituloDemanda', descricao='$descricao', idTipoStatus=$idTipoStatus, idTipoOcorrencia=$idTipoOcorrencia, posicao=$posicao, statusDemanda=$statusDemanda, tamanho='$tamanho', idAtendente=$idAtendente, dataAtualizacaoAtendente=CURRENT_TIMESTAMP() WHERE idDemanda = $idDemanda";    if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(
             "status" => 200,
             "retorno" => "ok"
