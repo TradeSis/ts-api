@@ -9,7 +9,7 @@
 $conexao = conectaMysql();
 $demanda = array();
 
-$sql = "SELECT demanda.*, cliente.nomeCliente, tipoocorrencia.nomeTipoOcorrencia, tipostatus.nomeTipoStatus, usuario.nomeUsuario FROM demanda
+$sql = "SELECT demanda.*, cliente.nomeCliente, tipoocorrencia.nomeTipoOcorrencia, tipostatus.nomeTipoStatus, tipostatus.mudaStatusPara, usuario.nomeUsuario FROM demanda
         INNER JOIN cliente on  demanda.idCliente = cliente.idCliente 
         LEFT JOIN usuario on  demanda.idAtendente = usuario.idUsuario 
         INNER JOIN tipoocorrencia on demanda.idTipoOcorrencia = tipoocorrencia.idTipoOcorrencia 
@@ -20,9 +20,9 @@ if (isset($jsonEntrada["idDemanda"])) {
   $where = " where ";
 
   if (isset($jsonEntrada["idCliente"])) {
-    $sql = $sql . $where . " demanda.idCliente = " . $jsonEntrada["idCliente"];
-    $where = " and ";
-  }  
+      $sql = $sql . $where . " demanda.idCliente = " . $jsonEntrada["idCliente"];
+      $where = " and ";
+    }  
 
   if (isset($jsonEntrada["idTipoStatus"])) {
       $sql = $sql . $where . " demanda.idTipoStatus = " . $jsonEntrada["idTipoStatus"];
@@ -34,15 +34,22 @@ if (isset($jsonEntrada["idDemanda"])) {
       $where = " and ";
     }
 
-  if (isset($jsonEntrada["idUsuario"])) {
-      $sql = $sql . $where . " demanda.idAtendente = " . $jsonEntrada["idUsuario"];
+  if (isset($jsonEntrada["idAtendente"])) {
+      $sql = $sql . $where . " demanda.idAtendente = " . $jsonEntrada["idAtendente"];
       $where = " and ";
     }
 
-    if (isset($jsonEntrada["tituloDemanda"])) {
+    if (isset($jsonEntrada["mudaStatusPara"])) {
+      $sql = $sql . $where . " tipostatus.mudaStatusPara = " . $jsonEntrada["mudaStatusPara"];
+      $where = " and ";
+    }  
+
+  if (isset($jsonEntrada["tituloDemanda"])) {
       $sql = $sql . $where . " demanda.tituloDemanda like " . "'%". $jsonEntrada["tituloDemanda"] . "%'";
       $where = " and ";
-    }
+    }  
+
+  
 
 
 }
