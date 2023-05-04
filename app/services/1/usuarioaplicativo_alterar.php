@@ -4,13 +4,15 @@
 
 
 $conexao = conectaMysql();
-if (isset($jsonEntrada['nomeAplicativo'])) {
-    $nomeAplicativo = $jsonEntrada['nomeAplicativo'];
-    $appLink = $jsonEntrada['appLink'];
-    $imgAplicativo = $jsonEntrada['imgAplicativo'];
-    $pathImg = $jsonEntrada['pathImg'];
+if (isset($jsonEntrada['idAplicativo'])) {
+    $idUsuario = $jsonEntrada['idUsuario'];
+    $aplicativo = $jsonEntrada['aplicativo'];
+    $nivelMenu = $jsonEntrada['nivelMenu'];
     
-    $sql = "INSERT INTO aplicativo(nomeAplicativo, appLink, imgAplicativo, pathImg) VALUES ('$nomeAplicativo', '$appLink', '$imgAplicativo', '$pathImg')";
+    $sql = "UPDATE usuarioaplicativo SET aplicativo ='$aplicativo', nivelMenu = $nivelMenu WHERE idUsuario = $idUsuario and aplicativo = '$aplicativo'";
+
+   //echo "-SQL->".json_encode($sql)."\n";
+
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(
             "status" => 200,

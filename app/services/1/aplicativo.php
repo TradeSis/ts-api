@@ -6,11 +6,17 @@
 $conexao = conectaMysql();
 $app = array();
 
-$sql = "SELECT * FROM aplicativo ";
-if (isset($jsonEntrada["idAplicativo"])) {
-  $sql = $sql . " where aplicativo. idAplicativo = " . $jsonEntrada["idAplicativo"];
-}
+if (isset($jsonEntrada["idUsuario"])) {
+  $sql = "SELECT aplicativo.*, usuarioaplicativo.idUsuario FROM aplicativo
+          LEFT JOIN usuarioaplicativo on aplicativo.nomeAplicativo = usuarioaplicativo.aplicativo";
+  if (isset($jsonEntrada["idUsuario"])) {
+    $sql = $sql . " where usuarioaplicativo.idUsuario = " . $jsonEntrada["idUsuario"];
+  } 
+} else
+$sql = $sql = "SELECT aplicativo.* FROM aplicativo";
 //echo "-SQL->".json_encode($sql)."\n";
+
+$sql = $sql . " order by idAplicativo";
 $rows = 0;
 $buscar = mysqli_query($conexao, $sql);
 while ($row = mysqli_fetch_array($buscar, MYSQLI_ASSOC)) {
@@ -18,7 +24,7 @@ while ($row = mysqli_fetch_array($buscar, MYSQLI_ASSOC)) {
   $rows = $rows + 1;
 }
 
-if (isset($jsonEntrada["idAplicativo"]) && $rows==1) {
+if (isset($jsonEntrada["idUsuario"]) && $rows==1) {
   $app = $app[0];
 }
 $jsonSaida = $app;

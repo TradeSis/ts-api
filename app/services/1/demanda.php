@@ -20,9 +20,9 @@ if (isset($jsonEntrada["idDemanda"])) {
   $where = " where ";
 
   if (isset($jsonEntrada["idCliente"])) {
-    $sql = $sql . $where . " demanda.idCliente = " . $jsonEntrada["idCliente"];
-    $where = " and ";
-  }  
+      $sql = $sql . $where . " demanda.idCliente = " . $jsonEntrada["idCliente"];
+      $where = " and ";
+    }  
 
   if (isset($jsonEntrada["idTipoStatus"])) {
       $sql = $sql . $where . " demanda.idTipoStatus = " . $jsonEntrada["idTipoStatus"];
@@ -34,15 +34,22 @@ if (isset($jsonEntrada["idDemanda"])) {
       $where = " and ";
     }
 
-  if (isset($jsonEntrada["idUsuario"])) {
-      $sql = $sql . $where . " demanda.idAtendente = " . $jsonEntrada["idUsuario"];
+  if (isset($jsonEntrada["idAtendente"])) {
+      $sql = $sql . $where . " demanda.idAtendente = " . $jsonEntrada["idAtendente"];
       $where = " and ";
     }
 
-    if (isset($jsonEntrada["tituloDemanda"])) {
+    if (isset($jsonEntrada["statusDemanda"])) {
+      $sql = $sql . $where . " demanda.statusDemanda = " . $jsonEntrada["statusDemanda"];
+      $where = " and ";
+    } 
+
+  if (isset($jsonEntrada["tituloDemanda"])) {
       $sql = $sql . $where . " demanda.tituloDemanda like " . "'%". $jsonEntrada["tituloDemanda"] . "%'";
       $where = " and ";
-    }
+    }  
+
+  
 
 
 }

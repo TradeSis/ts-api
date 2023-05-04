@@ -88,6 +88,10 @@ if ($metodo == "GET") {
         include 'montaMenu.php';
       break;
 
+      case "usuarioaplicativo":
+        include 'usuarioaplicativo.php';
+      break;
+
     default:
       $jsonSaida = json_decode(json_encode(
         array(
@@ -144,6 +148,10 @@ if ($metodo == "PUT") {
       include 'menuprograma_inserir.php';
     break;
 
+    case "usuarioaplicativo":
+      include 'usuarioaplicativo_inserir.php';
+    break;
+
     default:
       $jsonSaida = json_decode(json_encode(
         array(
@@ -195,7 +203,7 @@ if ($metodo == "POST") {
       case "demanda/encerrar":
         include 'demanda_encerrar.php';
         break;
-    break;
+    //break;
       case "demanda/retornar":
         include 'demanda_retornar.php';
         break;
@@ -222,6 +230,10 @@ if ($metodo == "POST") {
 
     case "menuprograma":
       include 'menuprograma_alterar.php';
+    break;
+
+    case "usuarioaplicativo":
+      include 'usuarioaplicativo_alterar.php';
     break;
 
     default:
@@ -266,6 +278,10 @@ if ($metodo == "DELETE") {
 
     case "menuprograma":
       include 'menuprograma_excluir.php';
+    break;
+
+    case "usuarioaplicativo":
+      include 'usuarioaplicativo_excluir.php';
     break;
       
     default:
