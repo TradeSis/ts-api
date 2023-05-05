@@ -9,7 +9,7 @@ if (isset($jsonEntrada['idUsuario'])) {
     $idAplicativo = $jsonEntrada['idAplicativo'];
     $nivelMenu = $jsonEntrada['nivelMenu'];
     
-    $sql = "UPDATE usuarioaplicativo SET idAplicativo =$idAplicativo, nivelMenu = $nivelMenu WHERE idUsuario = $idUsuario and idAplicativo = $idAplicativo";
+    $sql = "UPDATE usuarioaplicativo SET nivelMenu = $nivelMenu WHERE idUsuario = $idUsuario and idAplicativo = $idAplicativo";
 
    echo "-SQL->".json_encode($sql)."\n";
 

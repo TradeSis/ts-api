@@ -14,6 +14,9 @@ if (isset($jsonEntrada["idUsuario"])) {
   } 
 } else
 $sql = $sql = "SELECT aplicativo.* FROM aplicativo";
+if (isset($jsonEntrada["idAplicativo"])) {
+  $sql = $sql . " where aplicativo.idAplicativo = " . $jsonEntrada["idAplicativo"]; 
+}
 //echo "-SQL->".json_encode($sql)."\n";
 
 $sql = $sql . " order by idAplicativo";
@@ -25,6 +28,10 @@ while ($row = mysqli_fetch_array($buscar, MYSQLI_ASSOC)) {
 }
 
 if (isset($jsonEntrada["idUsuario"]) && $rows==1) {
+  $app = $app[0];
+}
+
+if (isset($jsonEntrada["idAplicativo"]) && $rows==1) {
   $app = $app[0];
 }
 $jsonSaida = $app;
