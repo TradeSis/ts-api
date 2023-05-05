@@ -5,15 +5,16 @@
 $conexao = conectaMysql();
 $app = array();
 
-$sql = "SELECT usuarioaplicativo.*, usuario.nomeUsuario FROM usuarioaplicativo
-        LEFT JOIN usuario on usuarioaplicativo.idUsuario = usuario.idUsuario";
+$sql = "SELECT usuarioaplicativo.*, usuario.nomeUsuario, aplicativo.nomeAplicativo FROM usuarioaplicativo
+        LEFT JOIN usuario on usuarioaplicativo.idUsuario = usuario.idUsuario
+        LEFT JOIN aplicativo on usuarioaplicativo.idAplicativo = aplicativo.idAplicativo";
 $where = " WHERE ";
 if (isset($jsonEntrada["idUsuario"])) {
   $sql = $sql . $where . " usuarioaplicativo.idUsuario = " . $jsonEntrada["idUsuario"];
   $where = " AND ";
 } 
 if (isset($jsonEntrada["idAplicativo"])) {
-  $sql = $sql . $where . " usuarioaplicativo.idAplicativo = '" . $jsonEntrada["idAplicativo"] . "'";
+  $sql = $sql . $where . " usuarioaplicativo.idAplicativo = " . $jsonEntrada["idAplicativo"];
 }
 //echo "-SQL->" . $sql . "\n";
 
