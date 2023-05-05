@@ -8,14 +8,15 @@ $app = array();
 
 if (isset($jsonEntrada["idUsuario"])) {
   $sql = "SELECT aplicativo.*, usuarioaplicativo.idUsuario FROM aplicativo
-          LEFT JOIN usuarioaplicativo on aplicativo.nomeAplicativo = usuarioaplicativo.aplicativo";
+          LEFT JOIN usuarioaplicativo on aplicativo.idAplicativo = usuarioaplicativo.idAplicativo";
   if (isset($jsonEntrada["idUsuario"])) {
     $sql = $sql . " where usuarioaplicativo.idUsuario = " . $jsonEntrada["idUsuario"];
   } 
-} else
+} else {
 $sql = $sql = "SELECT aplicativo.* FROM aplicativo";
-if (isset($jsonEntrada["idAplicativo"])) {
-  $sql = $sql . " where aplicativo.idAplicativo = " . $jsonEntrada["idAplicativo"]; 
+  if (isset($jsonEntrada["idAplicativo"])) {
+    $sql = $sql . " where aplicativo.idAplicativo = " . $jsonEntrada["idAplicativo"]; 
+  }
 }
 //echo "-SQL->".json_encode($sql)."\n";
 
