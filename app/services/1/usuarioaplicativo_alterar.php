@@ -6,10 +6,10 @@
 $conexao = conectaMysql();
 if (isset($jsonEntrada['idAplicativo'])) {
     $idUsuario = $jsonEntrada['idUsuario'];
-    $aplicativo = $jsonEntrada['aplicativo'];
+    $idAplicativo = $jsonEntrada['idAplicativo'];
     $nivelMenu = $jsonEntrada['nivelMenu'];
     
-    $sql = "UPDATE usuarioaplicativo SET aplicativo ='$aplicativo', nivelMenu = $nivelMenu WHERE idUsuario = $idUsuario and aplicativo = '$aplicativo'";
+    $sql = "UPDATE usuarioaplicativo SET idAplicativo ='$idAplicativo', nivelMenu = $nivelMenu WHERE idUsuario = $idUsuario and idAplicativo = '$idAplicativo'";
 
    //echo "-SQL->".json_encode($sql)."\n";
 

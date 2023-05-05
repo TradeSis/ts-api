@@ -12,8 +12,8 @@ if (isset($jsonEntrada["idUsuario"])) {
   $sql = $sql . $where . " usuarioaplicativo.idUsuario = " . $jsonEntrada["idUsuario"];
   $where = " AND ";
 } 
-if (isset($jsonEntrada["aplicativo"])) {
-  $sql = $sql . $where . " usuarioaplicativo.aplicativo = '" . $jsonEntrada["aplicativo"] . "'";
+if (isset($jsonEntrada["idAplicativo"])) {
+  $sql = $sql . $where . " usuarioaplicativo.idAplicativo = '" . $jsonEntrada["idAplicativo"] . "'";
 }
 //echo "-SQL->" . $sql . "\n";
 
