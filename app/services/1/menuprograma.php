@@ -6,13 +6,15 @@
 $conexao = conectaMysql();
 $menuprograma = array();
 
-$sql = "SELECT menuprograma.*, menu.*, aplicativo.* FROM menuprograma
+$sql = "SELECT menuprograma.*, menu.nomeMenu, aplicativo.nomeAplicativo FROM menuprograma
         INNER JOIN menu on menu.IDMenu = menuprograma.IDMenu
         INNER JOIN aplicativo on aplicativo.idAplicativo = menuprograma.idAplicativo";
 if (isset($jsonEntrada["idMenuPrograma"])) {
   $sql = $sql . " where menuprograma.idMenuPrograma = " . "'". $jsonEntrada["idMenuPrograma"]. "'";
 }
 //echo "-SQL->".json_encode($sql)."\n";
+
+$sql = $sql . " ORDER BY idMenuPrograma";
 $rows = 0;
 $buscar = mysqli_query($conexao, $sql);
 while ($row = mysqli_fetch_array($buscar, MYSQLI_ASSOC)) {
