@@ -50,7 +50,7 @@ while ($row = mysqli_fetch_array($buscar, MYSQLI_ASSOC)) {
     $sql2 .= " AND aplicativo.nomeAplicativo = '" . $jsonEntrada["nomeAplicativo"] . "'";
   }
   if (isset($jsonEntrada["idUsuario"])) {
-    $sql2 .= " AND menuprograma.nivelMenu <= " . $nivelMenu . " AND menuprograma.menuAtalho <> " . $sim;
+    $sql2 .= " AND menuprograma.nivelMenu <= " . $nivelMenu;
   }
   $buscar2 = mysqli_query($conexao, $sql2);
 
@@ -110,15 +110,19 @@ if (isset($jsonEntrada["nomeAplicativo"])) {
   $sql4 .= " AND aplicativo.nomeAplicativo = '" . $jsonEntrada["nomeAplicativo"] . "'";
 }
 if (isset($jsonEntrada["idUsuario"])) {
-  $sql4 .= " AND menu.nivelMenu <= " . $nivelMenu;
+  $nivelMenu = (int)$jsonEntrada["idUsuario"];
+  $sql4 .= "AND menu.nivelMenu <= $nivelMenu ";
 }
-$buscar4 = mysqli_query($conexao, $sql4);
 
+$buscar4 = mysqli_query($conexao, $sql4);
 
 while ($rowHeader = mysqli_fetch_array($buscar4, MYSQLI_ASSOC)) {
   $headerPrograma = array();
-  while ($appHeader = mysqli_fetch_array($buscar4, MYSQLI_ASSOC)) {
-  array_push($headerPrograma, $appHeader);
+  $sql5 = "SELECT * FROM menuprograma WHERE IDMenu = " . $rowHeader["IDMenu"];
+  $buscar5 = mysqli_query($conexao, $sql5);
+  
+  while ($appHeader = mysqli_fetch_array($buscar5, MYSQLI_ASSOC)) {
+    array_push($headerPrograma, $appHeader);
   }
 
   $linhaHeader = array(
@@ -129,10 +133,9 @@ while ($rowHeader = mysqli_fetch_array($buscar4, MYSQLI_ASSOC)) {
     "menuHeader" => $rowHeader["menuHeader"],
     "headerPrograma" => $headerPrograma
   );
+  
   array_push($menuHeader, $linhaHeader);
   $rows++;
-
-  //echo "-SQL->".json_encode($sql4)."\n";
 }
 
 $jsonSaida = array(

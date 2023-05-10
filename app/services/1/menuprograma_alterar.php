@@ -13,7 +13,7 @@ if (isset($jsonEntrada['idMenuPrograma'])) {
     $nivelMenu = $jsonEntrada['nivelMenu'];
     $menuAtalho = $jsonEntrada['menuAtalho'];
 
-    $sql = "UPDATE menuprograma SET IDMenu = $IDMenu, progrNome ='$progrNome', idAplicativo ='$idAplicativo', progrLink ='$progrLink', nivelMenu = $nivelMenu , menuAtalho = $menuAtalho WHERE idMenuPrograma = $idMenuPrograma";
+    $sql = "UPDATE menuprograma SET IDMenu = $IDMenu, progrNome ='$progrNome', idAplicativo ='$idAplicativo', progrLink ='$progrLink', nivelMenu = $nivelMenu, menuAtalho = $menuAtalho WHERE idMenuPrograma = $idMenuPrograma";
     // echo "-SQL->".json_encode($sql)."\n";
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(
