@@ -110,8 +110,7 @@ if (isset($jsonEntrada["nomeAplicativo"])) {
   $sql4 .= " AND aplicativo.nomeAplicativo = '" . $jsonEntrada["nomeAplicativo"] . "'";
 }
 if (isset($jsonEntrada["idUsuario"])) {
-  $nivelMenu = (int)$jsonEntrada["idUsuario"];
-  $sql4 .= "AND menu.nivelMenu <= $nivelMenu ";
+  $sql4 .= " AND menu.nivelMenu <= " . $nivelMenu;
 }
 
 $buscar4 = mysqli_query($conexao, $sql4);
