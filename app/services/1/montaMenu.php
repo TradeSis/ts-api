@@ -11,11 +11,14 @@ $nivelMenu = 0;
 if (isset($jsonEntrada["idUsuario"])) {
   
   $sqlusu = "SELECT usuarioaplicativo.* FROM usuarioaplicativo ";
-  $sqlusu = $sqlusu . "where idUsuario = " .$jsonEntrada["idUsuario"];
+  $sqlusu = $sqlusu . "where idUsuario = " .$jsonEntrada["idUsuario"] ." and usuarioaplicativo.aplicativo = '" . $jsonEntrada["nomeAplicativo"] . "'";
   $buscarUsu = mysqli_query($conexao, $sqlusu);
   $row = mysqli_fetch_array($buscarUsu, MYSQLI_ASSOC);
-  $nivelMenu = $row["nivelMenu"];
+  if (isset($row["nivelMenu"])) {
+    $nivelMenu = $row["nivelMenu"];
+  }
 } 
+
 
 $sql = "SELECT menu.*, aplicativo.nomeAplicativo FROM menu
         LEFT JOIN aplicativo on  menu.idAplicativo = aplicativo.idAplicativo";
