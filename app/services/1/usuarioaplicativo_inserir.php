@@ -6,10 +6,10 @@
 $conexao = conectaMysql();
 if (isset($jsonEntrada['idUsuario'])) {
     $idUsuario = $jsonEntrada['idUsuario'];
-    $aplicativo = $jsonEntrada['aplicativo'];
+    $idAplicativo = $jsonEntrada['idAplicativo'];
     $nivelMenu = $jsonEntrada['nivelMenu'];
     
-    $sql = "INSERT INTO usuarioaplicativo(idUsuario, aplicativo, nivelMenu) VALUES ($idUsuario, '$aplicativo', $nivelMenu)";
+    $sql = "INSERT INTO usuarioaplicativo(idUsuario, idAplicativo, nivelMenu) VALUES ($idUsuario, '$idAplicativo', $nivelMenu)";
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(
             "status" => 200,

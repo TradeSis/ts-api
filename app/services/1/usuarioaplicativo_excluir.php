@@ -6,9 +6,9 @@
 $conexao = conectaMysql();
 if (isset($jsonEntrada['idUsuario'])) {
     $idUsuario = $jsonEntrada['idUsuario'];
-    $aplicativo = $jsonEntrada['aplicativo'];
+    $idAplicativo = $jsonEntrada['idAplicativo'];
     
-    $sql = "DELETE FROM usuarioaplicativo WHERE idUsuario = $idUsuario and aplicativo = '$aplicativo'";
+    $sql = "DELETE FROM usuarioaplicativo WHERE idUsuario = $idUsuario and idAplicativo = '$idAplicativo'";
     echo "-SQL->".json_encode($sql)."\n";
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(

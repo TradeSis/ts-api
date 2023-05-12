@@ -11,11 +11,10 @@ if (isset($jsonEntrada['idMenuPrograma'])) {
     $idAplicativo = $jsonEntrada['idAplicativo'];
     $progrLink = $jsonEntrada['progrLink'];
     $nivelMenu = $jsonEntrada['nivelMenu'];
-    
-    $sql = "UPDATE menuprograma SET IDMenu = $IDMenu, progrNome ='$progrNome', idAplicativo ='$idAplicativo', progrLink ='$progrLink', nivelMenu = $nivelMenu WHERE idMenuPrograma = $idMenuPrograma";
+    $menuAtalho = $jsonEntrada['menuAtalho'];
 
-   //echo "-SQL->".json_encode($sql)."\n";
-
+    $sql = "UPDATE menuprograma SET IDMenu = $IDMenu, progrNome ='$progrNome', idAplicativo ='$idAplicativo', progrLink ='$progrLink', nivelMenu = $nivelMenu, menuAtalho = $menuAtalho WHERE idMenuPrograma = $idMenuPrograma";
+    // echo "-SQL->".json_encode($sql)."\n";
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(
             "status" => 200,

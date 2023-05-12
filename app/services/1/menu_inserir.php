@@ -8,8 +8,9 @@ if (isset($jsonEntrada['nomeMenu'])) {
     $nomeMenu = $jsonEntrada['nomeMenu'];
     $idAplicativo = $jsonEntrada['idAplicativo'];
     $nivelMenu = $jsonEntrada['nivelMenu'];
+    $menuHeader = $jsonEntrada['menuHeader'];
     
-    $sql = "INSERT INTO menu(nomeMenu, idAplicativo, nivelMenu) VALUES ('$nomeMenu','$idAplicativo',$nivelMenu)";
+    $sql = "INSERT INTO menu(nomeMenu, idAplicativo, nivelMenu, menuHeader) VALUES ('$nomeMenu','$idAplicativo',$nivelMenu, $menuHeader)";
     echo "-SQL->".json_encode($sql)."\n";
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(
