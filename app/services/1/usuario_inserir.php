@@ -2,19 +2,17 @@
 //gabriel 06022023 16:52
 /* echo "-ENTRADA->".json_encode($jsonEntrada)."\n"; */
 
-
 $conexao = conectaMysql();
 if (isset($jsonEntrada['nomeUsuario'])) {
-    
     $nomeUsuario = $jsonEntrada['nomeUsuario'];
-    //$idCliente = $jsonEntrada['idCliente'];
+    $idCliente = $jsonEntrada['idCliente'];
     $email = $jsonEntrada['email'];
     $password = $jsonEntrada['password'];
-    //$statusUsuario = $jsonEntrada['statusUsuario'];
-    
-   /*  $sql = "INSERT INTO usuario(nomeUsuario, idCliente, email, password, statusUsuario) VALUES ('$nomeUsuario', $idCliente ,'$email','$varsenha', 1)"; */
+    $statusUsuario = 0;
 
-    $sql = "INSERT INTO `usuario`( `nomeUsuario`, `email`, `password`) VALUES ('$nomeUsuario','$email','$password')";
+    
+
+    $sql = "INSERT INTO `usuario`( `nomeUsuario`, `idCliente`, `email`, `password`, `statusUsuario`) VALUES ('$nomeUsuario', $idCliente, '$email',' $password', $statusUsuario)";
    /*  echo "-SQL->".json_encode($sql)."\n"; */
 
     if ($atualizar = mysqli_query($conexao, $sql)) {
