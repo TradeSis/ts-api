@@ -24,6 +24,11 @@ if (isset($jsonEntrada["idDemanda"])) {
       $where = " and ";
     }  
 
+  if (isset($jsonEntrada["solicitante"])) {
+      $sql = $sql . $where . " demanda.idUsuario = " . $jsonEntrada["solicitante"];
+      $where = " and ";
+    }  
+
   if (isset($jsonEntrada["idTipoStatus"])) {
       $sql = $sql . $where . " demanda.idTipoStatus = " . $jsonEntrada["idTipoStatus"];
       $where = " and ";
