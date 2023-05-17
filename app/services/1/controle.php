@@ -180,6 +180,11 @@ if ($metodo == "POST") {
     $parametro = null;
   }
 
+  if ($funcao=="usuario"&&$parametro=="ativar") {
+    $funcao = "usuario/ativar";
+    $parametro = null;
+  }
+
 
 
   switch ($funcao) {
@@ -236,6 +241,10 @@ if ($metodo == "POST") {
       include 'usuarioaplicativo_alterar.php';
     break;
 
+    case "usuario/ativar":
+      include 'usuario_ativar.php';
+    break;
+
     default:
       $jsonSaida = json_decode(json_encode(
         array(
@@ -282,6 +291,10 @@ if ($metodo == "DELETE") {
 
     case "usuarioaplicativo":
       include 'usuarioaplicativo_excluir.php';
+    break;
+
+    case "usuario":
+      include 'usuario_excluir.php';
     break;
       
     default:

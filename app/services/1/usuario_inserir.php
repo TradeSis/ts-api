@@ -2,7 +2,11 @@
 //gabriel 06022023 16:52
 /* echo "-ENTRADA->".json_encode($jsonEntrada)."\n"; */
 
+//******** gera secret */
+require_once __DIR__ .'/../../../../vendor/autoload.php';
 
+use PragmaRX\Google2FA\Google2FA;
+$google2fa = new Google2FA();
 $conexao = conectaMysql();
 if (isset($jsonEntrada['nomeUsuario'])) {
     
@@ -10,11 +14,11 @@ if (isset($jsonEntrada['nomeUsuario'])) {
     //$idCliente = $jsonEntrada['idCliente'];
     $email = $jsonEntrada['email'];
     $password = $jsonEntrada['password'];
-    //$statusUsuario = $jsonEntrada['statusUsuario'];
-    
-   /*  $sql = "INSERT INTO usuario(nomeUsuario, idCliente, email, password, statusUsuario) VALUES ('$nomeUsuario', $idCliente ,'$email','$varsenha', 1)"; */
+    $idCliente = $jsonEntrada['idCliente'];
+    $statusUsuario = 0;
+    $secret = $google2fa->generateSecretKey();
 
-    $sql = "INSERT INTO `usuario`( `nomeUsuario`, `email`, `password`) VALUES ('$nomeUsuario','$email','$password')";
+    $sql = "INSERT INTO `usuario`( `nomeUsuario`, `idCliente`, `email`, `password`, `statusUsuario`, `secret`) VALUES ('$nomeUsuario', $idCliente, '$email', '$password', $statusUsuario, '$secret')";
    /*  echo "-SQL->".json_encode($sql)."\n"; */
 
     if ($atualizar = mysqli_query($conexao, $sql)) {
