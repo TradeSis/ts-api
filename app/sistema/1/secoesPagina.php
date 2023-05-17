@@ -3,27 +3,27 @@
 
 
 $conexao = conectaMysql();
-$secoesPagina = array();
+$secoespagina = array();
 
-$sql = "SELECT secoesPagina.*, secoes.*, paginas.* FROM secoesPagina
-        INNER JOIN secoes on secoes.idSecao = secoesPagina.idSecao
-        INNER JOIN paginas on paginas.idPagina = secoesPagina.idSecao ";
+$sql = "SELECT secoespagina.*, secoes.*, paginas.* FROM secoespagina
+        INNER JOIN secoes on secoes.idSecao = secoespagina.idSecao
+        INNER JOIN paginas on paginas.idPagina = secoespagina.idSecao ";
         
 if (isset($jsonEntrada["idSecaoPagina"])) {
-  $sql = $sql . " where secoesPagina.idSecaoPagina = " . $jsonEntrada["idSecaoPagina"];
+  $sql = $sql . " where secoespagina.idSecaoPagina = " . $jsonEntrada["idSecaoPagina"];
 }
 
 $rows = 0;
 $buscar = mysqli_query($conexao, $sql);
 while ($row = mysqli_fetch_array($buscar, MYSQLI_ASSOC)) {
-  array_push($secoesPagina, $row);
+  array_push($secoespagina, $row);
   $rows = $rows + 1;
 }
 
 if (isset($jsonEntrada["idSecaoPagina"]) && $rows==1) {
-  $secoesPagina = $secoesPagina[0];
+  $secoespagina = $secoespagina[0];
 }
-$jsonSaida = $secoesPagina;
+$jsonSaida = $secoespagina;
 
 //echo "-SAIDA->".json_encode(jsonSaida)."\n";
 
