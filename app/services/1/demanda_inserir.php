@@ -10,7 +10,7 @@ $statusDemanda = null;
 if (isset($jsonEntrada['tituloDemanda'])) {
     $idCliente = $jsonEntrada['idCliente'];
     $idUsuario = $jsonEntrada['idUsuario'];
-    $solicitante = $jsonEntrada['solicitante'];
+    $idSolicitante = $jsonEntrada['idSolicitante'];
     $tituloDemanda = $jsonEntrada['tituloDemanda'];
     $descricao = $jsonEntrada['descricao'];
     $idTipoStatus = $jsonEntrada['idTipoStatus'];
@@ -23,7 +23,7 @@ if (isset($jsonEntrada['tituloDemanda'])) {
         $posicao = $row["mudaPosicaoPara"];
         $statusDemanda = $row["mudaStatusPara"];
 
-    $sql = "INSERT INTO demanda(prioridade, tituloDemanda, descricao, dataAbertura, idTipoStatus, idTipoOcorrencia, posicao, statusDemanda, idCliente, idUsuario, solicitante) VALUES (99, '$tituloDemanda','$descricao', CURRENT_TIMESTAMP(), $idTipoStatus, $idTipoOcorrencia, $posicao, $statusDemanda, $idCliente, $idUsuario, '$solicitante')";
+    $sql = "INSERT INTO demanda(prioridade, tituloDemanda, descricao, dataAbertura, idTipoStatus, idTipoOcorrencia, posicao, statusDemanda, idCliente, idUsuario, idSolicitante) VALUES (99, '$tituloDemanda','$descricao', CURRENT_TIMESTAMP(), $idTipoStatus, $idTipoOcorrencia, $posicao, $statusDemanda, $idCliente, $idUsuario, '$idSolicitante')";
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(
             "status" => 200,
