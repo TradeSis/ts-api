@@ -18,9 +18,11 @@ while ($row = mysqli_fetch_array($buscar, MYSQLI_ASSOC)) {
   $rows = $rows + 1;
 }
 
+/*
 if ($rows==1) {
   $secoespagina = $secoespagina[0];
 }
+*/
 
 $jsonSaida = $secoespagina;
 
