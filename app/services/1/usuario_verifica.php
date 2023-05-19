@@ -26,7 +26,7 @@ if (!isset($jsonEntrada["usuario"])) {
    
 
 
-    $sql = "SELECT * FROM usuario WHERE email = '$usuario' or nomeUsuario = '$usuario'";
+    $sql = "SELECT * FROM usuario WHERE email = '$usuario' or nomeUsuario = '$usuario' or cpfCnpj = '$usuario'";
 
 
     $rows = 0;
@@ -43,6 +43,7 @@ if (!isset($jsonEntrada["usuario"])) {
             "idUsuario" => $usuarios["idUsuario"],
             "idCliente" => $usuarios["idCliente"],
             "nomeUsuario" => $usuarios["nomeUsuario"],
+            "cpfCnpj" => $usuarios["cpfCnpj"],
             "password" => $usuarios["password"],
             "statusUsuario" => $usuarios["statusUsuario"],
             "email" => $usuarios["email"],
