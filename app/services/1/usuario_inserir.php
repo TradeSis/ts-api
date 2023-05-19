@@ -13,13 +13,15 @@ if (isset($jsonEntrada['nomeUsuario'])) {
     $nomeUsuario = $jsonEntrada['nomeUsuario'];
     $idCliente = $jsonEntrada['idCliente'];
     $email = $jsonEntrada['email'];
+    $cpfCnpj = $jsonEntrada['cpfCnpj'];
+    $telefone = $jsonEntrada['telefone'];
     $password = $jsonEntrada['password'];
 
     $idCliente = $jsonEntrada['idCliente'];
     $statusUsuario = 0;
     $secret = $google2fa->generateSecretKey();
 
-    $sql = "INSERT INTO `usuario`( `nomeUsuario`, `idCliente`, `email`, `password`, `statusUsuario`, `secret`) VALUES ('$nomeUsuario', $idCliente, '$email', '$password', $statusUsuario, '$secret')";
+    $sql = "INSERT INTO `usuario`( `nomeUsuario`, `idCliente`, `email`, `cpfCnpj`, `telefone`, `password`, `statusUsuario`, `secret`) VALUES ('$nomeUsuario', $idCliente, '$email', '$cpfCnpj', '$telefone', '$password', $statusUsuario, '$secret')";
 
    /*  echo "-SQL->".json_encode($sql)."\n"; */
 
