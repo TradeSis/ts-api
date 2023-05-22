@@ -7,12 +7,12 @@ $conexao = conectaMysql();
 if (isset($jsonEntrada['idUsuario'])) {
     $idUsuario = $jsonEntrada['idUsuario'];
     $nomeUsuario = $jsonEntrada['nomeUsuario'];
-    //$idCliente = $jsonEntrada['idCliente'];
     $email = $jsonEntrada['email'];
+    $cpfCnpj = $jsonEntrada['cpfCnpj'];
+    $telefone = $jsonEntrada['telefone'];
     $password = $jsonEntrada['password'];
-    /* $sql = "UPDATE usuario(nomeUsuario, idCliente, email, password, statusUsuario) VALUES ('$nomeUsuario', $idCliente ,'$email',md5('$password'), 1)"; */
 
-    $sql = "UPDATE `usuario` SET `nomeUsuario`='$nomeUsuario',`email`='$email',`password` = '$password',`statusUsuario`='1' WHERE idUsuario = $idUsuario";
+    $sql = "UPDATE `usuario` SET `nomeUsuario`='$nomeUsuario', `email`='$email', `cpfCnpj`='$cpfCnpj', `telefone`='$telefone', `password` = '$password' WHERE idUsuario = $idUsuario";
    // echo "-ENTRADA->".$sql."\n"; 
     
     if ($atualizar = mysqli_query($conexao, $sql)) {

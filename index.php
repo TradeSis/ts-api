@@ -257,6 +257,9 @@ switch ($aplicacao) {
         include "app/services/versao.php";
         break;
 
+    case "sistema":
+        include "app/sistema/versao.php";
+        break;
 
     default:
         $jsonSaida = json_decode(

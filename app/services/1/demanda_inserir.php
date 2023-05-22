@@ -22,7 +22,8 @@ if (isset($jsonEntrada['tituloDemanda'])) {
         $posicao = $row["mudaPosicaoPara"];
         $statusDemanda = $row["mudaStatusPara"];
 
-    $sql = "INSERT INTO demanda(prioridade, tituloDemanda, descricao, dataAbertura, idTipoStatus, idTipoOcorrencia, posicao, statusDemanda, idCliente, idSolicitante) VALUES (99, '$tituloDemanda','$descricao', CURRENT_TIMESTAMP(), $idTipoStatus, $idTipoOcorrencia, $posicao, $statusDemanda, $idCliente, '$idSolicitante')";
+    $sql = "INSERT INTO demanda(prioridade, tituloDemanda, descricao, dataAbertura, idTipoStatus, idTipoOcorrencia, posicao, statusDemanda, idCliente, idSolicitante) VALUES (99, '$tituloDemanda','$descricao', CURRENT_TIMESTAMP(), $idTipoStatus, $idTipoOcorrencia, $posicao, $statusDemanda, $idCliente, $idSolicitante)";
+
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(
             "status" => 200,
