@@ -13,7 +13,10 @@ $sql = "SELECT tarefa.*, usuario.nomeUsuario, cliente.nomeCliente, demanda.titul
         INNER JOIN cliente on tarefa.idCliente = cliente.idCliente";
 if (isset($jsonEntrada["idDemanda"])) {
   $sql = $sql . " where tarefa.idDemanda = " . $jsonEntrada["idDemanda"]; 
-}
+}  if (isset($jsonEntrada["idTarefa"])) {
+    $sql = $sql . " and tarefa.idTarefa = " . $jsonEntrada["idTarefa"];
+  }
+//echo "-SQL->".json_encode($sql)."\n";
 $rows = 0;
 $buscar = mysqli_query($conexao, $sql);
 while ($row = mysqli_fetch_array($buscar, MYSQLI_ASSOC)) {
