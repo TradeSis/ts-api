@@ -19,6 +19,7 @@ if (isset($jsonEntrada['idDemanda'])) {
     $idTipoOcorrencia = $jsonEntrada['idTipoOcorrencia'];
     $tamanho = $jsonEntrada['tamanho'];
     $idAtendente = $jsonEntrada['idAtendente'];
+    $horasPrevisao = $jsonEntrada['horasPrevisao'];
 
     //busca dados tipostatus    
         $sql2 = "SELECT * FROM tipostatus WHERE idTipoStatus = $idTipoStatus";
@@ -27,8 +28,8 @@ if (isset($jsonEntrada['idDemanda'])) {
         $posicao = $row["mudaPosicaoPara"];
         $statusDemanda = $row["mudaStatusPara"];
 
-    $sql = "UPDATE demanda SET prioridade=$prioridade, tituloDemanda='$tituloDemanda', descricao='$descricao', idTipoStatus=$idTipoStatus, idTipoOcorrencia=$idTipoOcorrencia, posicao=$posicao, statusDemanda=$statusDemanda, tamanho='$tamanho', idAtendente=$idAtendente, dataAtualizacaoAtendente=CURRENT_TIMESTAMP() WHERE idDemanda = $idDemanda";
-    echo "-SQL->".json_encode($sql)."\n";
+    $sql = "UPDATE demanda SET prioridade=$prioridade, tituloDemanda='$tituloDemanda', descricao='$descricao', idTipoStatus=$idTipoStatus, idTipoOcorrencia=$idTipoOcorrencia, posicao=$posicao, statusDemanda=$statusDemanda, tamanho='$tamanho', idAtendente=$idAtendente, horasPrevisao= '$horasPrevisao', dataAtualizacaoAtendente=CURRENT_TIMESTAMP() WHERE idDemanda = $idDemanda";
+   // echo "-SQL->".json_encode($sql)."\n";
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(
             "status" => 200,
