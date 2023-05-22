@@ -1,5 +1,6 @@
 <?php
-// Lucas 22032023 adicionado if de tituloDemanda
+// Lucas 19052023 adicionado if para filtro de tamanho
+// Lucas 22032023 adicionado if para filtro de tituloDemanda
 // Lucas 21032023 ajustado estrutura dentro do else, para os novos filtros.
 // Lucas 17022023 adicionado condição else para idTipoStatus
 //gabriel 07022023 16:25
@@ -55,6 +56,10 @@ if (isset($jsonEntrada["idDemanda"])) {
       $where = " and ";
     }  
 
+    if (isset($jsonEntrada["tamanho"])) {
+      $sql = $sql . $where . " demanda.tamanho = " . "'". $jsonEntrada["tamanho"] . "'";
+      $where = " and ";
+    }
   
 
 
