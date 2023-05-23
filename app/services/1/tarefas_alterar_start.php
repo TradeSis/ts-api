@@ -7,16 +7,10 @@ date_default_timezone_set('America/Sao_Paulo');
 $conexao = conectaMysql();
 if (isset($jsonEntrada['idTarefa'])) {
     $idTarefa = $jsonEntrada['idTarefa'];
-    $dataInicio = $jsonEntrada['dataExecucaoInicio'];
-    $dataFim = date('Y-m-d H:i:00');
+    $dataStart = date('Y-m-d H:i:00');
 
-    $calculo = "SELECT TIMEDIFF('$dataFim','$dataInicio') AS total";
-    $busca = mysqli_query($conexao, $calculo);
-    while ($row = mysqli_fetch_array($busca)) {
-        $duracao = $row['total'];
 
-        $sql = "UPDATE `tarefa` SET `dataStop`='$dataFim', `duracao` = '$duracao' WHERE idTarefa = $idTarefa";
-    }
+    $sql = "UPDATE `tarefa` SET `dataStart`='$dataStart' WHERE idTarefa = $idTarefa";
     echo $sql;
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(

@@ -11,14 +11,14 @@ if (isset($jsonEntrada['tituloTarefa'])) {
     $idAtendente = $jsonEntrada['idAtendente'];
     $dataInicio = $jsonEntrada['dataExecucaoInicio'];
     $dataFim = $jsonEntrada['dataExecucaoFinal'];
-    $idStatus = $jsonEntrada['idStatus'];
+    $idTipoOcorrencia = $jsonEntrada['idTipoOcorrencia'];
 
     $calculo = "SELECT TIMEDIFF('$dataFim','$dataInicio') AS total";
     $busca = mysqli_query($conexao, $calculo);
     while ($row = mysqli_fetch_array($busca)) {
         $tempo = $row['total'];
 
-        $sql = "INSERT INTO tarefa(tituloTarefa, idCliente, idDemanda, idAtendente, dataExecucaoInicio, dataExecucaoFinal, tempo, idStatus) VALUES ('$tituloTarefa', $idCliente, $idDemanda, $idAtendente, '$dataInicio', '$dataFim', '$tempo', $idStatus)";
+        $sql = "INSERT INTO tarefa(tituloTarefa, idCliente, idDemanda, idAtendente, dataExecucaoInicio, dataExecucaoFinal, tempo, idTipoOcorrencia) VALUES ('$tituloTarefa', $idCliente, $idDemanda, $idAtendente, '$dataInicio', '$dataFim', '$tempo', $idTipoOcorrencia)";
     }
     echo $sql;
     if ($atualizar = mysqli_query($conexao, $sql)) {

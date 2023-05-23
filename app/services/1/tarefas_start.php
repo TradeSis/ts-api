@@ -9,9 +9,9 @@ if (isset($jsonEntrada['tituloTarefa'])) {
     $idCliente = $jsonEntrada['idCliente'];
     $idDemanda = $jsonEntrada['idDemanda'];
     $idAtendente = $jsonEntrada['idAtendente'];
-    $idStatus = $jsonEntrada['idStatus'];
+    $idTipoOcorrencia = $jsonEntrada['idTipoOcorrencia'];
 
-    $sql = "INSERT INTO tarefa(tituloTarefa, idCliente, idDemanda, idAtendente, idStatus, dataExecucaoInicio) VALUES ('$tituloTarefa', $idCliente, $idDemanda, $idAtendente, $idStatus, DATE_FORMAT(CURRENT_TIMESTAMP(), '%Y-%m-%d %H:%i'))";
+    $sql = "INSERT INTO tarefa(tituloTarefa, idCliente, idDemanda, idAtendente, idTipoOcorrencia, dataStart) VALUES ('$tituloTarefa', $idCliente, $idDemanda, $idAtendente, $idTipoOcorrencia, DATE_FORMAT(CURRENT_TIMESTAMP(), '%Y-%m-%d %H:%i'))";
     echo $sql;
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(

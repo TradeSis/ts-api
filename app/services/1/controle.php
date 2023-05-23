@@ -200,6 +200,11 @@ if ($metodo == "POST") {
     $parametro = null;
   }
 
+  if ($funcao=="tarefas"&&$parametro=="startAlterar") {
+    $funcao = "tarefas/startAlterar";
+    $parametro = null;
+  }
+
 
 
   switch ($funcao) {
@@ -266,6 +271,10 @@ if ($metodo == "POST") {
 
     case "tarefas/stop":
       include 'tarefas_stop.php';
+    break;
+
+    case "tarefas/startAlterar":
+      include 'tarefas_alterar_start.php';
     break;
 
     default:
