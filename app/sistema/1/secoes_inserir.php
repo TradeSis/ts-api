@@ -7,8 +7,9 @@ if (isset($jsonEntrada['tituloSecao'])) {
 
 	$tituloSecao = $jsonEntrada['tituloSecao'];
 	$arquivoFonte = $jsonEntrada['arquivoFonte'];
+    $tipoSecao = $jsonEntrada['tipoSecao'];
     
-    $sql = "INSERT INTO `secoes`(`tituloSecao`, `arquivoFonte`) VALUES ('$tituloSecao','$arquivoFonte')";
+    $sql = "INSERT INTO `secoes`(`tituloSecao`, `arquivoFonte`, `tipoSecao`) VALUES ('$tituloSecao','$arquivoFonte','$tipoSecao')";
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(
             "status" => 200,

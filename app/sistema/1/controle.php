@@ -28,6 +28,10 @@ if ($metodo == "GET") {
       include 'secoesPagina.php';
     break;
 
+    case "secoesIdPagina":
+      include 'secoesIdPagina.php';
+    break;
+
     case "marcas":
       include 'marcas.php';
     break;

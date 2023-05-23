@@ -8,12 +8,16 @@ $secoespagina = array();
 $sql = "SELECT secoespagina.*, secoes.*, paginas.* FROM secoespagina
         INNER JOIN secoes on secoes.idSecao = secoespagina.idSecao
         INNER JOIN paginas on paginas.idPagina = secoespagina.idPagina ";
-        
+$where = " WHERE ";        
 if (isset($jsonEntrada["idSecaoPagina"])) {
   $sql = $sql . " where secoespagina.idSecaoPagina = " . $jsonEntrada["idSecaoPagina"];
+  $where = " AND ";
 }
-$sql = $sql . " order by secoespagina.idPagina, secoespagina.ordem; ";
+if (isset($jsonEntrada["idPagina"])) {
+  $sql = $sql . $where . " secoespagina.idPagina = " . $jsonEntrada["idPagina"];
+} 
 
+$sql = $sql . " order by secoespagina.idPagina, secoespagina.ordem; ";
 
 
 $rows = 0;
@@ -28,8 +32,4 @@ if (isset($jsonEntrada["idSecaoPagina"]) && $rows==1) {
 }
 $jsonSaida = $secoespagina;
 
-//echo "-SAIDA->".json_encode(jsonSaida)."\n";
-
-
-
-?>
+//echo "-SAIDA->".json_encode($jsonSaida)."\n";
