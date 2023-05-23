@@ -4,21 +4,18 @@
 
 
 $conexao = conectaMysql();
-if (isset($jsonEntrada['tituloTarefa'])) {
+if (isset($jsonEntrada['idTarefa'])) {
+    $idTarefa = $jsonEntrada['idTarefa'];
     $tituloTarefa = $jsonEntrada['tituloTarefa'];
-    $idCliente = $jsonEntrada['idCliente'];
-    $idDemanda = $jsonEntrada['idDemanda'];
-    $idAtendente = $jsonEntrada['idAtendente'];
     $dataInicio = $jsonEntrada['dataExecucaoInicio'];
     $dataFim = $jsonEntrada['dataExecucaoFinal'];
-    $idTipoOcorrencia = $jsonEntrada['idTipoOcorrencia'];
 
     $calculo = "SELECT TIMEDIFF('$dataFim','$dataInicio') AS total";
     $busca = mysqli_query($conexao, $calculo);
     while ($row = mysqli_fetch_array($busca)) {
         $tempo = $row['total'];
 
-        $sql = "INSERT INTO tarefa(tituloTarefa, idCliente, idDemanda, idAtendente, dataExecucaoInicio, dataExecucaoFinal, tempo, idTipoOcorrencia) VALUES ('$tituloTarefa', $idCliente, $idDemanda, $idAtendente, '$dataInicio', '$dataFim', '$tempo', $idTipoOcorrencia)";
+        $sql = "UPDATE `tarefa` SET `tituloTarefa`='$tituloTarefa', `dataExecucaoInicio`='$dataInicio', `dataExecucaoFinal`='$dataFim', `tempo` = '$tempo' WHERE idTarefa = $idTarefa";
     }
     echo $sql;
     if ($atualizar = mysqli_query($conexao, $sql)) {

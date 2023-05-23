@@ -104,6 +104,12 @@ if ($metodo == "GET") {
 }
 
 if ($metodo == "PUT") {
+
+  if ($funcao=="tarefas"&&$parametro=="start") {
+    $funcao = "tarefas/start";
+    $parametro = null;
+  }
+
   switch ($funcao) {
     case "clientes":
       include 'clientes_inserir.php';
@@ -152,6 +158,10 @@ if ($metodo == "PUT") {
       include 'usuarioaplicativo_inserir.php';
     break;
 
+    case "tarefas/start":
+      include 'tarefas_start.php';
+    break;
+
     default:
       $jsonSaida = json_decode(json_encode(
         array(
@@ -182,6 +192,16 @@ if ($metodo == "POST") {
 
   if ($funcao=="usuario"&&$parametro=="ativar") {
     $funcao = "usuario/ativar";
+    $parametro = null;
+  }
+
+  if ($funcao=="tarefas"&&$parametro=="stop") {
+    $funcao = "tarefas/stop";
+    $parametro = null;
+  }
+
+  if ($funcao=="tarefas"&&$parametro=="startAlterar") {
+    $funcao = "tarefas/startAlterar";
     $parametro = null;
   }
 
@@ -241,8 +261,20 @@ if ($metodo == "POST") {
       include 'usuarioaplicativo_alterar.php';
     break;
 
+    case "tarefas":
+      include 'tarefas_alterar.php';
+    break;
+
     case "usuario/ativar":
       include 'usuario_ativar.php';
+    break;
+
+    case "tarefas/stop":
+      include 'tarefas_stop.php';
+    break;
+
+    case "tarefas/startAlterar":
+      include 'tarefas_alterar_start.php';
     break;
 
     default:
