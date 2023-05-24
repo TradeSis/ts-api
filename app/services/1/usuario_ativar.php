@@ -6,9 +6,10 @@
 $conexao = conectaMysql();
 if (isset($jsonEntrada['idUsuario'])) {
     $idUsuario = $jsonEntrada['idUsuario'];
+    $secret = $jsonEntrada['secret_key']; /* Guarda secret */
     $statusUsuario = 1;
 
-    $sql = "UPDATE `usuario` SET `statusUsuario` = $statusUsuario WHERE idUsuario = $idUsuario";
+    $sql = "UPDATE `usuario` SET `statusUsuario` = $statusUsuario, `secret` = '$secret' WHERE idUsuario = $idUsuario";
    // echo "-ENTRADA->".$sql."\n"; 
     
     if ($atualizar = mysqli_query($conexao, $sql)) {
