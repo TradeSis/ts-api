@@ -2,11 +2,7 @@
 //gabriel 06022023 16:52
 /* echo "-ENTRADA->".json_encode($jsonEntrada)."\n"; */
 
-//******** gera secret */
-require_once __DIR__ .'/../../../../vendor/autoload.php';
-
-use PragmaRX\Google2FA\Google2FA;
-$google2fa = new Google2FA();
+/* não gera mais secret */
 
 $conexao = conectaMysql();
 if (isset($jsonEntrada['nomeUsuario'])) {
@@ -17,13 +13,16 @@ if (isset($jsonEntrada['nomeUsuario'])) {
     $telefone = $jsonEntrada['telefone'];
     $password = $jsonEntrada['password'];
 
-    $idCliente = $jsonEntrada['idCliente'];
     $statusUsuario = 0;
-    $secret = $google2fa->generateSecretKey();
 
-    $sql = "INSERT INTO `usuario`( `nomeUsuario`, `idCliente`, `email`, `cpfCnpj`, `telefone`, `password`, `statusUsuario`, `secret`) VALUES ('$nomeUsuario', $idCliente, '$email', '$cpfCnpj', '$telefone', '$password', $statusUsuario, '$secret')";
+    $sql = "INSERT INTO `usuario`( `nomeUsuario`, `idCliente`, `email`, `cpfCnpj`, `telefone`, `password`, `statusUsuario`) VALUES ('$nomeUsuario', $idCliente, '$email', '$cpfCnpj', '$telefone', '$password', $statusUsuario)";
+    
+    if ($idCliente=="") { // sem id , tira do insert para deixar NULL
+        $sql = "INSERT INTO `usuario`( `nomeUsuario`, `email`, `cpfCnpj`, `telefone`, `password`, `statusUsuario`) VALUES ('$nomeUsuario', '$email', '$cpfCnpj', '$telefone', '$password', $statusUsuario)";
+    };
 
-   /*  echo "-SQL->".json_encode($sql)."\n"; */
+
+        //echo "-SQL->".$sql."\n"; 
 
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(
