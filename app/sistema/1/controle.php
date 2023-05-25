@@ -28,10 +28,6 @@ if ($metodo == "GET") {
       include 'secoesPagina.php';
     break;
 
-    case "secoesIdPagina":
-      include 'secoesIdPagina.php';
-    break;
-
     case "marcas":
       include 'marcas.php';
     break;
@@ -54,6 +50,14 @@ if ($metodo == "GET") {
 
     case "secoesPagina_individual":
       include 'secoesPagina_individual.php';
+    break;
+
+    case "servicos_card":
+      include 'servicos_card.php';
+    break;
+
+    case "servicos":
+      include 'servicos.php';
     break;
 
     default:
