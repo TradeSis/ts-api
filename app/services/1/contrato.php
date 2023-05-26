@@ -26,8 +26,8 @@ if (isset($jsonEntrada["idContrato"])) {
     $where = " and ";
   }
 
-  if (isset($jsonEntrada["dataFechamento"])) {
-    $sql = $sql . $where . " contrato.dataFechamento IS NULL";;
+  if (isset($jsonEntrada["statusContrato"])) {
+    $sql = $sql . $where . " contrato.statusContrato = " . $jsonEntrada["statusContrato"];;
     $where = " and ";
   }
 

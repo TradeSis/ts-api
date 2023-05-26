@@ -15,6 +15,7 @@ if (isset($jsonEntrada['tituloContrato'])) {
         $horas = $jsonEntrada['horas'];
         $valorHora = $jsonEntrada['valorHora'];
 		$valorContrato = $jsonEntrada['valorContrato'];
+		$statusContrato = 1; //Aberto
 
     
 
@@ -27,7 +28,7 @@ if (isset($jsonEntrada['tituloContrato'])) {
         }
       
 	   
-    $sql = "INSERT INTO contrato (tituloContrato, descricao, dataAbertura, idContratoStatus, dataPrevisao, dataEntrega, idCliente, horas, valorHora, valorContrato) values ('$tituloContrato', '$descricao', CURRENT_TIMESTAMP(), '$idContratoStatus', '$dataPrevisao', '$dataEntrega', '$idCliente', '$horas', '$valorHora', '$valorContrato')";
+    $sql = "INSERT INTO contrato (tituloContrato, descricao, dataAbertura, idContratoStatus, dataPrevisao, dataEntrega, idCliente, statusContrato, horas, valorHora, valorContrato) values ('$tituloContrato', '$descricao', CURRENT_TIMESTAMP(), '$idContratoStatus', '$dataPrevisao', '$dataEntrega', '$idCliente', '$statusContrato', '$horas', '$valorHora', '$valorContrato')";
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(
             "status" => 200,

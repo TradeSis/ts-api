@@ -17,8 +17,9 @@ $sql = "SELECT * FROM tipostatus ";
 if (isset($jsonEntrada["idTipoStatus"])) {
   $sql = $sql . " where tipostatus.idTipoStatus = " . $jsonEntrada["idTipoStatus"];
 } else {
+  $where = " where ";
   if (isset($jsonEntrada["statusInicial"])) {
-    $sql = $sql . " where tipostatus.statusInicial = " . $jsonEntrada["statusInicial"];
+    $sql = $sql . $where . " tipostatus.statusInicial = " . $jsonEntrada["statusInicial"];
   }
 }
 

@@ -6,7 +6,8 @@
 $conexao = conectaMysql();
 if (isset($jsonEntrada['nomeContratoStatus'])) {
     $nomeContratoStatus = $jsonEntrada['nomeContratoStatus'];
-    $sql = "INSERT INTO contratostatus (nomeContratoStatus) values ('$nomeContratoStatus')";
+    $mudaStatusPara = $jsonEntrada['mudaStatusPara'];
+    $sql = "INSERT INTO contratostatus (nomeContratoStatus, mudaStatusPara) values ('$nomeContratoStatus', $mudaStatusPara)";
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(
             "status" => 200,
