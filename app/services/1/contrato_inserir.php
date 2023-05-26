@@ -15,7 +15,7 @@ if (isset($jsonEntrada['tituloContrato'])) {
         $horas = $jsonEntrada['horas'];
         $valorHora = $jsonEntrada['valorHora'];
 		$valorContrato = $jsonEntrada['valorContrato'];
-		$statusContrato = 1; //Aberto
+		$statusContrato = 0; //Fechado
 
     
 
