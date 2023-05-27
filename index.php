@@ -174,7 +174,7 @@ foreach ($ex as $value) {
         unset($ex[$i]);
       
     }    
-    if (str_starts_with($value, 'V.')) {
+    if (substr($value, 0, 2) == 'V.') { // alterado para substring
         $versao = substr($value, 2, strlen($value));
         unset($ex[$i]);
     }
@@ -257,6 +257,9 @@ switch ($aplicacao) {
         include "app/services/versao.php";
         break;
 
+    case "sistema":
+        include "app/sistema/versao.php";
+        break;
 
     default:
         $jsonSaida = json_decode(

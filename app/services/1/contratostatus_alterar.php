@@ -7,7 +7,8 @@ $conexao = conectaMysql();
 if (isset($jsonEntrada['idContratoStatus'])) {
     $idContratoStatus = $jsonEntrada['idContratoStatus'];
     $nomeContratoStatus = $jsonEntrada['nomeContratoStatus'];
-    $sql = "UPDATE contratostatus SET nomeContratoStatus='$nomeContratoStatus' WHERE idContratoStatus = $idContratoStatus";
+    $mudaStatusPara = $jsonEntrada['mudaStatusPara'];
+    $sql = "UPDATE contratostatus SET nomeContratoStatus='$nomeContratoStatus', mudaStatusPara='$mudaStatusPara' WHERE idContratoStatus = $idContratoStatus";
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(
             "status" => 200,

@@ -5,9 +5,12 @@
 
 $conexao = conectaMysql();
 $demanda = array();
-$sql = "SELECT comentario.*, usuario.nomeUsuario, demanda.idDemanda FROM comentario
+$sql = "SELECT comentario.*, usuario.nomeUsuario, demanda.idDemanda FROM comentario  
         INNER JOIN usuario on comentario.idUsuario = usuario.idUsuario 
-        INNER JOIN demanda on comentario.idDemanda = demanda.idDemanda";
+        INNER JOIN demanda on comentario.idDemanda = demanda.idDemanda ";
+
+//echo "-SQL->".json_encode($sql)."\n";
+
 if (isset($jsonEntrada["idComentario"])) {
   $sql = $sql . " where comentario.idComentario = " . $jsonEntrada["idComentario"]; 
 } else {
@@ -15,6 +18,7 @@ if (isset($jsonEntrada["idComentario"])) {
     $sql = $sql . " where comentario.idDemanda = " . $jsonEntrada["idDemanda"];
   }
 }
+$sql = $sql ." ORDER BY comentario.idComentario DESC";
 $rows = 0;
 $buscar = mysqli_query($conexao, $sql);
 while ($row = mysqli_fetch_array($buscar, MYSQLI_ASSOC)) {

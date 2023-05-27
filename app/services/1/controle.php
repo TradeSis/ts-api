@@ -1,4 +1,6 @@
 <?php
+// Lucas 05042023 - adicionado aplicativo, menu, menuPrograma e montaMenu
+// gabriel 200323 11:04 - demanda/retornar
 // Lucas 03032023 - usuario alterar
 // Helio 16022023 - contrato/totais
 // Lucas 06022023 - adicionado contratoStatus (GET)
@@ -69,7 +71,27 @@ if ($metodo == "GET") {
       case "usuario/verifica":
         include 'usuario_verifica.php';
       break;
+
+    case "aplicativo":
+        include 'aplicativo.php';
+      break;
      
+    case "menu":
+        include 'menu.php';
+      break;
+
+      case "menuprograma":
+        include 'menuprograma.php';
+      break;
+
+      case "montaMenu":
+        include 'montaMenu.php';
+      break;
+
+      case "usuarioaplicativo":
+        include 'usuarioaplicativo.php';
+      break;
+
     default:
       $jsonSaida = json_decode(json_encode(
         array(
@@ -82,6 +104,12 @@ if ($metodo == "GET") {
 }
 
 if ($metodo == "PUT") {
+
+  if ($funcao=="tarefas"&&$parametro=="start") {
+    $funcao = "tarefas/start";
+    $parametro = null;
+  }
+
   switch ($funcao) {
     case "clientes":
       include 'clientes_inserir.php';
@@ -114,6 +142,26 @@ if ($metodo == "PUT") {
         include 'contrato_inserir.php';
     break;  
 
+    case "aplicativo":
+      include 'aplicativo_inserir.php';
+    break;
+
+    case "menu":
+      include 'menu_inserir.php';
+    break;
+
+    case "menuprograma":
+      include 'menuprograma_inserir.php';
+    break;
+
+    case "usuarioaplicativo":
+      include 'usuarioaplicativo_inserir.php';
+    break;
+
+    case "tarefas/start":
+      include 'tarefas_start.php';
+    break;
+
     default:
       $jsonSaida = json_decode(json_encode(
         array(
@@ -134,6 +182,26 @@ if ($metodo == "POST") {
 
   if ($funcao=="demanda"&&$parametro=="encerrar") {
     $funcao = "demanda/encerrar";
+    $parametro = null;
+  }
+
+  if ($funcao=="demanda"&&$parametro=="retornar") {
+    $funcao = "demanda/retornar";
+    $parametro = null;
+  }
+
+  if ($funcao=="usuario"&&$parametro=="ativar") {
+    $funcao = "usuario/ativar";
+    $parametro = null;
+  }
+
+  if ($funcao=="tarefas"&&$parametro=="stop") {
+    $funcao = "tarefas/stop";
+    $parametro = null;
+  }
+
+  if ($funcao=="tarefas"&&$parametro=="startAlterar") {
+    $funcao = "tarefas/startAlterar";
     $parametro = null;
   }
 
@@ -160,6 +228,10 @@ if ($metodo == "POST") {
       case "demanda/encerrar":
         include 'demanda_encerrar.php';
         break;
+    //break;
+      case "demanda/retornar":
+        include 'demanda_retornar.php';
+        break;
   
     case "contrato":
         include 'contrato_alterar.php';
@@ -171,6 +243,38 @@ if ($metodo == "POST") {
 
     case "usuario":
       include 'usuario_alterar.php';
+    break;
+
+    case "aplicativo":
+      include 'aplicativo_alterar.php';
+    break;
+
+    case "menu":
+      include 'menu_alterar.php';
+    break;
+
+    case "menuprograma":
+      include 'menuprograma_alterar.php';
+    break;
+
+    case "usuarioaplicativo":
+      include 'usuarioaplicativo_alterar.php';
+    break;
+
+    case "tarefas":
+      include 'tarefas_alterar.php';
+    break;
+
+    case "usuario/ativar":
+      include 'usuario_ativar.php';
+    break;
+
+    case "tarefas/stop":
+      include 'tarefas_stop.php';
+    break;
+
+    case "tarefas/startAlterar":
+      include 'tarefas_alterar_start.php';
     break;
 
     default:
@@ -203,6 +307,26 @@ if ($metodo == "DELETE") {
 
     case "contrato":
       include 'contrato_excluir.php';
+    break;
+
+    case "menu":
+      include 'menu_excluir.php';
+    break;
+
+    case "aplicativo":
+      include 'aplicativo_excluir.php';
+    break;
+
+    case "menuprograma":
+      include 'menuprograma_excluir.php';
+    break;
+
+    case "usuarioaplicativo":
+      include 'usuarioaplicativo_excluir.php';
+    break;
+
+    case "usuario":
+      include 'usuario_excluir.php';
     break;
       
     default:

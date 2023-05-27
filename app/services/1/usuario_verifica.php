@@ -1,4 +1,6 @@
 <?php
+// Lucas 20042023 adicionado no if "email"
+//gabriel 220323 11:10 envio de idcliente
 //Lucas 08032023
 //echo "-ENTRADA->" . json_encode($jsonEntrada) . "\n";
 
@@ -24,7 +26,7 @@ if (!isset($jsonEntrada["usuario"])) {
    
 
 
-    $sql = "SELECT * FROM usuario WHERE email = '$usuario' or nomeUsuario = '$usuario'";
+    $sql = "SELECT * FROM usuario WHERE email = '$usuario' or nomeUsuario = '$usuario' or cpfCnpj = '$usuario'";
 
 
     $rows = 0;
@@ -39,9 +41,12 @@ if (!isset($jsonEntrada["usuario"])) {
         $usuarios = $usuarios[0];
         $jsonSaida = array(
             "idUsuario" => $usuarios["idUsuario"],
+            "idCliente" => $usuarios["idCliente"],
             "nomeUsuario" => $usuarios["nomeUsuario"],
+            "cpfCnpj" => $usuarios["cpfCnpj"],
             "password" => $usuarios["password"],
             "statusUsuario" => $usuarios["statusUsuario"],
+            "email" => $usuarios["email"],
             "status" => 200,
             "retorno" => ""
         );
@@ -63,4 +68,3 @@ if (!isset($jsonEntrada["usuario"])) {
 
 
 ?>
-
