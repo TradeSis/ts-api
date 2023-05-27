@@ -23,7 +23,7 @@ while ($row = mysqli_fetch_array($buscar, MYSQLI_ASSOC)) {
   array_push($tarefa, $row);
   $rows = $rows + 1;
 }
-if (isset($jsonEntrada["idDemanda"]) && $rows==1) {
+if (isset($jsonEntrada["idTarefa"]) && $rows==1) {
   $tarefa = $tarefa[0];
 }
 $jsonSaida = $tarefa;

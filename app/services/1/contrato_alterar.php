@@ -27,8 +27,15 @@ if (isset($jsonEntrada['tituloContrato'])) {
                 $valorContrato= $horas * $valorHora;
             }
         }
-	   
-    $sql = "UPDATE `contrato` SET `tituloContrato`='$tituloContrato',`descricao`='$descricao',`idContratoStatus`='$idContratoStatus' ,`valorContrato`='$valorContrato',`dataPrevisao`='$dataPrevisao',`dataEntrega`='$dataEntrega',`horas`='$horas',`valorHora`='$valorHora',dataAtualizacao=CURRENT_TIMESTAMP() WHERE contrato.idContrato = $idContrato ";
+
+	//busca dados tipostatus    
+       $sql2 = "SELECT * FROM contratostatus WHERE idContratoStatus = $idContratoStatus";
+       $buscar2 = mysqli_query($conexao, $sql2);
+       $row = mysqli_fetch_array($buscar2, MYSQLI_ASSOC);
+       $statusContrato = $row["mudaStatusPara"];
+
+    $sql = "UPDATE `contrato` SET `tituloContrato`='$tituloContrato',`descricao`='$descricao',`idContratoStatus`='$idContratoStatus' ,`valorContrato`='$valorContrato',`dataPrevisao`='$dataPrevisao',`dataEntrega`='$dataEntrega',`statusContrato`='$statusContrato',`horas`='$horas',`valorHora`='$valorHora',dataAtualizacao=CURRENT_TIMESTAMP() WHERE contrato.idContrato = $idContrato ";
+    //echo "-SQL->".json_encode($sql)."\n";
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(
             "status" => 200,

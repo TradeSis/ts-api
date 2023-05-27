@@ -13,23 +13,28 @@ $sql = "SELECT contrato.*, cliente.*, contratostatus.* FROM contrato
         INNER JOIN contratostatus  on  contrato.idContratoStatus = contratostatus.idContratoStatus  ";
 if (isset($jsonEntrada["idContrato"])) {
   $sql = $sql . " where contrato.idContrato = " . $jsonEntrada["idContrato"];
-} else{
+} else {
   $where = " where ";
 
   if (isset($jsonEntrada["idCliente"])) {
     $sql = $sql . $where . " contrato.idCliente = " . $jsonEntrada["idCliente"];
     $where = " and ";
-  } 
+  }
 
   if (isset($jsonEntrada["idContratoStatus"])) {
-      $sql = $sql . $where . " contrato.idContratoStatus = " . $jsonEntrada["idContratoStatus"];
-      $where = " and ";
-    }
+    $sql = $sql . $where . " contrato.idContratoStatus = " . $jsonEntrada["idContratoStatus"];
+    $where = " and ";
+  }
 
-    if (isset($jsonEntrada["tituloContrato"])) {
-      $sql = $sql . $where . " contrato.tituloContrato like " . "'%". $jsonEntrada["tituloContrato"] . "%'";
-      $where = " and ";
-    }
+  if (isset($jsonEntrada["statusContrato"])) {
+    $sql = $sql . $where . " contrato.statusContrato = " . $jsonEntrada["statusContrato"];;
+    $where = " and ";
+  }
+
+  if (isset($jsonEntrada["tituloContrato"])) {
+    $sql = $sql . $where . " contrato.tituloContrato like " . "'%" . $jsonEntrada["tituloContrato"] . "%'";
+    $where = " and ";
+  }
 
 }
 
