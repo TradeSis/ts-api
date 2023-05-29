@@ -9,6 +9,15 @@ $sql = "SELECT * FROM posts ";
 if (isset($jsonEntrada["idPost"])) {
   $sql = $sql . " where posts.idPost = " . $jsonEntrada["idPost"];
 }
+else {
+  $where = " where ";
+  if (isset($jsonEntrada["titulo"])) {
+    $sql = $sql . $where . " posts.titulo like " . "'%" . $jsonEntrada["titulo"] . "%'";
+    $where = " and ";
+  }
+}
+
+//echo  $sql;
 $rows = 0;
 $buscar = mysqli_query($conexao, $sql);
 while ($row = mysqli_fetch_array($buscar, MYSQLI_ASSOC)) {
