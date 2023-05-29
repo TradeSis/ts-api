@@ -169,7 +169,7 @@ $inicioUrl = false;
 $i = 0;
 foreach ($ex as $value) {
     //echo $i . "-" . $ex[$i] . "\n";
-    if ($value == "api") {
+    if ($value == "api"||$value == "apilebes"||$value == "apitsweb") {
         $inicioUrl = true;
         unset($ex[$i]);
       
@@ -235,6 +235,7 @@ fwrite($arquivo,$log_datahora_ini."$acao"."-metodo->".json_encode($metodo)."\n")
 fclose($arquivo);
 **/
 
+
 /*
 echo 'host='.$_SERVER['SERVER_ADDR']."\n";
 echo "aplicacao=".$aplicacao."\n";
@@ -249,17 +250,18 @@ echo "hml=".$hml."\n";
 
 
 switch ($aplicacao) {
-    case "ts":
-        include "app/ts/versao.php";
+    case "vendas":
+        include "app/vendas/versao.php";
         break;
 
-    case "services":
-        include "app/services/versao.php";
+    case "relatorios":
+        include "app/relatorios/versao.php";
         break;
 
-    case "sistema":
-        include "app/sistema/versao.php";
+    case "crediario": // helio 28032023
+        include "app/crediario/versao.php";
         break;
+    
 
     default:
         $jsonSaida = json_decode(
@@ -312,5 +314,5 @@ if ($log == "true") {
 
     }
 }
-
+//teste
 ?>
