@@ -169,7 +169,7 @@ $inicioUrl = false;
 $i = 0;
 foreach ($ex as $value) {
     //echo $i . "-" . $ex[$i] . "\n";
-    if ($value == "api"||$value == "apilebes") {
+    if ($value == "api"||$value == "apilebes"||$value == "apitsweb") {
         $inicioUrl = true;
         unset($ex[$i]);
       
