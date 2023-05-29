@@ -250,16 +250,16 @@ echo "hml=".$hml."\n";
 
 
 switch ($aplicacao) {
-    case "ts":
-        include "app/ts/versao.php";
+    case "vendas":
+        include "app/vendas/versao.php";
         break;
 
     case "relatorios":
         include "app/relatorios/versao.php";
         break;
 
-    case "clientes": // helio 28032023
-        include "app/clientes/versao.php";
+    case "crediario": // helio 28032023
+        include "app/crediario/versao.php";
         break;
     
 
