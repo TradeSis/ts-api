@@ -9,14 +9,6 @@
 //echo "parametro=".$parametro."\n";
 
 if ($metodo=="GET"){
-  if ($funcao=="crediario"&&$parametro=="cliente") {
-    $funcao = "crediario/cliente";
-    $parametro = null;
-  }
-  if ($funcao=="crediario"&&$parametro=="contrato") {
-    $funcao = "crediario/contrato";
-    $parametro = null;
-  }
 
     switch ($funcao) {
       case "produtos":
@@ -27,12 +19,6 @@ if ($metodo=="GET"){
       break;
       case "consultaMargemDesconto":
         include 'consultaMargemDesconto.php';
-      break;
-      case "crediario/cliente":
-        include 'crediariocliente.php';
-      break;
-      case "crediario/contrato":
-        include 'crediariocontrato.php';
       break;
 
       case "cupomcashback":
