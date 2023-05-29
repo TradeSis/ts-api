@@ -250,6 +250,15 @@ echo "hml=".$hml."\n";
 
 
 switch ($aplicacao) {
+
+    case "services":
+        include "app/services/versao.php";
+        break;
+
+    case "sistema":
+           include "app/sistema/versao.php";        
+        break;
+        
     case "vendas":
         include "app/vendas/versao.php";
         break;
