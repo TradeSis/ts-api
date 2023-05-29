@@ -30,7 +30,7 @@ if (isset($jsonEntrada['idDemanda'])) {
         $statusDemanda = $row["mudaStatusPara"];
 
     $sql = "UPDATE demanda SET prioridade='$prioridade', tituloDemanda='$tituloDemanda', descricao='$descricao', idTipoStatus='$idTipoStatus', idTipoOcorrencia='$idTipoOcorrencia', posicao='$posicao', statusDemanda='$statusDemanda', tamanho='$tamanho', idAtendente='$idAtendente', horasPrevisao='$horasPrevisao', idContrato='$idContrato', dataAtualizacaoAtendente=CURRENT_TIMESTAMP() WHERE idDemanda = $idDemanda";
-    echo "-SQL->".json_encode($sql)."\n";
+    //echo "-SQL->".json_encode($sql)."\n";
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(
             "status" => 200,
