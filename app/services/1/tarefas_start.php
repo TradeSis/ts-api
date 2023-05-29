@@ -2,6 +2,7 @@
 //gabriel 07022023 16:25
 //echo "-ENTRADA->".json_encode($jsonEntrada)."\n";
 
+date_default_timezone_set('America/Sao_Paulo'); 
 
 $conexao = conectaMysql();
 if (isset($jsonEntrada['tituloTarefa'])) {
@@ -10,8 +11,9 @@ if (isset($jsonEntrada['tituloTarefa'])) {
     $idDemanda = $jsonEntrada['idDemanda'];
     $idAtendente = $jsonEntrada['idAtendente'];
     $idTipoOcorrencia = $jsonEntrada['idTipoOcorrencia'];
+    $dataStart = date('Y-m-d H:i:00');
 
-    $sql = "INSERT INTO tarefa(tituloTarefa, idCliente, idDemanda, idAtendente, idTipoOcorrencia, dataStart) VALUES ('$tituloTarefa', $idCliente, $idDemanda, $idAtendente, $idTipoOcorrencia, DATE_FORMAT(CURRENT_TIMESTAMP(), '%Y-%m-%d %H:%i'))";
+    $sql = "INSERT INTO tarefa(tituloTarefa, idCliente, idDemanda, idAtendente, idTipoOcorrencia, dataStart) VALUES ('$tituloTarefa', $idCliente, $idDemanda, $idAtendente, $idTipoOcorrencia, '$dataStart')";
     echo $sql;
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(
