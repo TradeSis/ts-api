@@ -6,7 +6,7 @@
 
 if ($metodo=="GET"){
 
-  if ($funcao=="crediario"&&$parametro=="cliente") {
+  /*if ($funcao=="crediario"&&$parametro=="cliente") {
     $funcao = "crediario/cliente";
     $parametro = null;
   }
@@ -14,12 +14,12 @@ if ($metodo=="GET"){
     $funcao = "crediario/contrato";
     $parametro = null;
   }
-
+*/
     switch ($funcao) {
-      case "crediario/cliente":
+      case "cliente":
         include 'crediariocliente.php';
       break;
-      case "crediario/contrato":
+      case "contrato":
         include 'crediariocontrato.php';
       break;
 
