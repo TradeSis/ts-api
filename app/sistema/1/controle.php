@@ -60,6 +60,11 @@ if ($metodo == "GET") {
       include 'servicos.php';
     break;
 
+    case "posts_recentes":
+      include 'posts_recentes.php';
+    break;
+
+
     default:
       $jsonSaida = json_decode(json_encode(
         array(

@@ -18,8 +18,33 @@ if ($metodo == "GET") {
     $parametro = null;
   }
 
+  if ($funcao=="demandas"&&$parametro=="totais") {
+    $funcao = "demandas/totais";
+    $parametro = null;
+  }
+
   if ($funcao=="usuario"&&$parametro=="verifica") {
     $funcao = "usuario/verifica";
+    $parametro = null;
+  }
+
+  if ($funcao=="tarefas"&&$parametro=="grafico1") {
+    $funcao = "tarefas/grafico1";
+    $parametro = null;
+  }
+
+  if ($funcao=="tarefas"&&$parametro=="grafico2") {
+    $funcao = "tarefas/grafico2";
+    $parametro = null;
+  }
+
+  if ($funcao=="tarefas"&&$parametro=="grafico3") {
+    $funcao = "tarefas/grafico3";
+    $parametro = null;
+  }
+
+  if ($funcao=="tarefas"&&$parametro=="grafico4") {
+    $funcao = "tarefas/grafico4";
     $parametro = null;
   }
 
@@ -64,8 +89,13 @@ if ($metodo == "GET") {
     case "atendente":
       include 'atendente.php';
       break;
+
       case "contrato/totais":
         include 'contrato_totais.php';
+        break;
+
+      case "demandas/totais":
+        include 'demandas_totais.php';
         break;
       
       case "usuario/verifica":
@@ -90,6 +120,22 @@ if ($metodo == "GET") {
 
       case "usuarioaplicativo":
         include 'usuarioaplicativo.php';
+      break;
+
+      case "tarefas/grafico1":
+        include 'tarefas_grafico1.php';
+      break;
+
+      case "tarefas/grafico2":
+        include 'tarefas_grafico2.php';
+      break;
+
+      case "tarefas/grafico3":
+        include 'tarefas_grafico3.php';
+      break;
+
+      case "tarefas/grafico4":
+        include 'tarefas_grafico4.php';
       break;
 
     default:
