@@ -4,7 +4,8 @@ $log_datahora_ini = date("dmYHis");
 $acao="crediariocliente"; 
 $arqlog = defineCaminhoLog()."apilebes_".$acao."_".date("dmY").".log";
 $arquivo = fopen($arqlog,"a");
-fwrite($arquivo,$log_datahora_ini."$acao"."-ENTRADA->".json_encode($jsonEntrada)."\n");   
+$identificacao=$log_datahora_ini.$acao;
+fwrite($arquivo,$identificacao."-ENTRADA->".json_encode($jsonEntrada)."\n");
 
 $conteudoEntrada = json_encode($jsonEntrada);
 
