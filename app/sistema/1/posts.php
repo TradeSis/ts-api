@@ -15,6 +15,11 @@ else {
     $sql = $sql . $where . " posts.titulo like " . "'%" . $jsonEntrada["titulo"] . "%'";
     $where = " and ";
   }
+
+  if (isset($jsonEntrada["categoria"])) {
+    $sql = $sql . $where . " posts.categoria = " .  "'" . $jsonEntrada["categoria"] . "'";
+    $where = " and ";
+  }
 }
 
 //echo  $sql;
