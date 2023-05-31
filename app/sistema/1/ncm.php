@@ -48,7 +48,7 @@ while ($row = mysqli_fetch_array($buscar, MYSQLI_ASSOC)) {
           "Descricao" => $row1["Descricao"],
           "superior" => $row1["superior"],
           "nivel" => $row1["nivel"],
-          "pesquisado" => true
+          "pesquisado" => false
         );
         array_push($ncm, $linhaNcm1);
 
@@ -59,7 +59,7 @@ while ($row = mysqli_fetch_array($buscar, MYSQLI_ASSOC)) {
 
             // nivel 4
 
-            
+
       }
   
   }
