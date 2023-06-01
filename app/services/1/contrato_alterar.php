@@ -27,8 +27,13 @@ if (isset($jsonEntrada['tituloContrato'])) {
                 $valorContrato= $horas * $valorHora;
             }
         }
-        if ($dataPrevisao == '') { $dataPrevisao = null;}
-        if ($dataEntrega == '') { $dataEntrega = null;}
+        $timestamp = strtotime($dataPrevisao);
+        $dataPrevisao = date('Y-m-d H:i:s', $timestamp);
+
+        $timestamp = strtotime($dataEntrega);
+        $dataEntrega = date('Y-m-d H:i:s', $timestamp);
+
+      
 
 	//busca dados tipostatus    
        $sql2 = "SELECT * FROM contratostatus WHERE idContratoStatus = $idContratoStatus";
