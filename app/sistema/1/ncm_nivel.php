@@ -53,9 +53,9 @@ while ($row = mysqli_fetch_array($buscar, MYSQLI_ASSOC)) {
         array_push($ncm, $linhaNcm1);
 
         // nivel 3
-        $nivel = $row["nivel"];
+        $nivel = $row1["nivel"];
         $proxnivel = $nivel + 1;
-        $superior = $row["Codigo"];
+        $superior = $row1["Codigo"];
         $sql2 = "SELECT * FROM ncm where ncm.superior = " . $superior . " and ncm.nivel = " . $proxnivel;
 
         $buscar2 = mysqli_query($conexao, $sql2);
@@ -72,21 +72,21 @@ while ($row = mysqli_fetch_array($buscar, MYSQLI_ASSOC)) {
 
 
             // nivel 4
-            $nivel = $row["nivel"];
+            $nivel = $row2["nivel"];
             $proxnivel = $nivel + 1;
-            $superior = $row["Codigo"];
+            $superior = $row2["Codigo"];
             $sql3 = "SELECT * FROM ncm where ncm.superior = " . $superior . " and ncm.nivel = " . $proxnivel;
     
             $buscar3 = mysqli_query($conexao, $sql3);
             while ($row3 = mysqli_fetch_array($buscar3, MYSQLI_ASSOC)) {
-                $linhaNcm2 = array(
+                $linhaNcm3 = array(
                   "Codigo" => $row3["Codigo"],
                   "Descricao" => $row3["Descricao"],
                   "superior" => $row3["superior"],
                   "nivel" => $row3["nivel"],
                   "pesquisado" => false
                 );
-                array_push($ncm, $linhaNcm2);
+                array_push($ncm, $linhaNcm3);
 
               } //while nivel 4
        } //while nivel 3
