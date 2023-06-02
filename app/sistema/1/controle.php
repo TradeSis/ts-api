@@ -64,6 +64,9 @@ if ($metodo == "GET") {
       include 'posts_recentes.php';
     break;
 
+    case "ncm":
+      include 'ncm.php';
+    break;
 
     default:
       $jsonSaida = json_decode(json_encode(
