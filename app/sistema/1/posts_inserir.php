@@ -7,7 +7,7 @@ if (isset($jsonEntrada['slug'])) {
 
     $slug = $jsonEntrada['slug'];
     $titulo = $jsonEntrada['titulo'];
-    /* $imgDestaque = $jsonEntrada['imgDestaque']; */ //foto
+    $imgDestaque = $jsonEntrada['imgDestaque']; //foto
     $autor = $jsonEntrada['autor']; 
     $data = $jsonEntrada['data'];
     $comentarios = $jsonEntrada['comentarios'];
@@ -15,23 +15,9 @@ if (isset($jsonEntrada['slug'])) {
     $txtConteudo = $jsonEntrada['txtConteudo'];
     $categoria = $jsonEntrada['categoria'];
 
-/*     if($imgDestaque !== null) {
-        preg_match("/\.(png|jpg|jpeg){1}$/i", $imgDestaque["name"],$ext);
-    
-        if($ext == true) {
-            $pasta = "<?php echo URLROOT;?>/img/";
-            $nome_foto = md5(uniqid(time())) . "." . $ext[1];
-            
-            move_uploaded_file($imgDestaque['tmp_name'], $pasta.$nome_foto);
-    
-        }else{
-            $nome_foto = "Sem_imagem";
-        }
-
-    } */
 
     
-    $sql = "INSERT INTO `posts`(`slug`, `titulo`, `autor`, `data`, `comentarios`, `textoIntro`, `txtConteudo`, `categoria`) VALUES ('$slug','$titulo','$autor','$data','$comentarios','$textoIntro','$txtConteudo','$categoria')";
+    $sql = "INSERT INTO `posts`(`slug`, `titulo`, `imgDestaque`, `autor`, `data`, `comentarios`, `textoIntro`, `txtConteudo`, `categoria`) VALUES ('$slug','$titulo', '$imgDestaque' ,'$autor','$data','$comentarios','$textoIntro','$txtConteudo','$categoria')";
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(
             "status" => 200,
