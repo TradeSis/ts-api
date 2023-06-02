@@ -64,6 +64,15 @@ if ($metodo == "GET") {
       include 'posts_recentes.php';
     break;
 
+    case "banners":
+      include 'banners.php';
+    break;
+
+    case "secoes_tipoSecao":
+      include 'secoes_tipoSecao.php';
+    break;
+
+
 
     default:
       $jsonSaida = json_decode(json_encode(
@@ -101,6 +110,10 @@ if ($metodo == "PUT") {
 
       case "posts":
         include 'posts_inserir.php';
+      break;
+
+      case "banners":
+        include 'banners_inserir.php';
       break;
 
     default:
@@ -170,6 +183,10 @@ if ($metodo == "DELETE") {
       
     case "posts":
       include 'posts_excluir.php';
+    break;
+
+    case "banners":
+      include 'banners_excluir.php';
     break;
 
     default:

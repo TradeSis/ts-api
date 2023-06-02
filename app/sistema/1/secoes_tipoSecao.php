@@ -7,13 +7,11 @@ $secoes = array();
 
 $sql = "SELECT * FROM secoes ";
 
-if (isset($jsonEntrada["idSecao"])) {
-  $sql = $sql . " where secoes.idSecao = " . $jsonEntrada["idSecao"];
-} else {
-  $sql = $sql . " ORDER BY tipoSecao";
+if (isset($jsonEntrada["tipoSecao"])) {
+  $sql = $sql . " where secoes.tipoSecao = " . "'" . $jsonEntrada["tipoSecao"] . "'" ;
 }
 
-
+//echo $sql;
 $rows = 0;
 $buscar = mysqli_query($conexao, $sql);
 while ($row = mysqli_fetch_array($buscar, MYSQLI_ASSOC)) {
@@ -21,9 +19,6 @@ while ($row = mysqli_fetch_array($buscar, MYSQLI_ASSOC)) {
   $rows = $rows + 1;
 }
 
-if (isset($jsonEntrada["idSecao"]) && $rows==1) {
-  $secoes = $secoes[0];
-}
 $jsonSaida = $secoes;
 
 //echo "-SAIDA->".json_encode(jsonSaida)."\n";
