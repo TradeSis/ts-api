@@ -64,6 +64,7 @@ if ($metodo == "GET") {
       include 'posts_recentes.php';
     break;
 
+
     case "banners":
       include 'banners.php';
     break;
@@ -81,6 +82,9 @@ if ($metodo == "GET") {
     break;
 
 
+    case "ncm":
+      include 'ncm.php';
+    break;
 
     default:
       $jsonSaida = json_decode(json_encode(

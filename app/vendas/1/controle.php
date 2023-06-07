@@ -9,14 +9,6 @@
 //echo "parametro=".$parametro."\n";
 
 if ($metodo=="GET"){
-  if ($funcao=="crediario"&&$parametro=="cliente") {
-    $funcao = "crediario/cliente";
-    $parametro = null;
-  }
-  if ($funcao=="crediario"&&$parametro=="contrato") {
-    $funcao = "crediario/contrato";
-    $parametro = null;
-  }
 
     switch ($funcao) {
       case "produtos":
@@ -25,19 +17,19 @@ if ($metodo=="GET"){
       case "seguros":
         include 'seguros.php';
       break;
-      case "relatorios":
-        include 'tsrelat.php';
-      break;
       case "consultaMargemDesconto":
         include 'consultaMargemDesconto.php';
       break;
-      case "crediario/cliente":
-        include 'crediariocliente.php';
-      break;
-      case "crediario/contrato":
-        include 'crediariocontrato.php';
-      break;
 
+      case "cupomcashback":
+        include 'cupomcashbackcliente.php';
+      break;
+      case "consultabonuscliente":
+        include 'consultabonuscliente.php';
+      break;
+      case "consultaprodutodisp":
+        include 'consultaprodutodisp.php';
+      break;
       
 
       default:
@@ -51,10 +43,6 @@ if ($metodo=="GET"){
 
  if ($metodo=="PUT"){
     switch ($funcao) {
-      case "relatorios":
-        include 'tsrelat_inserir.php';
-      break;
-
       default:
         $jsonSaida = json_decode(json_encode(
         array("status" => "400",
