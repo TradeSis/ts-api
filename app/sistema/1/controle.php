@@ -72,6 +72,10 @@ if ($metodo == "GET") {
       include 'secoes_tipoSecao.php';
     break;
 
+    case "servicos_slug":
+      include 'servicos_slug.php';
+    break;
+
 
 
     default:
