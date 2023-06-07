@@ -10,8 +10,9 @@ if (isset($jsonEntrada['slug'])) {
 	$conteudoHTML = $jsonEntrada['conteudoHTML'];
 	$arquivoFonte = $jsonEntrada['arquivoFonte'];
 	$arquivoSingle = $jsonEntrada['arquivoSingle'];
+    $idTema = $jsonEntrada['idTema'];
     
-    $sql = "INSERT INTO `paginas`(`slug`, `tituloPagina`, `conteudoHTML`, `arquivoFonte`, `arquivoSingle`) VALUES ('$slug','$tituloPagina','$conteudoHTML','$arquivoFonte','$arquivoSingle')";
+    $sql = "INSERT INTO `paginas`(`slug`, `tituloPagina`, `conteudoHTML`, `arquivoFonte`, `arquivoSingle`, `idTema`) VALUES ('$slug','$tituloPagina','$conteudoHTML','$arquivoFonte','$arquivoSingle','$idTema')";
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(
             "status" => 200,

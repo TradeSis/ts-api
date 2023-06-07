@@ -64,6 +64,24 @@ if ($metodo == "GET") {
       include 'posts_recentes.php';
     break;
 
+
+    case "banners":
+      include 'banners.php';
+    break;
+
+    case "secoes_tipoSecao":
+      include 'secoes_tipoSecao.php';
+    break;
+
+    case "servicos_slug":
+      include 'servicos_slug.php';
+    break;
+
+    case "temas":
+      include 'temas.php';
+    break;
+
+
     case "ncm":
       include 'ncm.php';
     break;
@@ -104,6 +122,10 @@ if ($metodo == "PUT") {
 
       case "posts":
         include 'posts_inserir.php';
+      break;
+
+      case "banners":
+        include 'banners_inserir.php';
       break;
 
     default:
@@ -173,6 +195,10 @@ if ($metodo == "DELETE") {
       
     case "posts":
       include 'posts_excluir.php';
+    break;
+
+    case "banners":
+      include 'banners_excluir.php';
     break;
 
     default:
