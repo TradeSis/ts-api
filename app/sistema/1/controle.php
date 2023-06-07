@@ -76,6 +76,10 @@ if ($metodo == "GET") {
       include 'servicos_slug.php';
     break;
 
+    case "temas":
+      include 'temas.php';
+    break;
+
 
 
     default:

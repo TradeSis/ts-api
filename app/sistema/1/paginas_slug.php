@@ -5,9 +5,16 @@
 $conexao = conectaMysql();
 $paginas = array();
 
-$sql = "SELECT * FROM paginas ";
+$sql = "SELECT paginas.*, temas.* FROM paginas  
+INNER JOIN temas on temas.idTema = paginas.idTema ";
 
 $sql = $sql . " where paginas.slug = " . "'". $jsonEntrada["slug"] . "'";
+$sql = $sql . " and temas.ativo = 1";
+
+/* SELECT paginas.*, temas.* FROM paginas  
+INNER JOIN temas on temas.idTema = paginas.idTema
+where paginas.slug = 'home' and temas.ativo = 1  */
+
 //echo "-SQL->".json_encode($sql)."\n";
 $rows = 0;
 $buscar = mysqli_query($conexao, $sql);
