@@ -3,15 +3,14 @@
 
 
 $conexao = conectaMysql();
-if (isset($jsonEntrada['idSecaoPagina'])) {
+if (isset($jsonEntrada['nomeBanner'])) {
 
-	$idSecaoPagina = $jsonEntrada['idSecaoPagina'];
-	$idPagina = $jsonEntrada['idPagina'];
-    $idSecao = $jsonEntrada['idSecao'];
-	$ordem = $jsonEntrada['ordem'];
-    $parametros = $jsonEntrada['parametros'];
+    $nomeBanner = $jsonEntrada['nomeBanner'];
+	$imgBanner = $jsonEntrada['imgBanner'];
+	$statusBanner = $jsonEntrada['statusBanner']; 
+
     
-    $sql = "UPDATE `secoespagina` SET `idPagina`='$idPagina', `idSecao`='$idSecao',`ordem`='$ordem',`parametros`='$parametros' WHERE idSecaoPagina = $idSecaoPagina";
+    $sql = "INSERT INTO `banners`(`nomeBanner`, `imgBanner`, `statusBanner`) VALUES ('$nomeBanner','$imgBanner','$statusBanner')";
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(
             "status" => 200,

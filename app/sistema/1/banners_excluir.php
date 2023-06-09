@@ -3,15 +3,11 @@
 
 
 $conexao = conectaMysql();
-if (isset($jsonEntrada['idSecaoPagina'])) {
+if (isset($jsonEntrada['idBanner'])) {
 
-	$idSecaoPagina = $jsonEntrada['idSecaoPagina'];
-	$idPagina = $jsonEntrada['idPagina'];
-    $idSecao = $jsonEntrada['idSecao'];
-	$ordem = $jsonEntrada['ordem'];
-    $parametros = $jsonEntrada['parametros'];
-    
-    $sql = "UPDATE `secoespagina` SET `idPagina`='$idPagina', `idSecao`='$idSecao',`ordem`='$ordem',`parametros`='$parametros' WHERE idSecaoPagina = $idSecaoPagina";
+    $idBanner = $jsonEntrada['idBanner'];
+ 
+    $sql = "DELETE FROM banners WHERE idBanner = $idBanner";
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(
             "status" => 200,
