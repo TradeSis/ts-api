@@ -64,7 +64,6 @@ if ($metodo == "GET") {
       include 'posts_recentes.php';
     break;
 
-
     case "banners":
       include 'banners.php';
     break;
@@ -97,9 +96,12 @@ if ($metodo == "GET") {
       include 'fisoperacao.php';
     break;
 
-
     case "ncm":
       include 'ncm.php';
+    break;
+
+    case "cest":
+      include 'cest.php';
     break;
 
     default:

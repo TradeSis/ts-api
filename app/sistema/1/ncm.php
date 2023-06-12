@@ -5,7 +5,10 @@ $ncmIds = array();
 
 function Desce($conexao, $superior, &$ncm, &$ncmIds)
 {
-    $sql = "SELECT * FROM fisncm WHERE fisncm.superior LIKE '" . $superior . "%'";
+    $sql = "SELECT fisncm.*, GROUP_CONCAT(fiscest.codigoCest) AS codigoCest FROM `fisncm`
+            LEFT JOIN fisncmcest ON fisncm.codigoNcm = fisncmcest.codigoNcm
+            LEFT JOIN fiscest ON fisncmcest.codigoCest = fiscest.codigoCest 
+            WHERE fisncm.superior LIKE '" . $superior . "%' GROUP BY fisncm.codigoNcm";
     $buscar = mysqli_query($conexao, $sql);
 
     while ($row = mysqli_fetch_array($buscar, MYSQLI_ASSOC)) {
@@ -16,6 +19,7 @@ function Desce($conexao, $superior, &$ncm, &$ncmIds)
             "nivel" => $row["nivel"],
             "ultimonivel" => $row["ultimonivel"],
             "ncm" => $row["ncm"],
+            "codigoCest" => $row["codigoCest"],
             "pesquisado" => false
         ];
 
@@ -30,7 +34,10 @@ function Desce($conexao, $superior, &$ncm, &$ncmIds)
 
 function Sobe($conexao, $superior, &$ncm, &$ncmIds)
 {
-    $sql = "SELECT * FROM fisncm WHERE fisncm.codigoNcm = $superior";
+    $sql = "SELECT fisncm.*, GROUP_CONCAT(fiscest.codigoCest) AS codigoCest FROM `fisncm`
+            LEFT JOIN fisncmcest ON fisncm.codigoNcm = fisncmcest.codigoNcm
+            LEFT JOIN fiscest ON fisncmcest.codigoCest = fiscest.codigoCest 
+            WHERE fisncm.codigoNcm = $superior GROUP BY fisncm.codigoNcm";
     $buscar = mysqli_query($conexao, $sql);
 
     while ($row = mysqli_fetch_array($buscar, MYSQLI_ASSOC)) {
@@ -41,6 +48,7 @@ function Sobe($conexao, $superior, &$ncm, &$ncmIds)
             "nivel" => $row["nivel"],
             "ultimonivel" => $row["ultimonivel"],
             "ncm" => $row["ncm"],
+            "codigoCest" => $row["codigoCest"],
             "pesquisado" => false
         ];
 
@@ -56,7 +64,9 @@ function Sobe($conexao, $superior, &$ncm, &$ncmIds)
 }
 
 //**********SQL QUERY **********/
-$sql = "SELECT * FROM fisncm";
+$sql = "SELECT fisncm.*, GROUP_CONCAT(fiscest.codigoCest) AS codigoCest FROM `fisncm`
+        LEFT JOIN fisncmcest ON fisncm.codigoNcm = fisncmcest.codigoNcm
+        LEFT JOIN fiscest ON fisncmcest.codigoCest = fiscest.codigoCest";
 $where = " WHERE ";
 if (isset($jsonEntrada["codigoNcm"])) {
     $sql .= $where . " fisncm.codigoNcm = " . $jsonEntrada["codigoNcm"];
@@ -67,6 +77,7 @@ if (isset($jsonEntrada["Descricao"])) {
     $where = " AND ";
 }
 
+$sql = $sql . " GROUP BY fisncm.codigoNcm";
 $rows = 0;
 $buscar = mysqli_query($conexao, $sql);
 
@@ -78,6 +89,7 @@ while ($row = mysqli_fetch_array($buscar, MYSQLI_ASSOC)) {
         "nivel" => $row["nivel"],
         "ultimonivel" => $row["ultimonivel"],
         "ncm" => $row["ncm"],
+        "codigoCest" => $row["codigoCest"],
         "pesquisado" => true
     ];
 
