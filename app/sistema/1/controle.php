@@ -128,6 +128,10 @@ if ($metodo == "PUT") {
         include 'banners_inserir.php';
       break;
 
+      case "temas":
+        include 'temas_inserir.php';
+      break;
+
     default:
       $jsonSaida = json_decode(json_encode(
         array(
@@ -157,6 +161,10 @@ if ($metodo == "POST") {
 
     case "secoesPagina":
       include 'secoesPagina_alterar.php';
+    break;
+
+    case "temas":
+      include 'temas_alterar.php';
     break;
 
     default:
@@ -199,6 +207,10 @@ if ($metodo == "DELETE") {
 
     case "banners":
       include 'banners_excluir.php';
+    break;
+
+    case "temas":
+      include 'temas_excluir.php';
     break;
 
     default:
