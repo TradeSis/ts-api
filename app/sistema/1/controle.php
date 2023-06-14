@@ -64,7 +64,6 @@ if ($metodo == "GET") {
       include 'posts_recentes.php';
     break;
 
-
     case "banners":
       include 'banners.php';
     break;
@@ -81,9 +80,28 @@ if ($metodo == "GET") {
       include 'temas.php';
     break;
 
+    case "fisatividade":
+      include 'fisatividade.php';
+    break;
+
+    case "fisprocesso":
+      include 'fisprocesso.php';
+    break;
+
+    case "fisnatureza":
+      include 'fisnatureza.php';
+    break;
+
+    case "fisoperacao":
+      include 'fisoperacao.php';
+    break;
 
     case "ncm":
       include 'ncm.php';
+    break;
+
+    case "cest":
+      include 'cest.php';
     break;
 
     default:
@@ -128,8 +146,26 @@ if ($metodo == "PUT") {
         include 'banners_inserir.php';
       break;
 
+
       case "temas":
         include 'temas_inserir.php';
+      break;
+      
+      case "fisatividade":
+        include 'fisatividade_inserir.php';
+      break;
+  
+      case "fisprocesso":
+        include 'fisprocesso_inserir.php';
+      break;
+  
+      case "fisnatureza":
+        include 'fisnatureza_inserir.php';
+      break;
+  
+      case "fisoperacao":
+        include 'fisoperacao_inserir.php';
+
       break;
 
     default:
@@ -163,8 +199,25 @@ if ($metodo == "POST") {
       include 'secoesPagina_alterar.php';
     break;
 
+
     case "temas":
       include 'temas_alterar.php';
+    break;
+      
+    case "fisatividade":
+      include 'fisatividade_alterar.php';
+    break;
+
+    case "fisprocesso":
+      include 'fisprocesso_alterar.php';
+    break;
+
+    case "fisnatureza":
+      include 'fisnatureza_alterar.php';
+    break;
+
+    case "fisoperacao":
+      include 'fisoperacao_alterar.php';
     break;
 
     default:
@@ -209,8 +262,21 @@ if ($metodo == "DELETE") {
       include 'banners_excluir.php';
     break;
 
+
     case "temas":
       include 'temas_excluir.php';
+    break;
+      
+    case "fisatividade":
+      include 'fisatividade_excluir.php';
+    break;
+
+    case "fisprocesso":
+      include 'fisprocesso_excluir.php';
+    break;
+
+    case "fisnatureza":
+      include 'fisnatureza_excluir.php';
     break;
 
     default:

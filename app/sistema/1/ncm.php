@@ -5,46 +5,56 @@ $ncmIds = array();
 
 function Desce($conexao, $superior, &$ncm, &$ncmIds)
 {
-    $sql = "SELECT * FROM fisncm WHERE fisncm.superior LIKE '" . $superior . "%'";
+    $sql = "SELECT fisncm.*, GROUP_CONCAT(fiscest.codigoCest) AS codigoCest FROM `fisncm`
+            LEFT JOIN fisncmcest ON fisncm.codigoNcm = fisncmcest.codigoNcm
+            LEFT JOIN fiscest ON fisncmcest.codigoCest = fiscest.codigoCest 
+            WHERE fisncm.superior LIKE '" . $superior . "%' GROUP BY fisncm.codigoNcm";
     $buscar = mysqli_query($conexao, $sql);
 
     while ($row = mysqli_fetch_array($buscar, MYSQLI_ASSOC)) {
         $linhaNcm = [
-            "Codigo" => $row["Codigo"],
+            "codigoNcm" => $row["codigoNcm"],
             "Descricao" => $row["Descricao"],
             "superior" => $row["superior"],
             "nivel" => $row["nivel"],
             "ultimonivel" => $row["ultimonivel"],
+            "ncm" => $row["ncm"],
+            "codigoCest" => $row["codigoCest"],
             "pesquisado" => false
         ];
 
-        if (!in_array($row["Codigo"], $ncmIds)) {
+        if (!in_array($row["codigoNcm"], $ncmIds)) {
             array_push($ncm, $linhaNcm);
-            array_push($ncmIds, $row["Codigo"]);
+            array_push($ncmIds, $row["codigoNcm"]);
         }
 
-        Desce($conexao, $row["Codigo"], $ncm, $ncmIds);
+        Desce($conexao, $row["codigoNcm"], $ncm, $ncmIds);
     }
 }
 
 function Sobe($conexao, $superior, &$ncm, &$ncmIds)
 {
-    $sql = "SELECT * FROM fisncm WHERE fisncm.Codigo = $superior";
+    $sql = "SELECT fisncm.*, GROUP_CONCAT(fiscest.codigoCest) AS codigoCest FROM `fisncm`
+            LEFT JOIN fisncmcest ON fisncm.codigoNcm = fisncmcest.codigoNcm
+            LEFT JOIN fiscest ON fisncmcest.codigoCest = fiscest.codigoCest 
+            WHERE fisncm.codigoNcm = $superior GROUP BY fisncm.codigoNcm";
     $buscar = mysqli_query($conexao, $sql);
 
     while ($row = mysqli_fetch_array($buscar, MYSQLI_ASSOC)) {
         $linhaNcm = [
-            "Codigo" => $row["Codigo"],
+            "codigoNcm" => $row["codigoNcm"],
             "Descricao" => $row["Descricao"],
             "superior" => $row["superior"],
             "nivel" => $row["nivel"],
             "ultimonivel" => $row["ultimonivel"],
+            "ncm" => $row["ncm"],
+            "codigoCest" => $row["codigoCest"],
             "pesquisado" => false
         ];
 
-        if (!in_array($row["Codigo"], $ncmIds)) {
+        if (!in_array($row["codigoNcm"], $ncmIds)) {
             array_push($ncm, $linhaNcm);
-            array_push($ncmIds, $row["Codigo"]);
+            array_push($ncmIds, $row["codigoNcm"]);
         }
 
         if ($row["nivel"] != 1 || $row["ultimonivel"] != 0) {
@@ -54,10 +64,12 @@ function Sobe($conexao, $superior, &$ncm, &$ncmIds)
 }
 
 //**********SQL QUERY **********/
-$sql = "SELECT * FROM fisncm";
+$sql = "SELECT fisncm.*, GROUP_CONCAT(fiscest.codigoCest) AS codigoCest FROM `fisncm`
+        LEFT JOIN fisncmcest ON fisncm.codigoNcm = fisncmcest.codigoNcm
+        LEFT JOIN fiscest ON fisncmcest.codigoCest = fiscest.codigoCest";
 $where = " WHERE ";
-if (isset($jsonEntrada["Codigo"])) {
-    $sql .= $where . " fisncm.Codigo = " . $jsonEntrada["Codigo"];
+if (isset($jsonEntrada["codigoNcm"])) {
+    $sql .= $where . " fisncm.codigoNcm = " . $jsonEntrada["codigoNcm"];
     $where = " AND ";
 }
 if (isset($jsonEntrada["Descricao"])) {
@@ -65,16 +77,19 @@ if (isset($jsonEntrada["Descricao"])) {
     $where = " AND ";
 }
 
+$sql = $sql . " GROUP BY fisncm.codigoNcm";
 $rows = 0;
 $buscar = mysqli_query($conexao, $sql);
 
 while ($row = mysqli_fetch_array($buscar, MYSQLI_ASSOC)) {
     $linhaNcm = [
-        "Codigo" => $row["Codigo"],
+        "codigoNcm" => $row["codigoNcm"],
         "Descricao" => $row["Descricao"],
         "superior" => $row["superior"],
         "nivel" => $row["nivel"],
         "ultimonivel" => $row["ultimonivel"],
+        "ncm" => $row["ncm"],
+        "codigoCest" => $row["codigoCest"],
         "pesquisado" => true
     ];
 
@@ -83,16 +98,15 @@ while ($row = mysqli_fetch_array($buscar, MYSQLI_ASSOC)) {
     }
 
     if ($row["nivel"] < 6) {
-        Desce($conexao, $row["Codigo"], $ncm, $ncmIds);
+        Desce($conexao, $row["codigoNcm"], $ncm, $ncmIds);
     }
 
 
-    if (!in_array($row["Codigo"], $ncmIds)) {
+    if (!in_array($row["codigoNcm"], $ncmIds)) {
         array_push($ncm, $linhaNcm);
-        array_push($ncmIds, $row["Codigo"]);
+        array_push($ncmIds, $row["codigoNcm"]);
     }
     $rows++;
 }
 
 $jsonSaida = $ncm;
-usort($jsonSaida, fn($a, $b) => $a['nivel'] - $b['nivel']);
