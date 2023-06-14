@@ -146,6 +146,11 @@ if ($metodo == "PUT") {
         include 'banners_inserir.php';
       break;
 
+
+      case "temas":
+        include 'temas_inserir.php';
+      break;
+      
       case "fisatividade":
         include 'fisatividade_inserir.php';
       break;
@@ -160,6 +165,7 @@ if ($metodo == "PUT") {
   
       case "fisoperacao":
         include 'fisoperacao_inserir.php';
+
       break;
 
     default:
@@ -193,6 +199,11 @@ if ($metodo == "POST") {
       include 'secoesPagina_alterar.php';
     break;
 
+
+    case "temas":
+      include 'temas_alterar.php';
+    break;
+      
     case "fisatividade":
       include 'fisatividade_alterar.php';
     break;
@@ -251,6 +262,11 @@ if ($metodo == "DELETE") {
       include 'banners_excluir.php';
     break;
 
+
+    case "temas":
+      include 'temas_excluir.php';
+    break;
+      
     case "fisatividade":
       include 'fisatividade_excluir.php';
     break;
