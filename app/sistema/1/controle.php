@@ -279,6 +279,10 @@ if ($metodo == "DELETE") {
       include 'fisnatureza_excluir.php';
     break;
 
+    case "fisoperacao":
+      include 'fisoperacao_excluir.php';
+    break;
+
     default:
       $jsonSaida = json_decode(json_encode(
         array(

@@ -68,12 +68,12 @@ $sql = "SELECT fisncm.*, GROUP_CONCAT(fiscest.codigoCest) AS codigoCest FROM `fi
         LEFT JOIN fisncmcest ON fisncm.codigoNcm = fisncmcest.codigoNcm
         LEFT JOIN fiscest ON fisncmcest.codigoCest = fiscest.codigoCest";
 $where = " WHERE ";
-if (isset($jsonEntrada["codigoNcm"])) {
-    $sql .= $where . " fisncm.codigoNcm = " . $jsonEntrada["codigoNcm"];
+if (isset($jsonEntrada["FiltroTipoNcm"]) && $jsonEntrada["FiltroTipoNcm"] == 'codigoNcm') {
+    $sql .= $where . " fisncm.codigoNcm = " . $jsonEntrada["dadosNcm"];
     $where = " AND ";
 }
-if (isset($jsonEntrada["Descricao"])) {
-    $sql .= $where . " fisncm.Descricao LIKE '%" . $jsonEntrada["Descricao"] . "%'";
+if (isset($jsonEntrada["FiltroTipoNcm"]) && $jsonEntrada["FiltroTipoNcm"] == 'Descricao') {
+    $sql .= $where . " fisncm.Descricao LIKE '%" . $jsonEntrada["dadosNcm"] . "%'";
     $where = " AND ";
 }
 
