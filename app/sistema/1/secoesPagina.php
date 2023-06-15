@@ -5,7 +5,7 @@
 $conexao = conectaMysql();
 $secoespagina = array();
 
-$sql = "SELECT secoespagina.*, secoes.*, paginas.* FROM secoespagina
+$sql = "SELECT secoespagina.*, secoes.*, paginas.*, secoes.arquivoFonte AS arquivoFonte2 FROM secoespagina
         INNER JOIN secoes on secoes.idSecao = secoespagina.idSecao
         INNER JOIN paginas on paginas.idPagina = secoespagina.idPagina ";
 $where = " WHERE ";        
