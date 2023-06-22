@@ -49,7 +49,6 @@ $pagina = [
         "idTema" => $paginas["idTema"],
         "slug" => $paginas["slug"],
         "tituloPagina" => $paginas["tituloPagina"],
-        "conteudoHTML" => $paginas["conteudoHTML"],
         "arquivoFonte" => $paginas["arquivoFonte"],
         "arquivoSingle" => $paginas["arquivoSingle"],
         "nomeTema" => $tema["nomeTema"],
