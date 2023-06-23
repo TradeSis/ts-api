@@ -8,13 +8,15 @@ if (isset($jsonEntrada['nomeTema'])) {
 	$nomeTema = $jsonEntrada['nomeTema'];
 	$css = $jsonEntrada['css'];
     $ativo = $jsonEntrada['ativo'];
+    $menu = $jsonEntrada['menu'];
+    $perfil = $jsonEntrada['perfil'];
 
     if($ativo == '1'){
         $sql = "UPDATE `temas` SET `ativo`='0'";
         $atualizar = mysqli_query($conexao, $sql);
     } 
     
-    $sql = "INSERT INTO `temas`(`nomeTema`, `css`, `ativo`) VALUES ('$nomeTema','$css','$ativo')";
+    $sql = "INSERT INTO `temas`(`nomeTema`, `css`, `ativo`, `menu`, `perfil`) VALUES ('$nomeTema','$css','$ativo','$menu','$perfil')";
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(
             "status" => 200,

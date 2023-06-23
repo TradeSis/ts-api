@@ -10,6 +10,8 @@ if (isset($jsonEntrada['idTema'])) {
 	$nomeTema = $jsonEntrada['nomeTema'];
 	$css = $jsonEntrada['css'];
     $ativo = $jsonEntrada['ativo'];
+    $menu = $jsonEntrada['menu'];
+    $perfil = $jsonEntrada['perfil'];
 
     if($ativo == '1'){
         $sql = "UPDATE `temas` SET `ativo`='0'";
@@ -17,7 +19,7 @@ if (isset($jsonEntrada['idTema'])) {
     }
     
     
-    $sql = "UPDATE `temas` SET `nomeTema`='$nomeTema',`css`='$css',`ativo`='$ativo' WHERE idTema = $idTema";
+    $sql = "UPDATE `temas` SET `nomeTema`='$nomeTema',`css`='$css',`ativo`='$ativo',`menu`='$menu',`perfil`='$perfil' WHERE idTema = $idTema";
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(
             "status" => 200,

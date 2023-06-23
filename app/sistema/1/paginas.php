@@ -10,6 +10,12 @@ left JOIN temas on temas.idTema = paginas.idTema ";
 if (isset($jsonEntrada["idPagina"])) {
   $sql = $sql . " where paginas.idPagina = " . $jsonEntrada["idPagina"];
   
+}else {
+  $where = " where ";
+  if (isset($jsonEntrada["idTema"])) {
+    $sql = $sql . $where . " paginas.idTema = " . $jsonEntrada["idTema"];
+    $where = " and ";
+  }
 }
  $sql = $sql . " order by paginas.idTema "; 
 $rows = 0;
