@@ -9,9 +9,10 @@ if (isset($jsonEntrada['idTarefa'])) {
     $idTarefa = $jsonEntrada['idTarefa'];
     $horaStart = date('H:i:00');
     $idDemanda = $jsonEntrada['idDemanda'];
+    $idTipoOcorrencia = $jsonEntrada['idTipoOcorrencia'];
     $idTipoStatus = $jsonEntrada['idTipoStatus'];
 
-    $sql = "UPDATE `tarefa` SET `horaStart`='$horaStart' WHERE idTarefa = $idTarefa";
+    $sql = "UPDATE `tarefa` SET `horaStart`='$horaStart', `idTipoOcorrencia`='$idTipoOcorrencia' WHERE idTarefa = $idTarefa";
     $atualizar = mysqli_query($conexao, $sql);
 
     // busca dados tipostatus    
@@ -21,7 +22,7 @@ if (isset($jsonEntrada['idTarefa'])) {
     $posicao = $row["mudaPosicaoPara"];
     $statusDemanda = $row["mudaStatusPara"];
 
-    $sql3 = "UPDATE demanda SET idTipoStatus=$idTipoStatus, dataAtualizacaoAtendente=CURRENT_TIMESTAMP(), statusDemanda='$statusDemanda' WHERE idDemanda = $idDemanda";
+    $sql3 = "UPDATE demanda SET idTipoStatus=$idTipoStatus, idTipoOcorrencia=$idTipoOcorrencia, dataAtualizacaoAtendente=CURRENT_TIMESTAMP(), statusDemanda='$statusDemanda' WHERE idDemanda = $idDemanda";
     $atualizar3 = mysqli_query($conexao, $sql3);
 
     if ($atualizar && $atualizar3) {
