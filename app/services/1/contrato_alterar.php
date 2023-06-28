@@ -31,12 +31,12 @@ if (isset($jsonEntrada['tituloContrato'])) {
         if(strtotime($dataEntrega)==0){ // check if null or not 
             $dataEntrega = "0000-00-00 00:00:00"; 
         }else{                        
-            $dataEntrega = date("Y-m-d H:i", strtotime($dataEntrega)); 
+            $dataEntrega = date("H:i", strtotime($dataEntrega)); 
         }
         if(strtotime($dataPrevisao)==0){ // check if null or not 
             $dataPrevisao = "0000-00-00 00:00:00"; 
         }else{                        
-            $dataPrevisao = date("Y-m-d H:i", strtotime($dataPrevisao)); 
+            $dataPrevisao = date("H:i", strtotime($dataPrevisao)); 
         }
 
 	//busca dados tipostatus    

@@ -2,28 +2,26 @@
 //gabriel 07022023 16:25
 //echo "-ENTRADA->".json_encode($jsonEntrada)."\n";
 
-date_default_timezone_set('America/Sao_Paulo');
 
 $conexao = conectaMysql();
-if (isset($jsonEntrada['tituloTarefa'])) {
-    $tituloTarefa = $jsonEntrada['tituloTarefa'];
+if (isset($jsonEntrada['idDemanda'])) {
     $idCliente = $jsonEntrada['idCliente'];
     $idDemanda = $jsonEntrada['idDemanda'];
     $idAtendente = $jsonEntrada['idAtendente'];
-    $data = $jsonEntrada['data'];
-    $idTipoOcorrencia = $jsonEntrada['idTipoOcorrencia'];
-    $horaInicio = date('H:i:00');
+    $dataPrevisto = $jsonEntrada['dataPrevisto'];
+    $previsaoInicio = $jsonEntrada['previsaoInicio'];
+    $previsaoFim = $jsonEntrada['previsaoFim'];
     $idTipoStatus = $jsonEntrada['idTipoStatus'];
 
-    $sql = "INSERT INTO tarefa(tituloTarefa, idCliente, idDemanda, idAtendente,`data`, idTipoOcorrencia, horaStart) VALUES ('$tituloTarefa', $idCliente, $idDemanda, $idAtendente, '$data', $idTipoOcorrencia, '$horaInicio')";
+    $sql = "INSERT INTO tarefa(idCliente, idDemanda, idAtendente, dataPrevisto, previsaoInicio, previsaoFim) VALUES ($idCliente, $idDemanda, $idAtendente, '$dataPrevisto', '$previsaoInicio', '$previsaoFim')";
     $atualizar = mysqli_query($conexao, $sql);
 
     // busca dados tipostatus    
-    $sql2 = "SELECT * FROM tipostatus WHERE idTipoStatus = $idTipoStatus";
-    $buscar2 = mysqli_query($conexao, $sql2);
-    $row = mysqli_fetch_array($buscar2, MYSQLI_ASSOC);
-    $posicao = $row["mudaPosicaoPara"];
-    $statusDemanda = $row["mudaStatusPara"];
+        $sql2 = "SELECT * FROM tipostatus WHERE idTipoStatus = $idTipoStatus";
+        $buscar2 = mysqli_query($conexao, $sql2);
+        $row = mysqli_fetch_array($buscar2, MYSQLI_ASSOC);
+        $posicao = $row["mudaPosicaoPara"];
+        $statusDemanda = $row["mudaStatusPara"];
 
     $sql3 = "UPDATE demanda SET idTipoStatus=$idTipoStatus, dataAtualizacaoAtendente=CURRENT_TIMESTAMP(), statusDemanda='$statusDemanda' WHERE idDemanda = $idDemanda";
     $atualizar3 = mysqli_query($conexao, $sql3);

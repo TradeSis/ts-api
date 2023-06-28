@@ -8,13 +8,32 @@ if (isset($jsonEntrada['idDemanda'])) {
     $idDemanda = $jsonEntrada['idDemanda'];
     $comentario = $jsonEntrada['comentario'];
     $idUsuario = $jsonEntrada['idUsuario'];
+    $idCliente = $jsonEntrada['idCliente'];
     //$idAnexo = $jsonEntrada['idAnexo'];
     $pathAnexo = $jsonEntrada['pathAnexo'];
     $nomeAnexo = $jsonEntrada['nomeAnexo'];
-    $sql = "INSERT INTO comentario(idDemanda, comentario, idUsuario, dataComentario, nomeAnexo, pathAnexo) VALUES ($idDemanda,'$comentario',$idUsuario,CURRENT_TIMESTAMP(),'$nomeAnexo', '$pathAnexo')";
+    $idTipoStatus = $jsonEntrada['idTipoStatus'];
 
-  //  echo "-SQL->".json_encode($sql)."\n";
-    if ($atualizar = mysqli_query($conexao, $sql)) {
+
+    $sql = "INSERT INTO comentario(idDemanda, comentario, idUsuario, dataComentario, nomeAnexo, pathAnexo) VALUES ($idDemanda,'$comentario',$idUsuario,CURRENT_TIMESTAMP(),'$nomeAnexo', '$pathAnexo')";
+    $atualizar = mysqli_query($conexao, $sql);
+
+    // busca dados tipostatus    
+    $sql2 = "SELECT * FROM tipostatus WHERE idTipoStatus = $idTipoStatus";
+    $buscar2 = mysqli_query($conexao, $sql2);
+    $row = mysqli_fetch_array($buscar2, MYSQLI_ASSOC);
+    $posicao = $row["mudaPosicaoPara"];
+    $statusDemanda = $row["mudaStatusPara"];
+
+    if ($idCliente === null) {
+        $sql3 = "UPDATE demanda SET idTipoStatus=$idTipoStatus, dataAtualizacaoAtendente=CURRENT_TIMESTAMP(), statusDemanda='$statusDemanda' WHERE idDemanda = $idDemanda";
+        $atualizar3 = mysqli_query($conexao, $sql3);
+    } else {
+        $sql3 = "UPDATE demanda SET idTipoStatus=$idTipoStatus, dataAtualizacaoCliente=CURRENT_TIMESTAMP(), statusDemanda='$statusDemanda' WHERE idDemanda = $idDemanda";
+        $atualizar3 = mysqli_query($conexao, $sql3);
+    }
+
+    if ($atualizar && $atualizar3) {
         $jsonSaida = array(
             "status" => 200,
             "retorno" => "ok"
@@ -28,6 +47,6 @@ if (isset($jsonEntrada['idDemanda'])) {
 } else {
     $jsonSaida = array(
         "status" => 400,
-        "retorno" => "Faltaram parametros"
+        "retorno" => "Faltaram parâmetros"
     );
 }

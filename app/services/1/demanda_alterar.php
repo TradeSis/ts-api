@@ -16,20 +16,14 @@ if (isset($jsonEntrada['idDemanda'])) {
     $tituloDemanda = $jsonEntrada['tituloDemanda'];
     $descricao = $jsonEntrada['descricao'];
     $prioridade = $jsonEntrada['prioridade'];
-    $idTipoStatus = $jsonEntrada['idTipoStatus'];
+    $idServico = $jsonEntrada['idServico'];
     $idTipoOcorrencia = $jsonEntrada['idTipoOcorrencia'];
     $tamanho = $jsonEntrada['tamanho'];
     $idAtendente = $jsonEntrada['idAtendente'];
     $horasPrevisao = $jsonEntrada['horasPrevisao'];
 
-    //busca dados tipostatus    
-        $sql2 = "SELECT * FROM tipostatus WHERE idTipoStatus = $idTipoStatus";
-        $buscar2 = mysqli_query($conexao, $sql2);
-        $row = mysqli_fetch_array($buscar2, MYSQLI_ASSOC);
-        $posicao = $row["mudaPosicaoPara"];
-        $statusDemanda = $row["mudaStatusPara"];
 
-    $sql = "UPDATE demanda SET prioridade='$prioridade', tituloDemanda='$tituloDemanda', descricao='$descricao', idTipoStatus='$idTipoStatus', idTipoOcorrencia='$idTipoOcorrencia', posicao='$posicao', statusDemanda='$statusDemanda', tamanho='$tamanho', idAtendente='$idAtendente', horasPrevisao='$horasPrevisao', idContrato='$idContrato', dataAtualizacaoAtendente=CURRENT_TIMESTAMP() WHERE idDemanda = $idDemanda";
+    $sql = "UPDATE demanda SET prioridade='$prioridade', tituloDemanda='$tituloDemanda', descricao='$descricao', idServico='$idServico', idTipoOcorrencia='$idTipoOcorrencia', posicao='$posicao', tamanho='$tamanho', idAtendente='$idAtendente', horasPrevisao='$horasPrevisao', idContrato='$idContrato', dataAtualizacaoAtendente=CURRENT_TIMESTAMP() WHERE idDemanda = $idDemanda";
     //echo "-SQL->".json_encode($sql)."\n";
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(

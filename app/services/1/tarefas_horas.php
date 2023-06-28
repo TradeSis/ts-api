@@ -5,7 +5,7 @@
 
 $conexao = conectaMysql();
 $horas = array();
-$sql = "SELECT SEC_TO_TIME(SUM(TIME_TO_SEC(tempo))) AS tempo, SEC_TO_TIME(SUM(TIME_TO_SEC(duracao))) AS duracao FROM tarefa";
+$sql = "SELECT SEC_TO_TIME(SUM(TIME_TO_SEC(horasCobrado))) AS horasCobrado, SEC_TO_TIME(SUM(TIME_TO_SEC(horasReal))) AS horasReal FROM tarefa";
 if (isset($jsonEntrada["idDemanda"])) {
   $sql = $sql . " where tarefa.idDemanda = " . $jsonEntrada["idDemanda"]; 
 }

@@ -1,13 +1,21 @@
 <?php
-//gabriel 220323 11:10 alterado para status 6(validado) ao encerrar
-//gabriel 06022023 16:52
+//gabriel 220323
 //echo "-ENTRADA->".json_encode($jsonEntrada)."\n";
 
 
 $conexao = conectaMysql();
 if (isset($jsonEntrada['idDemanda'])) {
     $idDemanda = $jsonEntrada['idDemanda'];
-    $sql = "UPDATE demanda SET idTipoStatus=6, dataFechamento=CURRENT_TIMESTAMP()  WHERE idDemanda = $idDemanda";
+    $idTipoStatus = $jsonEntrada['idTipoStatus'];
+
+    //busca dados tipostatus    
+        $sql2 = "SELECT * FROM tipostatus WHERE idTipoStatus = $idTipoStatus";
+        $buscar2 = mysqli_query($conexao, $sql2);
+        $row = mysqli_fetch_array($buscar2, MYSQLI_ASSOC);
+        $posicao = $row["mudaPosicaoPara"];
+        $statusDemanda = $row["mudaStatusPara"];
+    
+    $sql = "UPDATE demanda SET idTipoStatus=$idTipoStatus, dataAtualizacaoAtendente=CURRENT_TIMESTAMP(), statusDemanda='$statusDemanda' WHERE idDemanda = $idDemanda";
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(
             "status" => 200,

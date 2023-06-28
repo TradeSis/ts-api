@@ -8,9 +8,9 @@ $conexao = conectaMysql();
 $tarefa = array();
 $sql = "SELECT tarefa.*, usuario.nomeUsuario, cliente.nomeCliente, demanda.tituloDemanda, tipoocorrencia.nomeTipoOcorrencia FROM tarefa 
         LEFT JOIN usuario on tarefa.idAtendente = usuario.idUsuario 
-        INNER JOIN demanda on tarefa.idDemanda = demanda.idDemanda 
-        INNER JOIN tipoocorrencia on tarefa.idTipoOcorrencia = tipoocorrencia.idTipoOcorrencia
-        INNER JOIN cliente on tarefa.idCliente = cliente.idCliente";
+        LEFT JOIN demanda on tarefa.idDemanda = demanda.idDemanda 
+        LEFT JOIN tipoocorrencia on tarefa.idTipoOcorrencia = tipoocorrencia.idTipoOcorrencia
+        LEFT JOIN cliente on tarefa.idCliente = cliente.idCliente";
 if (isset($jsonEntrada["idDemanda"])) {
   $sql = $sql . " where tarefa.idDemanda = " . $jsonEntrada["idDemanda"]; 
 }  if (isset($jsonEntrada["idTarefa"])) {

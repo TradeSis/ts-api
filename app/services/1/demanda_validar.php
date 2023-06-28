@@ -1,5 +1,6 @@
 <?php
-//gabriel 220323
+//gabriel 220323 11:10 alterado para status 6(validado) ao encerrar
+//gabriel 06022023 16:52
 //echo "-ENTRADA->".json_encode($jsonEntrada)."\n";
 
 
@@ -15,7 +16,7 @@ if (isset($jsonEntrada['idDemanda'])) {
         $posicao = $row["mudaPosicaoPara"];
         $statusDemanda = $row["mudaStatusPara"];
     
-    $sql = "UPDATE demanda SET idTipoStatus = $idTipoStatus, dataFechamento = NULL, statusDemanda = '$statusDemanda', dataAtualizacaoCliente = CURRENT_TIMESTAMP(), QtdRetornos = QtdRetornos + 1 WHERE idDemanda = $idDemanda;";
+    $sql = "UPDATE demanda SET idTipoStatus=$idTipoStatus, dataAtualizacaoCliente = CURRENT_TIMESTAMP(),dataFechamento=CURRENT_TIMESTAMP(), statusDemanda='$statusDemanda' WHERE idDemanda = $idDemanda";
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(
             "status" => 200,
