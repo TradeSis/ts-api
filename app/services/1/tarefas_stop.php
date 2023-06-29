@@ -7,17 +7,12 @@ date_default_timezone_set('America/Sao_Paulo');
 $conexao = conectaMysql();
 if (isset($jsonEntrada['idTarefa'])) {
     $idTarefa = $jsonEntrada['idTarefa'];
-    $horaInicio = $jsonEntrada['horaInicio'];
-    $horaStop = date('H:i:00');
+    $horaFinalReal = date('H:i:00');
     $idDemanda = $jsonEntrada['idDemanda'];
     $idTipoStatus = $jsonEntrada['idTipoStatus'];
 
-    $calculo = "SELECT TIMEDIFF('$horaStop','$horaInicio') AS total";
-    $busca = mysqli_query($conexao, $calculo);
-    $row = mysqli_fetch_array($busca);
-    $horasReal = $row['total'];
 
-    $sql = "UPDATE `tarefa` SET `horaStop`='$horaStop', `horasReal`='$horasReal' WHERE idTarefa = $idTarefa";
+    $sql = "UPDATE `tarefa` SET `horaFinalReal`='$horaFinalReal' WHERE idTarefa = $idTarefa";
     $atualizar = mysqli_query($conexao, $sql);
 
     // busca dados tipostatus    

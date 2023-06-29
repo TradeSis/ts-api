@@ -7,12 +7,12 @@ $conexao = conectaMysql();
 if (isset($jsonEntrada['idDemanda'])) {
     $idTarefa = $jsonEntrada['idTarefa'];
     $idDemanda = $jsonEntrada['idDemanda'];
-    $dataPrevisto = $jsonEntrada['dataPrevisto'];
-    $previsaoInicio = $jsonEntrada['previsaoInicio'];
-    $previsaoFim = $jsonEntrada['previsaoFim'];
+    $Previsto = $jsonEntrada['Previsto'];
+    $horaInicioPrevisto = $jsonEntrada['horaInicioPrevisto'];
+    $horaFinalPrevisto = $jsonEntrada['horaFinalPrevisto'];
     $idTipoStatus = $jsonEntrada['idTipoStatus'];
 
-    $sql = "UPDATE tarefa SET dataPrevisto='$dataPrevisto', previsaoInicio='$previsaoInicio', previsaoFim='$previsaoFim' WHERE `idTarefa` = $idTarefa";
+    $sql = "UPDATE tarefa SET Previsto='$Previsto', horaInicioPrevisto='$horaInicioPrevisto', horaFinalPrevisto='$horaFinalPrevisto' WHERE `idTarefa` = $idTarefa";
     $atualizar = mysqli_query($conexao, $sql);
 
     // busca dados tipostatus    

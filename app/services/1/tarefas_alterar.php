@@ -9,16 +9,12 @@ if (isset($jsonEntrada['idTarefa'])) {
     $idTarefa = $jsonEntrada['idTarefa'];
     $idDemanda = $jsonEntrada['idDemanda'];
     $tituloTarefa = $jsonEntrada['tituloTarefa'];
-    $horaInicio = $jsonEntrada['horaInicio'];
-    $horaFinal = $jsonEntrada['horaFinal'];
+    $dataCobrado = $jsonEntrada['dataCobrado'];
+    $horaInicioCobrado = $jsonEntrada['horaInicioCobrado'];
+    $horaFinalCobrado = $jsonEntrada['horaFinalCobrado'];
     $idTipoOcorrencia = $jsonEntrada['idTipoOcorrencia'];
 
-    $calculo = "SELECT TIMEDIFF('$horaFinal','$horaInicio') AS total";
-    $busca = mysqli_query($conexao, $calculo);
-    $row = mysqli_fetch_array($busca);
-    $horasCobrado = $row['total'];
-
-    $sql = "UPDATE `tarefa` SET `tituloTarefa`='$tituloTarefa', `horaInicio`='$horaInicio', `horaFinal`='$horaFinal', `horasCobrado`='$horasCobrado', `idTipoOcorrencia`='$idTipoOcorrencia' WHERE `idTarefa` = $idTarefa";
+    $sql = "UPDATE `tarefa` SET `tituloTarefa`='$tituloTarefa',`dataCobrado`='$dataCobrado', `horaInicioCobrado`='$horaInicioCobrado', `horaFinalCobrado`='$horaFinalCobrado', `idTipoOcorrencia`='$idTipoOcorrencia' WHERE `idTarefa` = $idTarefa";
 
     if (mysqli_query($conexao, $sql)) {
         $sql2 = "UPDATE `demanda` SET `idTipoOcorrencia`='$idTipoOcorrencia' WHERE `idDemanda` = $idDemanda";

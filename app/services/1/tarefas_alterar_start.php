@@ -7,12 +7,13 @@ date_default_timezone_set('America/Sao_Paulo');
 $conexao = conectaMysql();
 if (isset($jsonEntrada['idTarefa'])) {
     $idTarefa = $jsonEntrada['idTarefa'];
-    $horaStart = date('H:i:00');
+    $dataReal = date('Y-m-d');
+    $horaInicioReal = date('H:i:00');
     $idDemanda = $jsonEntrada['idDemanda'];
     $idTipoOcorrencia = $jsonEntrada['idTipoOcorrencia'];
     $idTipoStatus = $jsonEntrada['idTipoStatus'];
 
-    $sql = "UPDATE `tarefa` SET `horaStart`='$horaStart', `idTipoOcorrencia`='$idTipoOcorrencia' WHERE idTarefa = $idTarefa";
+    $sql = "UPDATE `tarefa` SET `horaInicioReal`='$horaInicioReal', `dataReal`='$dataReal', `idTipoOcorrencia`='$idTipoOcorrencia' WHERE idTarefa = $idTarefa";
     $atualizar = mysqli_query($conexao, $sql);
 
     // busca dados tipostatus    

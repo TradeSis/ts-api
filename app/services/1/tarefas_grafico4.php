@@ -19,10 +19,10 @@ $meses = array(
 
 $conexao = conectaMysql();
 $tarefa = array();
-$sql = "SELECT * FROM (SELECT YEAR(horaInicio) AS Ano, MONTH(horaInicio) AS Mes, tipoocorrencia.nomeTipoOcorrencia, SEC_TO_TIME(SUM(TIME_TO_SEC(horasCobrado))) AS total FROM tarefa
+$sql = "SELECT * FROM (SELECT YEAR(horaInicioReal) AS Ano, MONTH(horaInicioReal) AS Mes, tipoocorrencia.nomeTipoOcorrencia, SEC_TO_TIME(SUM(TIME_TO_SEC(horasCobrado))) AS total FROM tarefa
         INNER JOIN demanda ON demanda.idDemanda = tarefa.idDemanda
         INNER JOIN tipoocorrencia ON tipoocorrencia.idTipoOcorrencia = demanda.idTipoOcorrencia
-        GROUP BY YEAR(horaInicio), MONTH(horaInicio), tipoocorrencia.nomeTipoOcorrencia) subquery
+        GROUP BY YEAR(horaInicioReal), MONTH(horaInicioReal), tipoocorrencia.nomeTipoOcorrencia) subquery
         WHERE total IS NOT NULL
         ORDER BY Ano, Mes";
 //echo "-SQL->" . json_encode($sql) . "\n";

@@ -5,9 +5,11 @@
 
 $conexao = conectaMysql();
 $horas = array();
-$sql = "SELECT SEC_TO_TIME(SUM(TIME_TO_SEC(horasCobrado))) AS horasCobrado, SEC_TO_TIME(SUM(TIME_TO_SEC(horasReal))) AS horasReal FROM tarefa";
+$sql = "SELECT SEC_TO_TIME(SUM(TIME_TO_SEC(horasCobrado))) AS horasCobrado, SEC_TO_TIME(SUM(TIME_TO_SEC(horasReal))) AS horasReal 
+  FROM  (SELECT TIMEDIFF(tarefa.horaFinalCobrado, tarefa.horaInicioCobrado) AS horasCobrado, 
+  TIMEDIFF(tarefa.horaFinalReal, tarefa.horaInicioReal) AS horasReal FROM tarefa";
 if (isset($jsonEntrada["idDemanda"])) {
-  $sql = $sql . " where tarefa.idDemanda = " . $jsonEntrada["idDemanda"]; 
+  $sql = $sql . " where tarefa.idDemanda = " . $jsonEntrada["idDemanda"] . " ) as subquery"; 
 }
 $rows = 0;
 $buscar = mysqli_query($conexao, $sql);

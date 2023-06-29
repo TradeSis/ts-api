@@ -10,12 +10,12 @@ if (isset($jsonEntrada['tituloTarefa'])) {
     $idCliente = $jsonEntrada['idCliente'];
     $idDemanda = $jsonEntrada['idDemanda'];
     $idAtendente = $jsonEntrada['idAtendente'];
-    $data = $jsonEntrada['data'];
     $idTipoOcorrencia = $jsonEntrada['idTipoOcorrencia'];
-    $horaInicio = date('H:i:00');
+    $dataReal = date('Y-m-d');
+    $horaInicioReal = date('H:i:00');
     $idTipoStatus = $jsonEntrada['idTipoStatus'];
 
-    $sql = "INSERT INTO tarefa(tituloTarefa, idCliente, idDemanda, idAtendente,`data`, idTipoOcorrencia, horaStart) VALUES ('$tituloTarefa', $idCliente, $idDemanda, $idAtendente, '$data', $idTipoOcorrencia, '$horaInicio')";
+    $sql = "INSERT INTO tarefa(tituloTarefa, idCliente, idDemanda, idAtendente,`dataReal`, idTipoOcorrencia, horaInicioReal) VALUES ('$tituloTarefa', $idCliente, $idDemanda, $idAtendente, '$dataReal', $idTipoOcorrencia, '$horaInicioReal')";
     $atualizar = mysqli_query($conexao, $sql);
 
     // busca dados tipostatus    
@@ -25,7 +25,7 @@ if (isset($jsonEntrada['tituloTarefa'])) {
     $posicao = $row["mudaPosicaoPara"];
     $statusDemanda = $row["mudaStatusPara"];
 
-    $sql3 = "UPDATE demanda SET idTipoStatus=$idTipoStatus, idTipoOcorrencia=$idTipoOcorrencia, dataAtualizacaoAtendente=CURRENT_TIMESTAMP(), statusDemanda='$statusDemanda' WHERE idDemanda = $idDemanda";
+    $sql3 = "UPDATE demanda SET idTipoStatus=$idTipoStatus, idTipoOcorrencia=$idTipoOcorrencia, dataRealAtualizacaoAtendente=CURRENT_TIMESTAMP(), statusDemanda='$statusDemanda' WHERE idDemanda = $idDemanda";
     $atualizar3 = mysqli_query($conexao, $sql3);
 
     if ($atualizar && $atualizar3) {

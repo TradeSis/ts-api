@@ -9,18 +9,13 @@ if (isset($jsonEntrada['tituloTarefa'])) {
     $idCliente = $jsonEntrada['idCliente'];
     $idDemanda = $jsonEntrada['idDemanda'];
     $idAtendente = $jsonEntrada['idAtendente'];
-    $data = $jsonEntrada['data'];
-    $horaInicio = $jsonEntrada['horaInicio'];
-    $horaFinal = $jsonEntrada['horaFinal'];
+    $dataCobrado = $jsonEntrada['dataCobrado'];
+    $horaInicioReal = $jsonEntrada['horaInicioReal'];
+    $horaFinalReal = $jsonEntrada['horaFinalReal'];
     $idTipoOcorrencia = $jsonEntrada['idTipoOcorrencia'];
 
-    $calculo = "SELECT TIMEDIFF('$horaFinal','$horaInicio') AS total";
-    $busca = mysqli_query($conexao, $calculo);
-    while ($row = mysqli_fetch_array($busca)) {
-        $horasCobrado = $row['total'];
+    $sql = "INSERT INTO tarefa(tituloTarefa, idCliente, idDemanda, idAtendente, `dataCobrado`, horaInicioReal, horaFinalReal, idTipoOcorrencia) VALUES ('$tituloTarefa', $idCliente, $idDemanda, $idAtendente, $dataCobrado, '$horaInicioReal', '$horaFinalReal', $idTipoOcorrencia)";
 
-        $sql = "INSERT INTO tarefa(tituloTarefa, idCliente, idDemanda, idAtendente, `data`, horaInicio, horaFinal, horasCobrado, idTipoOcorrencia) VALUES ('$tituloTarefa', $idCliente, $idDemanda, $idAtendente, $data, '$horaInicio', '$horaFinal', '$horasCobrado', $idTipoOcorrencia)";
-    }
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(
             "status" => 200,

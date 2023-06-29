@@ -8,12 +8,12 @@ if (isset($jsonEntrada['idDemanda'])) {
     $idCliente = $jsonEntrada['idCliente'];
     $idDemanda = $jsonEntrada['idDemanda'];
     $idAtendente = $jsonEntrada['idAtendente'];
-    $dataPrevisto = $jsonEntrada['dataPrevisto'];
-    $previsaoInicio = $jsonEntrada['previsaoInicio'];
-    $previsaoFim = $jsonEntrada['previsaoFim'];
+    $Previsto = $jsonEntrada['Previsto'];
+    $horaInicioPrevisto = $jsonEntrada['horaInicioPrevisto'];
+    $horaFinalPrevisto = $jsonEntrada['horaFinalPrevisto'];
     $idTipoStatus = $jsonEntrada['idTipoStatus'];
 
-    $sql = "INSERT INTO tarefa(idCliente, idDemanda, idAtendente, dataPrevisto, previsaoInicio, previsaoFim) VALUES ($idCliente, $idDemanda, $idAtendente, '$dataPrevisto', '$previsaoInicio', '$previsaoFim')";
+    $sql = "INSERT INTO tarefa(idCliente, idDemanda, idAtendente, Previsto, horaInicioPrevisto, horaFinalPrevisto) VALUES ($idCliente, $idDemanda, $idAtendente, '$Previsto', '$horaInicioPrevisto', '$horaFinalPrevisto')";
     $atualizar = mysqli_query($conexao, $sql);
 
     // busca dados tipostatus    
