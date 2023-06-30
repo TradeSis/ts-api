@@ -1,8 +1,9 @@
 <?php
 //echo "-ENTRADA->".json_encode($jsonEntrada)."\n";
 $conexao = conectaMysql();
-if (isset($jsonEntrada['nomeMarca'])) {
+if (isset($jsonEntrada['idMarca'])) {
 
+    $idMarca = $jsonEntrada['idMarca'];
     $nomeMarca = $jsonEntrada['nomeMarca'];
     $imgMarca = $jsonEntrada['imgMarca'];
     $bannerMarca = $jsonEntrada['bannerMarca'];
@@ -14,8 +15,9 @@ if (isset($jsonEntrada['nomeMarca'])) {
     $catalogo = $jsonEntrada['catalogo'];
     $lojasEspecializadas = $jsonEntrada['lojasEspecializadas'];
     
-    
-    $sql = "INSERT INTO marcas (`nomeMarca`,`imgMarca`,`bannerMarca`,`descricaoMarca`,`cidadeMarca`,`estado`,`urlMarca`,`ativoMarca`,`catalogo`,`lojasEspecializadas`) VALUES ('$nomeMarca','$imgMarca','$bannerMarca','$descricaoMarca','$cidadeMarca','$estado','$urlMarca','$ativoMarca','$catalogo','$lojasEspecializadas')";
+
+    $sql = "UPDATE marcas SET nomeMarca ='$nomeMarca', imgMarca ='$imgMarca', bannerMarca ='$bannerMarca', descricaoMarca ='$descricaoMarca', cidadeMarca ='$cidadeMarca', estado ='$estado', urlMarca ='$urlMarca', ativoMarca ='$ativoMarca', catalogo ='$catalogo', lojasEspecializadas ='$lojasEspecializadas' WHERE idMarca = $idMarca ";
+
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(
             "status" => 200,

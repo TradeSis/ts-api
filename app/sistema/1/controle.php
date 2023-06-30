@@ -104,6 +104,31 @@ if ($metodo == "GET") {
       include 'cest.php';
     break;
 
+    case "autor":
+      include 'autor.php';
+    break;
+
+    case "categorias":
+      include 'categorias.php';
+    break;
+
+    case "catalogo":
+      include 'catalogo.php';
+    break;
+
+    case "noticias":
+      include 'noticias.php';
+    break;
+
+    case "receitas":
+      include 'receitas.php';
+    break;
+
+    case "eventos":
+      include 'eventos.php';
+    break;
+
+
     default:
       $jsonSaida = json_decode(json_encode(
         array(
@@ -165,9 +190,32 @@ if ($metodo == "PUT") {
   
       case "fisoperacao":
         include 'fisoperacao_inserir.php';
-
       break;
 
+      case "autor":
+        include 'autor_inserir.php';
+      break;
+
+      case "categorias":
+        include 'categorias_inserir.php';
+      break;
+
+      case "catalogo":
+        include 'catalogo_inserir.php';
+      break;
+
+      case "noticias":
+        include 'noticias_inserir.php';
+      break;
+
+      case "receitas":
+        include 'receitas_inserir.php';
+      break;
+
+      case "eventos":
+        include 'eventos_inserir.php';
+      break;
+  
     default:
       $jsonSaida = json_decode(json_encode(
         array(
@@ -220,6 +268,35 @@ if ($metodo == "POST") {
       include 'fisoperacao_alterar.php';
     break;
 
+    case "autor":
+      include 'autor_alterar.php';
+    break;
+
+    case "marcas":
+      include 'marcas_alterar.php';
+    break;
+
+    case "categorias":
+      include 'categorias_alterar.php';
+    break;
+
+    case "catalogo":
+      include 'catalogo_alterar.php';
+    break;
+
+    case "noticias":
+      include 'noticias_alterar.php';
+    break;
+
+    case "receitas":
+      include 'receitas_alterar.php';
+    break;
+
+    case "eventos":
+      include 'eventos_alterar.php';
+    break;
+
+    
     default:
       $jsonSaida = json_decode(json_encode(
         array(
@@ -281,6 +358,30 @@ if ($metodo == "DELETE") {
 
     case "fisoperacao":
       include 'fisoperacao_excluir.php';
+    break;
+
+    case "autor":
+      include 'autor_excluir.php';
+    break;
+
+    case "categorias":
+      include 'categorias_excluir.php';
+    break;
+
+    case "catalogo":
+      include 'catalogo_excluir.php';
+    break;
+
+    case "noticias":
+      include 'noticias_excluir.php';
+    break;
+
+    case "receitas":
+      include 'receitas_excluir.php';
+    break;
+
+    case "eventos":
+      include 'eventos_excluir.php';
     break;
 
     default:
