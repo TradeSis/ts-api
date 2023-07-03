@@ -13,6 +13,7 @@ if (isset($jsonEntrada['idDemanda'])) {
     $pathAnexo = $jsonEntrada['pathAnexo'];
     $nomeAnexo = $jsonEntrada['nomeAnexo'];
     $idTipoStatus = $jsonEntrada['idTipoStatus'];
+    $tipoStatusDemanda = $jsonEntrada['tipoStatusDemanda'];
 
 
     $sql = "INSERT INTO comentario(idDemanda, comentario, idUsuario, dataComentario, nomeAnexo, pathAnexo) VALUES ($idDemanda,'$comentario',$idUsuario,CURRENT_TIMESTAMP(),'$nomeAnexo', '$pathAnexo')";
@@ -25,14 +26,17 @@ if (isset($jsonEntrada['idDemanda'])) {
     $posicao = $row["mudaPosicaoPara"];
     $statusDemanda = $row["mudaStatusPara"];
 
-    if ($idCliente === null) {
-        $sql3 = "UPDATE demanda SET idTipoStatus=$idTipoStatus, dataAtualizacaoAtendente=CURRENT_TIMESTAMP(), statusDemanda='$statusDemanda' WHERE idDemanda = $idDemanda";
-        $atualizar3 = mysqli_query($conexao, $sql3);
-    } else {
+
+    if ($tipoStatusDemanda == 7) {
         $sql3 = "UPDATE demanda SET idTipoStatus=$idTipoStatus, dataAtualizacaoCliente=CURRENT_TIMESTAMP(), statusDemanda='$statusDemanda' WHERE idDemanda = $idDemanda";
         $atualizar3 = mysqli_query($conexao, $sql3);
+    } else {
+        $sql3 = "UPDATE demanda SET dataAtualizacaoCliente=CURRENT_TIMESTAMP(), statusDemanda='$statusDemanda' WHERE idDemanda = $idDemanda";
+        $atualizar3 = mysqli_query($conexao, $sql3);
     }
-
+    echo "-SQL->".json_encode($sql)."\n";
+    echo "-SQL->".json_encode($sql2)."\n";
+    echo "-SQL->".json_encode($sql3)."\n";
     if ($atualizar && $atualizar3) {
         $jsonSaida = array(
             "status" => 200,

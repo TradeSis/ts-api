@@ -158,6 +158,14 @@ if ($metodo == "PUT") {
     $funcao = "tarefas/start";
     $parametro = null;
   }
+  if ($funcao == "comentario" && $parametro == "cliente") {
+    $funcao = "comentario/cliente";
+    $parametro = null;
+  }
+  if ($funcao == "comentario" && $parametro == "atendente") {
+    $funcao = "comentario/atendente";
+    $parametro = null;
+  }
 
   switch ($funcao) {
     case "clientes":
@@ -183,10 +191,6 @@ if ($metodo == "PUT") {
     case "tarefas":
       include 'tarefas_inserir.php';
       break;
-    case "comentario":
-      include 'comentario_inserir.php';
-      break;
-
     case "contrato":
       include 'contrato_inserir.php';
       break;
@@ -213,6 +217,13 @@ if ($metodo == "PUT") {
 
     case "previsao":
       include 'previsao_inserir.php';
+      break;
+
+    case "comentario/cliente":
+      include 'comentarioCliente_inserir.php';
+      break;
+    case "comentario/atendente":
+      include 'comentarioAtendente_inserir.php';
       break;
 
     default:
