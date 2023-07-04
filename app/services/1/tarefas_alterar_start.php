@@ -13,7 +13,7 @@ if (isset($jsonEntrada['idTarefa'])) {
     $idTipoOcorrencia = $jsonEntrada['idTipoOcorrencia'];
     $idTipoStatus = $jsonEntrada['idTipoStatus'];
 
-    $sql = "UPDATE `tarefa` SET `horaInicioReal`='$horaInicioReal', `dataReal`='$dataReal', `idTipoOcorrencia`='$idTipoOcorrencia' WHERE idTarefa = $idTarefa";
+    $sql = "UPDATE `tarefa` SET `horaInicioReal`='$horaInicioReal', `dataReal`='$dataReal', `idTipoOcorrencia`=$idTipoOcorrencia WHERE idTarefa = $idTarefa";
     $atualizar = mysqli_query($conexao, $sql);
 
     // busca dados tipostatus    
