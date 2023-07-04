@@ -4,25 +4,31 @@
 
 
 $conexao = conectaMysql();
+
 if (isset($jsonEntrada['idTarefa'])) {
     $idTarefa = $jsonEntrada['idTarefa'];
+    $idDemanda = $jsonEntrada['idDemanda'];
     $tituloTarefa = $jsonEntrada['tituloTarefa'];
-    $dataInicio = $jsonEntrada['dataExecucaoInicio'];
-    $dataFim = $jsonEntrada['dataExecucaoFinal'];
+    $dataCobrado = $jsonEntrada['dataCobrado'];
+    $horaInicioCobrado = $jsonEntrada['horaInicioCobrado'];
+    $horaFinalCobrado = $jsonEntrada['horaFinalCobrado'];
+    $idTipoOcorrencia = $jsonEntrada['idTipoOcorrencia'];
 
-    $calculo = "SELECT TIMEDIFF('$dataFim','$dataInicio') AS total";
-    $busca = mysqli_query($conexao, $calculo);
-    while ($row = mysqli_fetch_array($busca)) {
-        $tempo = $row['total'];
+    $sql = "UPDATE `tarefa` SET `tituloTarefa`='$tituloTarefa',`dataCobrado`='$dataCobrado', `horaInicioCobrado`='$horaInicioCobrado', `horaFinalCobrado`='$horaFinalCobrado', `idTipoOcorrencia`='$idTipoOcorrencia' WHERE `idTarefa` = $idTarefa";
 
-        $sql = "UPDATE `tarefa` SET `tituloTarefa`='$tituloTarefa', `dataExecucaoInicio`='$dataInicio', `dataExecucaoFinal`='$dataFim', `tempo` = '$tempo' WHERE idTarefa = $idTarefa";
-    }
-    echo $sql;
-    if ($atualizar = mysqli_query($conexao, $sql)) {
-        $jsonSaida = array(
-            "status" => 200,
-            "retorno" => "ok"
-        );
+    if (mysqli_query($conexao, $sql)) {
+        $sql2 = "UPDATE `demanda` SET `idTipoOcorrencia`='$idTipoOcorrencia' WHERE `idDemanda` = $idDemanda";
+        if (mysqli_query($conexao, $sql2)) {
+            $jsonSaida = array(
+                "status" => 200,
+                "retorno" => "ok"
+            );
+        } else {
+            $jsonSaida = array(
+                "status" => 500,
+                "retorno" => "erro no mysql"
+            );
+        }
     } else {
         $jsonSaida = array(
             "status" => 500,

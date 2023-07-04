@@ -1,19 +1,21 @@
 <?php
-//gabriel 07022023 16:25
+//gabriel 220323
 //echo "-ENTRADA->".json_encode($jsonEntrada)."\n";
 
 
 $conexao = conectaMysql();
 if (isset($jsonEntrada['idDemanda'])) {
     $idDemanda = $jsonEntrada['idDemanda'];
-    $comentario = $jsonEntrada['comentario'];
-    $idUsuario = $jsonEntrada['idUsuario'];
-    //$idAnexo = $jsonEntrada['idAnexo'];
-    $pathAnexo = $jsonEntrada['pathAnexo'];
-    $nomeAnexo = $jsonEntrada['nomeAnexo'];
-    $sql = "INSERT INTO comentario(idDemanda, comentario, idUsuario, dataComentario, nomeAnexo, pathAnexo) VALUES ($idDemanda,'$comentario',$idUsuario,CURRENT_TIMESTAMP(),'$nomeAnexo', '$pathAnexo')";
+    $idTipoStatus = $jsonEntrada['idTipoStatus'];
 
-  //  echo "-SQL->".json_encode($sql)."\n";
+    //busca dados tipostatus    
+        $sql2 = "SELECT * FROM tipostatus WHERE idTipoStatus = $idTipoStatus";
+        $buscar2 = mysqli_query($conexao, $sql2);
+        $row = mysqli_fetch_array($buscar2, MYSQLI_ASSOC);
+        $posicao = $row["mudaPosicaoPara"];
+        $statusDemanda = $row["mudaStatusPara"];
+    
+    $sql = "UPDATE demanda SET idTipoStatus=$idTipoStatus, dataAtualizacaoAtendente=CURRENT_TIMESTAMP(), statusDemanda='$statusDemanda' WHERE idDemanda = $idDemanda";
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(
             "status" => 200,

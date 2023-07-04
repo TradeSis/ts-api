@@ -13,37 +13,37 @@
 
 if ($metodo == "GET") {
 
-  if ($funcao=="contrato"&&$parametro=="totais") {
+  if ($funcao == "contrato" && $parametro == "totais") {
     $funcao = "contrato/totais";
     $parametro = null;
   }
 
-  if ($funcao=="demandas"&&$parametro=="totais") {
+  if ($funcao == "demandas" && $parametro == "totais") {
     $funcao = "demandas/totais";
     $parametro = null;
   }
 
-  if ($funcao=="usuario"&&$parametro=="verifica") {
+  if ($funcao == "usuario" && $parametro == "verifica") {
     $funcao = "usuario/verifica";
     $parametro = null;
   }
 
-  if ($funcao=="tarefas"&&$parametro=="grafico1") {
+  if ($funcao == "tarefas" && $parametro == "grafico1") {
     $funcao = "tarefas/grafico1";
     $parametro = null;
   }
 
-  if ($funcao=="tarefas"&&$parametro=="grafico2") {
+  if ($funcao == "tarefas" && $parametro == "grafico2") {
     $funcao = "tarefas/grafico2";
     $parametro = null;
   }
 
-  if ($funcao=="tarefas"&&$parametro=="grafico3") {
+  if ($funcao == "tarefas" && $parametro == "grafico3") {
     $funcao = "tarefas/grafico3";
     $parametro = null;
   }
 
-  if ($funcao=="tarefas"&&$parametro=="grafico4") {
+  if ($funcao == "tarefas" && $parametro == "grafico4") {
     $funcao = "tarefas/grafico4";
     $parametro = null;
   }
@@ -52,25 +52,25 @@ if ($metodo == "GET") {
 
     case "clientes":
       include 'clientes.php';
-    break;
-    
+      break;
+
     case "contratostatus":
-        include 'contratostatus.php';
-    break;
- 
+      include 'contratostatus.php';
+      break;
+
 
     case "tipostatus":
       include 'tipostatus.php';
       break;
-    
+
     case "tipoocorrencia":
       include 'tipoocorrencia.php';
-    break;
-    
+      break;
+
     case "contrato":
-      
-        include 'contrato.php';
-      break;      
+
+      include 'contrato.php';
+      break;
     case "demanda":
       include 'demanda.php';
       break;
@@ -84,75 +84,86 @@ if ($metodo == "GET") {
       include 'comentario.php';
       break;
     case "horas":
-      include 'horas.php';
+      include 'tarefas_horas.php';
       break;
     case "atendente":
       include 'atendente.php';
       break;
 
-      case "contrato/totais":
-        include 'contrato_totais.php';
-        break;
+    case "contrato/totais":
+      include 'contrato_totais.php';
+      break;
 
-      case "demandas/totais":
-        include 'demandas_totais.php';
-        break;
-      
-      case "usuario/verifica":
-        include 'usuario_verifica.php';
+    case "demandas/totais":
+      include 'demandas_totais.php';
+      break;
+
+    case "usuario/verifica":
+      include 'usuario_verifica.php';
       break;
 
     case "aplicativo":
-        include 'aplicativo.php';
+      include 'aplicativo.php';
       break;
-     
+
     case "menu":
-        include 'menu.php';
+      include 'menu.php';
       break;
 
-      case "menuprograma":
-        include 'menuprograma.php';
+    case "menuprograma":
+      include 'menuprograma.php';
       break;
 
-      case "montaMenu":
-        include 'montaMenu.php';
+    case "montaMenu":
+      include 'montaMenu.php';
       break;
 
-      case "usuarioaplicativo":
-        include 'usuarioaplicativo.php';
+    case "usuarioaplicativo":
+      include 'usuarioaplicativo.php';
       break;
 
-      case "tarefas/grafico1":
-        include 'tarefas_grafico1.php';
+    case "tarefas/grafico1":
+      include 'tarefas_grafico1.php';
       break;
 
-      case "tarefas/grafico2":
-        include 'tarefas_grafico2.php';
+    case "tarefas/grafico2":
+      include 'tarefas_grafico2.php';
       break;
 
-      case "tarefas/grafico3":
-        include 'tarefas_grafico3.php';
+    case "tarefas/grafico3":
+      include 'tarefas_grafico3.php';
       break;
 
-      case "tarefas/grafico4":
-        include 'tarefas_grafico4.php';
+    case "tarefas/grafico4":
+      include 'tarefas_grafico4.php';
       break;
 
     default:
-      $jsonSaida = json_decode(json_encode(
-        array(
-          "status" => "400",
-          "retorno" => "Aplicacao " . $aplicacao . " Versao " . $versao . " Funcao " . $funcao . " Invalida" . " Metodo " . $metodo . " Invalido "
-        )
-      ), TRUE);
+      $jsonSaida = json_decode(
+        json_encode(
+          array(
+            "status" => "400",
+            "retorno" => "Aplicacao " . $aplicacao . " Versao " . $versao . " Funcao " . $funcao . " Invalida" . " Metodo " . $metodo . " Invalido "
+          )
+        ),
+        TRUE
+      );
       break;
   }
 }
 
 if ($metodo == "PUT") {
 
-  if ($funcao=="tarefas"&&$parametro=="start") {
+  if ($funcao == "tarefas" && $parametro == "start") {
     $funcao = "tarefas/start";
+    $parametro = null;
+  }
+  if ($funcao == "comentario" && $parametro == "cliente") {
+    $funcao = "comentario/cliente";
+    $parametro = null;
+  }
+  if ($funcao == "comentario" && $parametro == "atendente") {
+    $funcao = "comentario/atendente";
     $parametro = null;
   }
 
@@ -161,9 +172,9 @@ if ($metodo == "PUT") {
       include 'clientes_inserir.php';
       break;
 
-   case "contratostatus":
+    case "contratostatus":
       include 'contratostatus_inserir.php';
-    break;  
+      break;
 
     case "tipostatus":
       include 'tipostatus_inserir.php';
@@ -180,73 +191,87 @@ if ($metodo == "PUT") {
     case "tarefas":
       include 'tarefas_inserir.php';
       break;
-    case "comentario":
-      include 'comentario_inserir.php';
-      break;
-
     case "contrato":
-        include 'contrato_inserir.php';
-    break;  
+      include 'contrato_inserir.php';
+      break;
 
     case "aplicativo":
       include 'aplicativo_inserir.php';
-    break;
+      break;
 
     case "menu":
       include 'menu_inserir.php';
-    break;
+      break;
 
     case "menuprograma":
       include 'menuprograma_inserir.php';
-    break;
+      break;
 
     case "usuarioaplicativo":
       include 'usuarioaplicativo_inserir.php';
-    break;
+      break;
 
     case "tarefas/start":
       include 'tarefas_start.php';
-    break;
+      break;
+
+    case "previsao":
+      include 'previsao_inserir.php';
+      break;
+
+    case "comentario/cliente":
+      include 'comentarioCliente_inserir.php';
+      break;
+    case "comentario/atendente":
+      include 'comentarioAtendente_inserir.php';
+      break;
 
     default:
-      $jsonSaida = json_decode(json_encode(
-        array(
-          "status" => "400",
-          "retorno" => "Aplicacao " . $aplicacao . " Versao " . $versao . " Funcao " . $funcao . " Invalida" . " Metodo " . $metodo . " Invalido "
-        )
-      ), TRUE);
+      $jsonSaida = json_decode(
+        json_encode(
+          array(
+            "status" => "400",
+            "retorno" => "Aplicacao " . $aplicacao . " Versao " . $versao . " Funcao " . $funcao . " Invalida" . " Metodo " . $metodo . " Invalido "
+          )
+        ),
+        TRUE
+      );
       break;
   }
 }
 
 if ($metodo == "POST") {
 
-  if ($funcao=="contrato"&&$parametro=="finalizar") {
+  if ($funcao == "contrato" && $parametro == "finalizar") {
     $funcao = "contrato/finalizar";
     $parametro = null;
   }
 
-  if ($funcao=="demanda"&&$parametro=="encerrar") {
-    $funcao = "demanda/encerrar";
+  if ($funcao == "demanda" && $parametro == "validar") {
+    $funcao = "demanda/validar";
+    $parametro = null;
+  }
+  if ($funcao == "demanda" && $parametro == "realizado") {
+    $funcao = "demanda/realizado";
     $parametro = null;
   }
 
-  if ($funcao=="demanda"&&$parametro=="retornar") {
+  if ($funcao == "demanda" && $parametro == "retornar") {
     $funcao = "demanda/retornar";
     $parametro = null;
   }
 
-  if ($funcao=="usuario"&&$parametro=="ativar") {
+  if ($funcao == "usuario" && $parametro == "ativar") {
     $funcao = "usuario/ativar";
     $parametro = null;
   }
 
-  if ($funcao=="tarefas"&&$parametro=="stop") {
+  if ($funcao == "tarefas" && $parametro == "stop") {
     $funcao = "tarefas/stop";
     $parametro = null;
   }
 
-  if ($funcao=="tarefas"&&$parametro=="startAlterar") {
+  if ($funcao == "tarefas" && $parametro == "startAlterar") {
     $funcao = "tarefas/startAlterar";
     $parametro = null;
   }
@@ -256,11 +281,11 @@ if ($metodo == "POST") {
   switch ($funcao) {
     case "clientes":
       include 'clientes_alterar.php';
-    break;
+      break;
 
     case "contratostatus":
-        include 'contratostatus_alterar.php';
-    break;
+      include 'contratostatus_alterar.php';
+      break;
 
     case "tipostatus":
       include 'tipostatus_alterar.php';
@@ -269,67 +294,76 @@ if ($metodo == "POST") {
       include 'tipoocorrencia_alterar.php';
       break;
     case "demanda":
-        include 'demanda_alterar.php';
-    break;
-      case "demanda/encerrar":
-        include 'demanda_encerrar.php';
-        break;
-    //break;
-      case "demanda/retornar":
-        include 'demanda_retornar.php';
-        break;
-  
+      include 'demanda_alterar.php';
+      break;
+    case "demanda/validar":
+      include 'demanda_validar.php';
+      break;
+    case "demanda/realizado":
+      include 'demanda_atualizar.php';
+      break;
+    case "demanda/retornar":
+      include 'demanda_retornar.php';
+      break;
+
     case "contrato":
-        include 'contrato_alterar.php';
-    break;
-    
+      include 'contrato_alterar.php';
+      break;
+
     case "contrato/finalizar":
       include 'contrato_finalizar.php';
-    break;
+      break;
 
     case "usuario":
       include 'usuario_alterar.php';
-    break;
+      break;
 
     case "aplicativo":
       include 'aplicativo_alterar.php';
-    break;
+      break;
 
     case "menu":
       include 'menu_alterar.php';
-    break;
+      break;
 
     case "menuprograma":
       include 'menuprograma_alterar.php';
-    break;
+      break;
 
     case "usuarioaplicativo":
       include 'usuarioaplicativo_alterar.php';
-    break;
+      break;
 
     case "tarefas":
       include 'tarefas_alterar.php';
-    break;
+      break;
 
     case "usuario/ativar":
       include 'usuario_ativar.php';
-    break;
+      break;
 
     case "tarefas/stop":
       include 'tarefas_stop.php';
-    break;
+      break;
 
     case "tarefas/startAlterar":
       include 'tarefas_alterar_start.php';
-    break;
+      break;
+
+    case "previsao":
+      include 'previsao_alterar.php';
+      break;
 
     default:
-      $jsonSaida = json_decode(json_encode(
-        array(
-          "status" => "400",
-          "retorno" => "Aplicacao " . $aplicacao . " Versao " . $versao . " Funcao " . $funcao . " Invalida" . " Metodo " . $metodo . " Invalido "
-        )
-      ), TRUE);
+      $jsonSaida = json_decode(
+        json_encode(
+          array(
+            "status" => "400",
+            "retorno" => "Aplicacao " . $aplicacao . " Versao " . $versao . " Funcao " . $funcao . " Invalida" . " Metodo " . $metodo . " Invalido "
+          )
+        ),
+        TRUE
+      );
       break;
   }
 }
@@ -341,8 +375,8 @@ if ($metodo == "DELETE") {
       break;
 
     case "contratostatus":
-        include 'contratostatus_excluir.php';
-    break;
+      include 'contratostatus_excluir.php';
+      break;
 
     case "tipostatus":
       include 'tipostatus_excluir.php';
@@ -353,35 +387,38 @@ if ($metodo == "DELETE") {
 
     case "contrato":
       include 'contrato_excluir.php';
-    break;
+      break;
 
     case "menu":
       include 'menu_excluir.php';
-    break;
+      break;
 
     case "aplicativo":
       include 'aplicativo_excluir.php';
-    break;
+      break;
 
     case "menuprograma":
       include 'menuprograma_excluir.php';
-    break;
+      break;
 
     case "usuarioaplicativo":
       include 'usuarioaplicativo_excluir.php';
-    break;
+      break;
 
     case "usuario":
       include 'usuario_excluir.php';
-    break;
-      
+      break;
+
     default:
-      $jsonSaida = json_decode(json_encode(
-        array(
-          "status" => "400",
-          "retorno" => "Aplicacao " . $aplicacao . " Versao " . $versao . " Funcao " . $funcao . " Invalida" . " Metodo " . $metodo . " Invalido "
-        )
-      ), TRUE);
+      $jsonSaida = json_decode(
+        json_encode(
+          array(
+            "status" => "400",
+            "retorno" => "Aplicacao " . $aplicacao . " Versao " . $versao . " Funcao " . $funcao . " Invalida" . " Metodo " . $metodo . " Invalido "
+          )
+        ),
+        TRUE
+      );
       break;
   }
 }

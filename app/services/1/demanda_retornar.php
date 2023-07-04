@@ -6,7 +6,16 @@
 $conexao = conectaMysql();
 if (isset($jsonEntrada['idDemanda'])) {
     $idDemanda = $jsonEntrada['idDemanda'];
-    $sql = "UPDATE demanda SET idTipoStatus=5, dataAtualizacaoCliente=CURRENT_TIMESTAMP()  WHERE idDemanda = $idDemanda";
+    $idTipoStatus = $jsonEntrada['idTipoStatus'];
+
+    //busca dados tipostatus    
+        $sql2 = "SELECT * FROM tipostatus WHERE idTipoStatus = $idTipoStatus";
+        $buscar2 = mysqli_query($conexao, $sql2);
+        $row = mysqli_fetch_array($buscar2, MYSQLI_ASSOC);
+        $posicao = $row["mudaPosicaoPara"];
+        $statusDemanda = $row["mudaStatusPara"];
+    
+    $sql = "UPDATE demanda SET idTipoStatus = $idTipoStatus, dataFechamento = NULL, statusDemanda = '$statusDemanda', dataAtualizacaoCliente = CURRENT_TIMESTAMP(), QtdRetornos = QtdRetornos + 1 WHERE idDemanda = $idDemanda;";
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(
             "status" => 200,

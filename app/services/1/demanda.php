@@ -10,13 +10,14 @@
 $conexao = conectaMysql();
 $demanda = array();
 
-$sql = "SELECT demanda.*, cliente.nomeCliente, tipoocorrencia.nomeTipoOcorrencia, tipostatus.nomeTipoStatus, contrato.tituloContrato, atendente.nomeUsuario AS nomeAtendente, solicitante.nomeUsuario AS nomeSolicitante FROM demanda
-        INNER JOIN cliente ON demanda.idCliente = cliente.idCliente
+$sql = "SELECT demanda.*, cliente.nomeCliente, tipoocorrencia.nomeTipoOcorrencia, tipostatus.nomeTipoStatus, contrato.tituloContrato, servicos.nomeServico, atendente.nomeUsuario AS nomeAtendente, solicitante.nomeUsuario AS nomeSolicitante FROM demanda
+        LEFT JOIN cliente ON demanda.idCliente = cliente.idCliente
         LEFT JOIN usuario AS atendente ON demanda.idAtendente = atendente.idUsuario
         LEFT JOIN usuario AS solicitante ON demanda.idSolicitante = solicitante.idUsuario
         LEFT JOIN contrato ON demanda.idContrato = contrato.idContrato
-        INNER JOIN tipoocorrencia ON demanda.idTipoOcorrencia = tipoocorrencia.idTipoOcorrencia
-        INNER JOIN tipostatus ON demanda.idTipoStatus = tipostatus.idTipoStatus";
+        LEFT JOIN servicos ON demanda.idServico = servicos.idServico
+        LEFT JOIN tipoocorrencia ON demanda.idTipoOcorrencia = tipoocorrencia.idTipoOcorrencia
+        LEFT JOIN tipostatus ON demanda.idTipoStatus = tipostatus.idTipoStatus";
 if (isset($jsonEntrada["idDemanda"])) {
   $sql = $sql . " where demanda.idDemanda = " . $jsonEntrada["idDemanda"];
 } else {
