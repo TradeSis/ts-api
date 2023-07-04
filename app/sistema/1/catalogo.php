@@ -10,7 +10,7 @@ $sql = "SELECT catalogo.*, marcas.* FROM catalogo
 
 if (isset($jsonEntrada["idProduto"])) {
   $sql = $sql . " where catalogo.idProduto = " . $jsonEntrada["idProduto"];
-
+  $where = " and ";
 }else {
   $where = " where ";
   if (isset($jsonEntrada["idMarca"])) {
@@ -18,6 +18,7 @@ if (isset($jsonEntrada["idProduto"])) {
     $where = " and ";
   }
 }
+$sql = $sql . $where . " catalogo.ativoProduto = 1 ";
 
 $rows = 0;
 $buscar = mysqli_query($conexao, $sql);
