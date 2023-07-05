@@ -9,24 +9,24 @@ $sql = "SELECT posts.*, autor.*, categoria.* FROM posts
         LEFT JOIN autor on autor.idAutor = posts.idAutor
         LEFT JOIN categoria on categoria.idCategoria = posts.idCategoria ";
 
-/* $sql = "SELECT * FROM posts "; */
 if (isset($jsonEntrada["idPost"])) {
   $sql = $sql . " where posts.idPost = " . $jsonEntrada["idPost"];
-}
-else {
+
+}else {
   $where = " where ";
-  if (isset($jsonEntrada["titulo"])) {
-    $sql = $sql . $where . " posts.titulo like " . "'%" . $jsonEntrada["titulo"] . "%'";
+  if (isset($jsonEntrada["idAutor"])) {
+    $sql = $sql . $where . " posts.idAutor = " . $jsonEntrada["idAutor"];
     $where = " and ";
   }
-
-  if (isset($jsonEntrada["categoria"])) {
-    $sql = $sql . $where . " posts.categoria = " .  "'" . $jsonEntrada["categoria"] . "'";
+  if (isset($jsonEntrada["idCategoria"])) {
+    $sql = $sql . $where . " posts.idCategoria = " . $jsonEntrada["idCategoria"];
     $where = " and ";
   }
 }
-
-//echo  $sql;
+$sql = $sql . " where posts.idCategoria = 4 ";
+$sql = $sql . " ORDER BY idPost DESC LIMIT 4 ";
+//$sql = "SELECT * FROM posts ORDER BY idPost DESC LIMIT 5 ";
+//echo $sql;
 $rows = 0;
 $buscar = mysqli_query($conexao, $sql);
 while ($row = mysqli_fetch_array($buscar, MYSQLI_ASSOC)) {

@@ -32,14 +32,6 @@ if ($metodo == "GET") {
       include 'marcas.php';
       break;
 
-    case "produtos":
-      include 'produtos.php';
-      break;
-
-    case "produtos_card":
-      include 'produtos_card.php';
-      break;
-
     case "posts_slug":
       include 'posts_slug.php';
       break;
@@ -112,8 +104,8 @@ if ($metodo == "GET") {
       include 'categorias.php';
       break;
 
-    case "catalogo":
-      include 'catalogo.php';
+    case "produtos":
+      include 'produtos.php';
       break;
 
     case "noticias":
@@ -128,16 +120,12 @@ if ($metodo == "GET") {
       include 'eventos.php';
       break;
 
-    case "noticias_ultimas":
-      include 'noticias_ultimas.php';
+    case "posts_sobreChocolate":
+      include 'posts_sobreChocolate.php';
       break;
 
-    case "noticias_sobreChocolate":
-      include 'noticias_sobreChocolate.php';
-      break;
-
-    case "noticias_curiosidades";
-      include 'noticias_curiosidades.php';
+    case "posts_curiosidades";
+      include 'posts_curiosidades.php';
       break;
 
     case "eventos_proximos";
@@ -160,8 +148,8 @@ if ($metodo == "GET") {
       include 'autor_card.php';
       break;
 
-    case "catalogo_card";
-      include 'catalogo_card.php';
+    case "produtos_card";
+      include 'produtos_card.php';
       break;
 
 
@@ -193,10 +181,6 @@ if ($metodo == "PUT") {
 
     case "marcas":
       include 'marcas_inserir.php';
-      break;
-
-    case "produtos":
-      include 'produtos_inserir.php';
       break;
 
     case "posts":
@@ -236,8 +220,8 @@ if ($metodo == "PUT") {
       include 'categorias_inserir.php';
       break;
 
-    case "catalogo":
-      include 'catalogo_inserir.php';
+    case "produtos":
+      include 'produtos_inserir.php';
       break;
 
     case "noticias":
@@ -316,8 +300,8 @@ if ($metodo == "POST") {
       include 'categorias_alterar.php';
       break;
 
-    case "catalogo":
-      include 'catalogo_alterar.php';
+    case "produtos":
+      include 'produtos_alterar.php';
       break;
 
     case "noticias":
@@ -331,6 +315,10 @@ if ($metodo == "POST") {
     case "eventos":
       include 'eventos_alterar.php';
       break;
+
+      case "posts":
+        include 'posts_alterar.php';
+        break;
 
 
     default:
@@ -361,10 +349,6 @@ if ($metodo == "DELETE") {
 
     case "marcas":
       include 'marcas_excluir.php';
-      break;
-
-    case "produtos":
-      include 'produtos_excluir.php';
       break;
 
     case "posts":
@@ -404,8 +388,8 @@ if ($metodo == "DELETE") {
       include 'categorias_excluir.php';
       break;
 
-    case "catalogo":
-      include 'catalogo_excluir.php';
+    case "produtos":
+      include 'produtos_excluir.php';
       break;
 
     case "noticias":

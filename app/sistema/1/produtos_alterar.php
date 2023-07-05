@@ -12,7 +12,7 @@ if (isset($jsonEntrada['idProduto']) && ($jsonEntrada['imgProduto'])) {
     $propagandaProduto = $jsonEntrada['propagandaProduto'];
     $descricaoProduto = $jsonEntrada['descricaoProduto'];
 
-    $sql = "UPDATE  catalogo  SET nomeProduto ='$nomeProduto', imgProduto ='$imgProduto', idMarca ='$idMarca', precoProduto ='$precoProduto', ativoProduto ='$ativoProduto',    propagandaProduto ='$propagandaProduto', descricaoProduto ='$descricaoProduto' WHERE idProduto = $idProduto ";
+    $sql = "UPDATE  produtos  SET nomeProduto ='$nomeProduto', imgProduto ='$imgProduto', idMarca ='$idMarca', precoProduto ='$precoProduto', ativoProduto ='$ativoProduto',    propagandaProduto ='$propagandaProduto', descricaoProduto ='$descricaoProduto' WHERE idProduto = $idProduto ";
 
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(
@@ -44,7 +44,7 @@ if (isset($jsonEntrada['idProduto'])) {
     $propagandaProduto = $jsonEntrada['propagandaProduto'];
     $descricaoProduto = $jsonEntrada['descricaoProduto'];
 
-    $sql = "UPDATE  catalogo  SET nomeProduto ='$nomeProduto', idMarca ='$idMarca', precoProduto ='$precoProduto', ativoProduto ='$ativoProduto',    propagandaProduto ='$propagandaProduto', descricaoProduto ='$descricaoProduto' WHERE idProduto = $idProduto ";
+    $sql = "UPDATE  produtos  SET nomeProduto ='$nomeProduto', idMarca ='$idMarca', precoProduto ='$precoProduto', ativoProduto ='$ativoProduto',    propagandaProduto ='$propagandaProduto', descricaoProduto ='$descricaoProduto' WHERE idProduto = $idProduto ";
 
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(

@@ -7,17 +7,15 @@ if (isset($jsonEntrada['slug'])) {
 
     $slug = $jsonEntrada['slug'];
     $titulo = $jsonEntrada['titulo'];
-    $imgDestaque = $jsonEntrada['imgDestaque']; //foto
-    $autor = $jsonEntrada['autor']; 
+    $imgDestaque = $jsonEntrada['imgDestaque']; 
+    $idAutor = $jsonEntrada['idAutor']; 
     $data = $jsonEntrada['data'];
-    $comentarios = $jsonEntrada['comentarios'];
-    $textoIntro = $jsonEntrada['textoIntro'];
     $txtConteudo = $jsonEntrada['txtConteudo'];
-    $categoria = $jsonEntrada['categoria'];
+    $idCategoria = $jsonEntrada['idCategoria'];
 
 
     
-    $sql = "INSERT INTO `posts`(`slug`, `titulo`, `imgDestaque`, `autor`, `data`, `comentarios`, `textoIntro`, `txtConteudo`, `categoria`) VALUES ('$slug','$titulo', '$imgDestaque' ,'$autor','$data','$comentarios','$textoIntro','$txtConteudo','$categoria')";
+    $sql = "INSERT INTO `posts`(`slug`, `titulo`, `imgDestaque`, `idAutor`, `data`, `txtConteudo`, `idCategoria`) VALUES ('$slug','$titulo', '$imgDestaque' ,'$idAutor','$data','$txtConteudo','$idCategoria')";
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(
             "status" => 200,

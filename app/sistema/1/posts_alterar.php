@@ -1,18 +1,16 @@
 <?php
 //echo "-ENTRADA->".json_encode($jsonEntrada)."\n";
 $conexao = conectaMysql();
-if (isset($jsonEntrada['idNoticia']) && ($jsonEntrada['imgNoticia'])) {
+if (isset($jsonEntrada['idPost']) && ($jsonEntrada['imgDestaque'])) {
 
-    $idNoticia = $jsonEntrada['idNoticia'];
-    $tituloNoticia = $jsonEntrada['tituloNoticia'];
-    $conteudoNoticia = $jsonEntrada['conteudoNoticia'];
+    $idPost = $jsonEntrada['idPost'];
+    $imgDestaque = $jsonEntrada['imgDestaque'];
+    $titulo = $jsonEntrada['titulo'];
     $idAutor = $jsonEntrada['idAutor'];
-    $imgNoticia = $jsonEntrada['imgNoticia'];
+    $txtConteudo = $jsonEntrada['txtConteudo'];
     $idCategoria = $jsonEntrada['idCategoria'];
-    
 
-    $sql = "UPDATE noticias SET tituloNoticia ='$tituloNoticia', conteudoNoticia ='$conteudoNoticia', idAutor ='$idAutor', imgNoticia ='$imgNoticia', idCategoria ='$idCategoria' WHERE idNoticia = $idNoticia ";
-
+    $sql = "UPDATE posts SET imgDestaque='$imgDestaque', titulo ='$titulo', idAutor ='$idAutor', txtConteudo ='$txtConteudo', idCategoria ='$idCategoria' WHERE idPost = $idPost";
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(
             "status" => 200,
@@ -30,19 +28,17 @@ if (isset($jsonEntrada['idNoticia']) && ($jsonEntrada['imgNoticia'])) {
         "retorno" => "Faltaram parametros"
     );
 
-};
+}
 
-if (isset($jsonEntrada['idNoticia'])) {
+if (isset($jsonEntrada['idPost'])) {
 
-    $idNoticia = $jsonEntrada['idNoticia'];
-    $tituloNoticia = $jsonEntrada['tituloNoticia'];
-    $conteudoNoticia = $jsonEntrada['conteudoNoticia'];
+    $idPost = $jsonEntrada['idPost'];
+    $titulo = $jsonEntrada['titulo'];
     $idAutor = $jsonEntrada['idAutor'];
+    $txtConteudo = $jsonEntrada['txtConteudo'];
     $idCategoria = $jsonEntrada['idCategoria'];
-    
 
-    $sql = "UPDATE noticias SET tituloNoticia ='$tituloNoticia', conteudoNoticia ='$conteudoNoticia', idAutor ='$idAutor', idCategoria ='$idCategoria' WHERE idNoticia = $idNoticia ";
-
+    $sql = "UPDATE posts SET  titulo ='$titulo', idAutor ='$idAutor', txtConteudo ='$txtConteudo', idCategoria ='$idCategoria' WHERE idPost = $idPost";
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(
             "status" => 200,
