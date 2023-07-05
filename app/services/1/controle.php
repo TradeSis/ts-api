@@ -154,10 +154,6 @@ if ($metodo == "GET") {
 
 if ($metodo == "PUT") {
 
-  if ($funcao == "tarefas" && $parametro == "start") {
-    $funcao = "tarefas/start";
-    $parametro = null;
-  }
   if ($funcao == "comentario" && $parametro == "cliente") {
     $funcao = "comentario/cliente";
     $parametro = null;
@@ -209,10 +205,6 @@ if ($metodo == "PUT") {
 
     case "usuarioaplicativo":
       include 'usuarioaplicativo_inserir.php';
-      break;
-
-    case "tarefas/start":
-      include 'tarefas_start.php';
       break;
 
     case "previsao":
@@ -271,8 +263,8 @@ if ($metodo == "POST") {
     $parametro = null;
   }
 
-  if ($funcao == "tarefas" && $parametro == "startAlterar") {
-    $funcao = "tarefas/startAlterar";
+  if ($funcao == "tarefas" && $parametro == "start") {
+    $funcao = "tarefas/start";
     $parametro = null;
   }
 
@@ -346,8 +338,8 @@ if ($metodo == "POST") {
       include 'tarefas_stop.php';
       break;
 
-    case "tarefas/startAlterar":
-      include 'tarefas_alterar_start.php';
+    case "tarefas/start":
+      include 'tarefas_start.php';
       break;
 
     case "previsao":
