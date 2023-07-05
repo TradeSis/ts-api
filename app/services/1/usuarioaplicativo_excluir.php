@@ -9,7 +9,7 @@ if (isset($jsonEntrada['idUsuario'])) {
     $idAplicativo = $jsonEntrada['idAplicativo'];
     
     $sql = "DELETE FROM usuarioaplicativo WHERE idUsuario = $idUsuario and idAplicativo = '$idAplicativo'";
-    echo "-SQL->".json_encode($sql)."\n";
+    //echo "-SQL->".json_encode($sql)."\n";
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(
             "status" => 200,

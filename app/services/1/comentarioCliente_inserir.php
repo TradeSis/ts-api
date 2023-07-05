@@ -34,9 +34,6 @@ if (isset($jsonEntrada['idDemanda'])) {
         $sql3 = "UPDATE demanda SET posicao=$posicao, dataAtualizacaoCliente=CURRENT_TIMESTAMP(), statusDemanda=$statusDemanda WHERE idDemanda = $idDemanda";
         $atualizar3 = mysqli_query($conexao, $sql3);
     }
-    echo "-SQL->".json_encode($sql)."\n";
-    echo "-SQL->".json_encode($sql2)."\n";
-    echo "-SQL->".json_encode($sql3)."\n";
     if ($atualizar && $atualizar3) {
         $jsonSaida = array(
             "status" => 200,
