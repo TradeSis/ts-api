@@ -212,10 +212,11 @@ if ($metodo == "PUT") {
       break;
 
     case "comentario/cliente":
-      include 'comentarioCliente_inserir.php';
+      include 'comentario_cliente_inserir.php';
       break;
+      
     case "comentario/atendente":
-      include 'comentarioAtendente_inserir.php';
+      include 'comentario_atendente_inserir.php';
       break;
 
     default:
