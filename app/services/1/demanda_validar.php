@@ -16,7 +16,7 @@ if (isset($jsonEntrada['idDemanda'])) {
         $posicao = $row["mudaPosicaoPara"];
         $statusDemanda = $row["mudaStatusPara"];
     
-    $sql = "UPDATE demanda SET idTipoStatus=$idTipoStatus, dataAtualizacaoCliente = CURRENT_TIMESTAMP(),dataFechamento=CURRENT_TIMESTAMP(), statusDemanda='$statusDemanda' WHERE idDemanda = $idDemanda";
+    $sql = "UPDATE demanda SET posicao=$posicao, idTipoStatus=$idTipoStatus, dataAtualizacaoCliente = CURRENT_TIMESTAMP(),dataFechamento=CURRENT_TIMESTAMP(), statusDemanda=$statusDemanda WHERE idDemanda = $idDemanda";
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(
             "status" => 200,

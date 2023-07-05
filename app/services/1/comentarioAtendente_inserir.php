@@ -27,10 +27,10 @@ if (isset($jsonEntrada['idDemanda'])) {
 
 
     if ($idTipoStatus === null) {
-        $sql3 = "UPDATE demanda SET dataAtualizacaoAtendente=CURRENT_TIMESTAMP(), statusDemanda='$statusDemanda' WHERE idDemanda = $idDemanda";
+        $sql3 = "UPDATE demanda SET posicao=$posicao, dataAtualizacaoAtendente=CURRENT_TIMESTAMP(), statusDemanda=$statusDemanda WHERE idDemanda = $idDemanda";
         $atualizar3 = mysqli_query($conexao, $sql3);
     } else {
-        $sql3 = "UPDATE demanda SET idTipoStatus=$idTipoStatus, dataAtualizacaoAtendente=CURRENT_TIMESTAMP(), statusDemanda='$statusDemanda' WHERE idDemanda = $idDemanda";
+        $sql3 = "UPDATE demanda SET posicao=$posicao, idTipoStatus=$idTipoStatus, dataAtualizacaoAtendente=CURRENT_TIMESTAMP(), statusDemanda=$statusDemanda WHERE idDemanda = $idDemanda";
         $atualizar3 = mysqli_query($conexao, $sql3);
     }
 
