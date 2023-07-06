@@ -152,6 +152,15 @@ if ($metodo == "GET") {
       include 'produtos_card.php';
       break;
 
+      case "marcas_especializadas";
+        include 'marcas_especializadas.php';
+      break;
+
+      case "marcas_parceiras";
+      include 'marcas_parceiras.php';
+    break;
+
+
 
     default:
       $jsonSaida = json_decode(json_encode(
