@@ -152,15 +152,21 @@ if ($metodo == "GET") {
       include 'produtos_card.php';
       break;
 
-      case "marcas_especializadas";
-        include 'marcas_especializadas.php';
+    case "marcas_especializadas";
+      include 'marcas_especializadas.php';
       break;
 
-      case "marcas_parceiras";
+    case "marcas_parceiras";
       include 'marcas_parceiras.php';
-    break;
+      break;
 
+    case "marcas_slug";
+      include 'marcas_slug.php';
+      break;
 
+    case "receitas_slug";
+      include 'receitas_slug.php';
+      break;
 
     default:
       $jsonSaida = json_decode(json_encode(
@@ -325,9 +331,9 @@ if ($metodo == "POST") {
       include 'eventos_alterar.php';
       break;
 
-      case "posts":
-        include 'posts_alterar.php';
-        break;
+    case "posts":
+      include 'posts_alterar.php';
+      break;
 
 
     default:
