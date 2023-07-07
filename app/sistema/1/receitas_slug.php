@@ -3,21 +3,23 @@
 
 
 $conexao = conectaMysql();
-$produtos = array();
+$receitas = array();
 
-$sql = "SELECT * FROM produtos WHERE propagandaProduto = 1 AND ativoProduto = 1";
+$sql = "SELECT * FROM receitas ";
+
+$sql = $sql . " where receitas.slug = '" . $jsonEntrada["slug"] . "'";
 
 $rows = 0;
 $buscar = mysqli_query($conexao, $sql);
 while ($row = mysqli_fetch_array($buscar, MYSQLI_ASSOC)) {
-  array_push($produtos, $row);
+  array_push($receitas, $row);
   $rows = $rows + 1;
 }
 
 if ($rows==1) {
-  $produtos = $produtos[0];
+  $receitas = $receitas[0];
 }
-$jsonSaida = $produtos;
+$jsonSaida = $receitas;
 
 //echo "-SAIDA->".json_encode(jsonSaida)."\n";
 

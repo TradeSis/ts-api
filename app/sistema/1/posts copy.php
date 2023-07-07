@@ -5,11 +5,7 @@
 $conexao = conectaMysql();
 $posts = array();
 
-$sql = "SELECT posts.*, autor.*, categoria.* FROM posts 
-        LEFT JOIN autor on autor.idAutor = posts.idAutor
-        LEFT JOIN categoria on categoria.idCategoria = posts.idCategoria ";
-
-/* $sql = "SELECT * FROM posts "; */
+$sql = "SELECT * FROM posts ";
 if (isset($jsonEntrada["idPost"])) {
   $sql = $sql . " where posts.idPost = " . $jsonEntrada["idPost"];
 }

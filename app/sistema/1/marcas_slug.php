@@ -3,21 +3,23 @@
 
 
 $conexao = conectaMysql();
-$catalogo = array();
+$marcas = array();
 
-$sql = "SELECT * FROM catalogo WHERE propagandaProduto = 1 AND ativoProduto = 1";
+$sql = "SELECT * FROM marcas ";
+
+$sql = $sql . " where marcas.slug = '" . $jsonEntrada["slug"] . "'";
 
 $rows = 0;
 $buscar = mysqli_query($conexao, $sql);
 while ($row = mysqli_fetch_array($buscar, MYSQLI_ASSOC)) {
-  array_push($catalogo, $row);
+  array_push($marcas, $row);
   $rows = $rows + 1;
 }
 
 if ($rows==1) {
-  $catalogo = $catalogo[0];
+  $marcas = $marcas[0];
 }
-$jsonSaida = $catalogo;
+$jsonSaida = $marcas;
 
 //echo "-SAIDA->".json_encode(jsonSaida)."\n";
 
