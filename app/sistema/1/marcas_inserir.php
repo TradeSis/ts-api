@@ -3,6 +3,7 @@
 $conexao = conectaMysql();
 if (isset($jsonEntrada['nomeMarca'])) {
 
+    $slug = $jsonEntrada['slug'];
     $nomeMarca = $jsonEntrada['nomeMarca'];
     $imgMarca = $jsonEntrada['imgMarca'];
     $bannerMarca = $jsonEntrada['bannerMarca'];
@@ -15,7 +16,7 @@ if (isset($jsonEntrada['nomeMarca'])) {
     $lojasEspecializadas = $jsonEntrada['lojasEspecializadas'];
     
     
-    $sql = "INSERT INTO marcas (`nomeMarca`,`imgMarca`,`bannerMarca`,`descricaoMarca`,`cidadeMarca`,`estado`,`urlMarca`,`ativoMarca`,`catalogo`,`lojasEspecializadas`) VALUES ('$nomeMarca','$imgMarca','$bannerMarca','$descricaoMarca','$cidadeMarca','$estado','$urlMarca','$ativoMarca','$catalogo','$lojasEspecializadas')";
+    $sql = "INSERT INTO marcas (`slug`,`nomeMarca`,`imgMarca`,`bannerMarca`,`descricaoMarca`,`cidadeMarca`,`estado`,`urlMarca`,`ativoMarca`,`catalogo`,`lojasEspecializadas`) VALUES ('$slug','$nomeMarca','$imgMarca','$bannerMarca','$descricaoMarca','$cidadeMarca','$estado','$urlMarca','$ativoMarca','$catalogo','$lojasEspecializadas')";
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(
             "status" => 200,
