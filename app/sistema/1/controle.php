@@ -168,6 +168,14 @@ if ($metodo == "GET") {
       include 'receitas_slug.php';
       break;
 
+      case "produtos_listaSemCatalogo";
+        include 'produtos_listaSemCatalogo.php';
+      break;
+
+      case "eventos_slug";
+      include 'eventos_slug.php';
+    break;
+
     default:
       $jsonSaida = json_decode(json_encode(
         array(

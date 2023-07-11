@@ -18,7 +18,7 @@ if (isset($jsonEntrada["idProduto"])) {
     $where = " and ";
   }
 }
-//$sql = $sql . $where . " produtos.ativoProduto = 1 ";
+$sql = $sql . $where . " produtos.ativoProduto = 1 LIMIT 9";
 
 $rows = 0;
 $buscar = mysqli_query($conexao, $sql);
