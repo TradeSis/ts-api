@@ -8,23 +8,23 @@
 
 $conexao = conectaMysql();
 
+$statusDemanda = null;
 
 if (isset($jsonEntrada['idDemanda'])) {
     $idDemanda = $jsonEntrada['idDemanda'];
+    $idContrato = $jsonEntrada['idContrato'];
     $tituloDemanda = $jsonEntrada['tituloDemanda'];
     $descricao = $jsonEntrada['descricao'];
     $prioridade = $jsonEntrada['prioridade'];
     $idServico = $jsonEntrada['idServico'];
+  // HELIO  $idTipoOcorrencia = $jsonEntrada['idTipoOcorrencia'];
     $tamanho = $jsonEntrada['tamanho'];
     $idAtendente = $jsonEntrada['idAtendente'];
     $horasPrevisao = $jsonEntrada['horasPrevisao'];
-    $idContrato = $jsonEntrada['idContrato'];
-    if ($idContrato === "") {
-        $idContrato = "null";
-    }
+
 
     $sql = "UPDATE demanda SET prioridade=$prioridade, tituloDemanda='$tituloDemanda', descricao='$descricao', idServico=$idServico, tamanho='$tamanho', idAtendente=$idAtendente, horasPrevisao='$horasPrevisao', idContrato=$idContrato, dataAtualizacaoAtendente=CURRENT_TIMESTAMP() WHERE idDemanda = $idDemanda";
-    //echo "-SQL->" . json_encode($sql) . "\n";
+    //echo "-SQL->".json_encode($sql)."\n";
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(
             "status" => 200,
