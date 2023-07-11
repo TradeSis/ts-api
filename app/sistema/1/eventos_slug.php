@@ -3,24 +3,23 @@
 
 
 $conexao = conectaMysql();
-$posts = array();
+$eventos = array();
 
-$sql = "SELECT posts.*,autor.* FROM posts 
-        INNER JOIN autor on autor.idAutor = posts.idAutor  ";
+$sql = "SELECT * FROM eventos ";
 
-$sql = $sql . " where posts.slug = '" . $jsonEntrada["slug"] . "'";
+$sql = $sql . " where eventos.slug = '" . $jsonEntrada["slug"] . "'";
 
 $rows = 0;
 $buscar = mysqli_query($conexao, $sql);
 while ($row = mysqli_fetch_array($buscar, MYSQLI_ASSOC)) {
-  array_push($posts, $row);
+  array_push($eventos, $row);
   $rows = $rows + 1;
 }
 
 if ($rows==1) {
-  $posts = $posts[0];
+  $eventos = $eventos[0];
 }
-$jsonSaida = $posts;
+$jsonSaida = $eventos;
 
 //echo "-SAIDA->".json_encode(jsonSaida)."\n";
 

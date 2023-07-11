@@ -3,6 +3,7 @@
 $conexao = conectaMysql();
 if (isset($jsonEntrada['nomeEvento'])) {
 
+    $slug = $jsonEntrada['slug'];
     $nomeEvento = $jsonEntrada['nomeEvento'];
     $descricaoEvento = $jsonEntrada['descricaoEvento'];
     $dataEvento = $jsonEntrada['dataEvento'];
@@ -15,7 +16,7 @@ if (isset($jsonEntrada['nomeEvento'])) {
     $bannerEvento = $jsonEntrada['bannerEvento'];
 
     
-    $sql = "INSERT INTO eventos (`nomeEvento`,`descricaoEvento`,`dataEvento`,`cidadeEvento`,`localEvento`,`capaEvento`,`esconderEvento`,`tipoEvento`,`linkEvento`,`bannerEvento`) VALUES ('$nomeEvento','$descricaoEvento','$dataEvento','$cidadeEvento','$localEvento','$capaEvento','$esconderEvento','$tipoEvento','$linkEvento','$bannerEvento')";
+    $sql = "INSERT INTO eventos (`slug`,`nomeEvento`,`descricaoEvento`,`dataEvento`,`cidadeEvento`,`localEvento`,`capaEvento`,`esconderEvento`,`tipoEvento`,`linkEvento`,`bannerEvento`) VALUES ('$slug','$nomeEvento','$descricaoEvento','$dataEvento','$cidadeEvento','$localEvento','$capaEvento','$esconderEvento','$tipoEvento','$linkEvento','$bannerEvento')";
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(
             "status" => 200,

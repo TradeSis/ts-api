@@ -172,6 +172,10 @@ if ($metodo == "GET") {
         include 'produtos_listaSemCatalogo.php';
       break;
 
+      case "eventos_slug";
+      include 'eventos_slug.php';
+    break;
+
     default:
       $jsonSaida = json_decode(json_encode(
         array(
