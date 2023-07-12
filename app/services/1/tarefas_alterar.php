@@ -9,7 +9,7 @@ if (isset($jsonEntrada['idTarefa'])) {
     $idTarefa = $jsonEntrada['idTarefa'];
     $idDemanda = $jsonEntrada['idDemanda'];
     $tituloTarefa = $jsonEntrada['tituloTarefa'];
-   // $dataCobrado = $jsonEntrada['dataCobrado'];
+   $dataCobrado = $jsonEntrada['dataCobrado'];
    $horaInicioCobrado = $jsonEntrada['horaInicioCobrado'];
    $horaFinalCobrado = $jsonEntrada['horaFinalCobrado'];
     ///$dataCobrado = (is_null($jsonEntrada['dataCobrado']) ? null : $jsonEntrada['dataCobrado']);
@@ -18,9 +18,14 @@ if (isset($jsonEntrada['idTarefa'])) {
   
     $dataCobrado = date('Y-m-d', strtotime($jsonEntrada['dataCobrado']));
 
+
+    if($dataCobrado=='0000-00-00'){
+      $dataCobrado="NULL";
+    }
+
     $idTipoOcorrencia = $jsonEntrada['idTipoOcorrencia'];
 
-    $sql = "UPDATE `tarefa` SET `tituloTarefa`='$tituloTarefa',`dataCobrado`=$dataCobrado, `horaInicioCobrado`='$horaInicioCobrado', `horaFinalCobrado`='$horaFinalCobrado', `idTipoOcorrencia`=$idTipoOcorrencia WHERE `idTarefa` = $idTarefa";
+    $sql = "UPDATE `tarefa` SET `tituloTarefa`='$tituloTarefa',`dataCobrado`='$dataCobrado', `horaInicioCobrado`='$horaInicioCobrado', `horaFinalCobrado`='$horaFinalCobrado', `idTipoOcorrencia`=$idTipoOcorrencia WHERE `idTarefa` = $idTarefa";
 
     if (mysqli_query($conexao, $sql)) {
         $sql2 = "UPDATE `demanda` SET `idTipoOcorrencia`=$idTipoOcorrencia WHERE `idDemanda` = $idDemanda";
