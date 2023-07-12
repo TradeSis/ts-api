@@ -1,5 +1,4 @@
 <?php
-//gabriel 07022023 16:25
 //echo "-ENTRADA->".json_encode($jsonEntrada)."\n";
 $ROOT = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 $ROOTex = explode("/", $ROOT);
