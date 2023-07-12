@@ -9,19 +9,13 @@ if (isset($jsonEntrada['idTarefa'])) {
     $idTarefa = $jsonEntrada['idTarefa'];
     $idDemanda = $jsonEntrada['idDemanda'];
     $tituloTarefa = $jsonEntrada['tituloTarefa'];
-   $dataCobrado = $jsonEntrada['dataCobrado'];
-   $horaInicioCobrado = $jsonEntrada['horaInicioCobrado'];
-   $horaFinalCobrado = $jsonEntrada['horaFinalCobrado'];
-    ///$dataCobrado = (is_null($jsonEntrada['dataCobrado']) ? null : $jsonEntrada['dataCobrado']);
-    ///$horaInicioCobrado = (is_null($jsonEntrada['horaInicioCobrado']) ? null : $jsonEntrada['horaInicioCobrado']);
-    ///$horaFinalCobrado = (is_null($jsonEntrada['horaFinalCobrado']) ? null : $jsonEntrada['horaFinalCobrado']);
+    $dataCobrado = $jsonEntrada['dataCobrado'];
+    $horaInicioCobrado = $jsonEntrada['horaInicioCobrado'];
+    $horaFinalCobrado = $jsonEntrada['horaFinalCobrado'];
   
-    $dataCobrado = date('Y-m-d', strtotime($jsonEntrada['dataCobrado']));
-
-
-    if($dataCobrado=='0000-00-00'){
-      $dataCobrado="NULL";
-    }
+    if($dataCobrado=='0000-00-00'){$dataCobrado="NULL";}
+    if($horaInicioCobrado=='00:00:00'){$horaInicioCobrado="NULL";}
+    if($horaFinalCobrado=='00:00:00'){$horaFinalCobrado="NULL";}
 
     $idTipoOcorrencia = $jsonEntrada['idTipoOcorrencia'];
 
