@@ -1,5 +1,4 @@
 <?php
-//gabriel 07022023 16:25
 //echo "-ENTRADA->".json_encode($jsonEntrada)."\n";
 
 
