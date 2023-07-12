@@ -16,7 +16,7 @@ if (isset($jsonEntrada['idTarefa'])) {
     ///$horaInicioCobrado = (is_null($jsonEntrada['horaInicioCobrado']) ? null : $jsonEntrada['horaInicioCobrado']);
     ///$horaFinalCobrado = (is_null($jsonEntrada['horaFinalCobrado']) ? null : $jsonEntrada['horaFinalCobrado']);
   
-    $dataCobrado = date('Y-m-d', strtotime($jsonEntrada['dataCobrado']);
+    $dataCobrado = date('Y-m-d', strtotime($jsonEntrada['dataCobrado']));
 
     $idTipoOcorrencia = $jsonEntrada['idTipoOcorrencia'];
 
