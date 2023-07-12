@@ -3,7 +3,8 @@
 //echo "-ENTRADA->".json_encode($jsonEntrada)."\n";
 
 $arqlog = defineCaminhoLog()."/api/php_errors.log";
-fwrite($arquivo,$identificacao."-ENTRADA->".json_encode($jsonEntrada)."\n");   
+$arquivo = fopen($arqlog,"a");
+fwrite($arquivo,"jsonEntrada->".json_encode($jsonEntrada)."\n");   
 
 
 $conexao = conectaMysql();
