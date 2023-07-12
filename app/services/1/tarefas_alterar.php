@@ -18,8 +18,8 @@ if (isset($jsonEntrada['idTarefa'])) {
     $horaFinalCobrado = $jsonEntrada['horaFinalCobrado'];
   
     if($dataCobrado==''){$dataCobrado='0000-00-00';}
-    if($horaInicioCobrado==''){$horaInicioCobrado='00:00:00';}
-    if($horaFinalCobrado==''){$horaFinalCobrado='00:00:00';}
+    if($horaInicioCobrado==''){$horaInicioCobrado='00:00';}
+    if($horaFinalCobrado==''){$horaFinalCobrado='00:00';}
 
     $idTipoOcorrencia = $jsonEntrada['idTipoOcorrencia'];
 
