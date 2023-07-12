@@ -2,6 +2,9 @@
 //gabriel 07022023 16:25
 //echo "-ENTRADA->".json_encode($jsonEntrada)."\n";
 
+$arqlog = defineCaminhoLog()."/api/php_errors.log";
+fwrite($arquivo,$identificacao."-ENTRADA->".json_encode($jsonEntrada)."\n");   
+
 
 $conexao = conectaMysql();
 
@@ -45,4 +48,7 @@ if (isset($jsonEntrada['idTarefa'])) {
         "status" => 400,
         "retorno" => "Faltaram parametros"
     );
+
+    fclose($arquivo);
+
 }
