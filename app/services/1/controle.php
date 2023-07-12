@@ -162,6 +162,14 @@ if ($metodo == "PUT") {
     $funcao = "comentario/atendente";
     $parametro = null;
   }
+  if ($funcao == "demanda" && $parametro == "validar") {
+    $funcao = "demanda/validar";
+    $parametro = null;
+  }
+  if ($funcao == "demanda" && $parametro == "retornar") {
+    $funcao = "demanda/retornar";
+    $parametro = null;
+  }
 
   switch ($funcao) {
     case "clientes":
@@ -214,9 +222,17 @@ if ($metodo == "PUT") {
     case "comentario/cliente":
       include 'comentario_cliente_inserir.php';
       break;
-      
+
     case "comentario/atendente":
       include 'comentario_atendente_inserir.php';
+      break;
+
+    case "demanda/validar":
+      include 'demanda_validar.php';
+      break;
+
+    case "demanda/retornar":
+      include 'demanda_retornar.php';
       break;
 
     default:
@@ -240,17 +256,8 @@ if ($metodo == "POST") {
     $parametro = null;
   }
 
-  if ($funcao == "demanda" && $parametro == "validar") {
-    $funcao = "demanda/validar";
-    $parametro = null;
-  }
   if ($funcao == "demanda" && $parametro == "realizado") {
     $funcao = "demanda/realizado";
-    $parametro = null;
-  }
-
-  if ($funcao == "demanda" && $parametro == "retornar") {
-    $funcao = "demanda/retornar";
     $parametro = null;
   }
 
@@ -289,14 +296,9 @@ if ($metodo == "POST") {
     case "demanda":
       include 'demanda_alterar.php';
       break;
-    case "demanda/validar":
-      include 'demanda_validar.php';
-      break;
+
     case "demanda/realizado":
       include 'demanda_atualizar.php';
-      break;
-    case "demanda/retornar":
-      include 'demanda_retornar.php';
       break;
 
     case "contrato":
