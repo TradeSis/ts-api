@@ -18,7 +18,7 @@ if (isset($jsonEntrada['idTarefa'])) {
   
     $idTipoOcorrencia = $jsonEntrada['idTipoOcorrencia'];
 
-    $sql = "UPDATE `tarefa` SET `tituloTarefa`='$tituloTarefa',`dataCobrado`=$dataCobrado, `horaInicioCobrado`=$horaInicioCobrado, `horaFinalCobrado`=$horaFinalCobrado, `idTipoOcorrencia`=$idTipoOcorrencia WHERE `idTarefa` = $idTarefa";
+    $sql = "UPDATE `tarefa` SET `tituloTarefa`='$tituloTarefa',`dataCobrado`='$dataCobrado', `horaInicioCobrado`='$horaInicioCobrado', `horaFinalCobrado`='$horaFinalCobrado', `idTipoOcorrencia`=$idTipoOcorrencia WHERE `idTarefa` = $idTarefa";
 
     if (mysqli_query($conexao, $sql)) {
         $sql2 = "UPDATE `demanda` SET `idTipoOcorrencia`=$idTipoOcorrencia WHERE `idDemanda` = $idDemanda";
