@@ -1,7 +1,7 @@
 <?php
 //gabriel 07022023 16:25
 //echo "-ENTRADA->".json_encode($jsonEntrada)."\n";
-
+include_once __DIR__ . "/../config.php";
 
 $conexao = conectaMysql();
 if (isset($jsonEntrada['idDemanda'])) {
@@ -27,7 +27,7 @@ if (isset($jsonEntrada['idDemanda'])) {
     $statusDemanda = $row["mudaStatusPara"];
 
 
-    if ($tipoStatusDemanda == 7) {
+    if ($tipoStatusDemanda == TIPOSTATUS_AGUARDANDOSOLICITANTE) {
         $sql3 = "UPDATE demanda SET posicao=$posicao, idTipoStatus=$idTipoStatus, dataAtualizacaoCliente=CURRENT_TIMESTAMP(), statusDemanda=$statusDemanda WHERE idDemanda = $idDemanda";
         $atualizar3 = mysqli_query($conexao, $sql3);
     } else {
