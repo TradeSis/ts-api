@@ -1,11 +1,13 @@
 <?php
+// helio 12072023 - ajustes de horas
 //gabriel 07022023 16:25
 //echo "-ENTRADA->".json_encode($jsonEntrada)."\n";
 
+/* LOG em arquivo
 $arqlog = defineCaminhoLog()."/api/php_errors.log";
 $arquivo = fopen($arqlog,"a");
 fwrite($arquivo,"jsonEntrada->".json_encode($jsonEntrada)."\n");   
-
+*/
 
 $conexao = conectaMysql();
 
@@ -17,9 +19,10 @@ if (isset($jsonEntrada['idTarefa'])) {
     $horaInicioCobrado = $jsonEntrada['horaInicioCobrado'];
     $horaFinalCobrado = $jsonEntrada['horaFinalCobrado'];
   
+    /* TESTE ZERADO */
     if($dataCobrado==''){$dataCobrado='0000-00-00';}
-    if($horaInicioCobrado==''){$horaInicioCobrado='00:00:00';}
-    if($horaFinalCobrado==''){$horaFinalCobrado='00:00:00';}
+    if($horaInicioCobrado==''){$horaInicioCobrado='00:00';}
+    if($horaFinalCobrado==''){$horaFinalCobrado='00:00';}
 
     $idTipoOcorrencia = $jsonEntrada['idTipoOcorrencia'];
 
