@@ -176,6 +176,7 @@ if ($metodo == "GET") {
       include 'eventos_slug.php';
     break;
 
+
     default:
       $jsonSaida = json_decode(json_encode(
         array(
