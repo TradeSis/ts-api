@@ -5,10 +5,11 @@ $eventos = array();
 
 $sql = "SELECT * FROM eventos  ";
 
+if (isset($jsonEntrada["idEvento"])) {
+  $sql = $sql . " where eventos.idEvento = " . $jsonEntrada["idEvento"];
 
-$sql = $sql . " where tipoEvento = 'podcast' ";
-$sql = $sql . " ORDER BY dataEvento ASC LIMIT 6 ";
-//echo $sql;
+}
+
 $rows = 0;
 $buscar = mysqli_query($conexao, $sql);
 while ($row = mysqli_fetch_array($buscar, MYSQLI_ASSOC)) {
