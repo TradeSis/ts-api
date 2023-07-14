@@ -1,4 +1,7 @@
 <?php
+// NOVA VERSAO
+//include_once __DIR__ . "/../config.php";
+
 // helio 26012023 18:10
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
@@ -236,7 +239,7 @@ fclose($arquivo);
 **/
 
 
-/*
+/**
 echo 'host='.$_SERVER['SERVER_ADDR']."\n";
 echo "aplicacao=".$aplicacao."\n";
 echo "versao=".$versao."\n";
@@ -245,13 +248,15 @@ echo "parametro=".$parametro."\n";
 echo "metodo=".$metodo."\n";
 echo "log=".$log."\n";
 echo "hml=".$hml."\n";
-*/
+**/
 
 
 
 switch ($aplicacao) {
 
     case "services":
+        // NOVA VERSAO - MOVER app/services para services/app
+        // include  __DIR__ . "/../services/app/versao.php";
         include "app/services/versao.php";
         break;
 
