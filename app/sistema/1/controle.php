@@ -176,6 +176,10 @@ if ($metodo == "GET") {
       include 'eventos_slug.php';
     break;
 
+    case "posts_categoria";
+    include 'posts_categoria.php';
+  break;
+
 
     default:
       $jsonSaida = json_decode(json_encode(
