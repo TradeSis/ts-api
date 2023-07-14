@@ -261,7 +261,9 @@ switch ($aplicacao) {
         break;
 
     case "sistema":
-           include "app/sistema/versao.php";        
+        // NOVA VERSAO - MOVER app/sistema para sistema/app
+        //include  __DIR__ . "/../sistema/app/versao.php";
+        include "app/sistema/versao.php";        
         break;
         
     case "vendas":
