@@ -9,6 +9,7 @@ $sql = "SELECT * FROM marcas ";
 if (isset($jsonEntrada["idMarca"])) {
   $sql = $sql . " where marcas.idMarca = " . $jsonEntrada["idMarca"];
 }
+
 $rows = 0;
 $buscar = mysqli_query($conexao, $sql);
 while ($row = mysqli_fetch_array($buscar, MYSQLI_ASSOC)) {

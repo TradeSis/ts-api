@@ -8,9 +8,15 @@ $marcas = array();
 $sql = "SELECT * FROM marcas ";
 if (isset($jsonEntrada["idMarca"])) {
   $sql = $sql . " where marcas.idMarca = " . $jsonEntrada["idMarca"];
+}else {
+  $where = " where ";
+  if (isset($jsonEntrada["estado"])) {
+    $sql = $sql . $where . " marcas.estado = " .  "'" . $jsonEntrada["estado"] . "'";
+    $where = " and ";
+  }
 }
 
-$sql = $sql . " where marcas.ativoMarca = 1 ";
+$sql = $sql . $where ." marcas.ativoMarca = 1 ";
 
 $rows = 0;
 $buscar = mysqli_query($conexao, $sql);
