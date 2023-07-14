@@ -5,7 +5,8 @@
 $conexao = conectaMysql();
 $posts = array();
 
-$sql = "SELECT * FROM posts ";
+$sql = "SELECT posts.*,autor.* FROM posts 
+        INNER JOIN autor on autor.idAutor = posts.idAutor  ";
 
 $sql = $sql . " where posts.slug = '" . $jsonEntrada["slug"] . "'";
 

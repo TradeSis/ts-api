@@ -1,17 +1,18 @@
 <?php
 //echo "-ENTRADA->".json_encode($jsonEntrada)."\n";
-
-
 $conexao = conectaMysql();
 if (isset($jsonEntrada['nomeProduto'])) {
 
     $nomeProduto = $jsonEntrada['nomeProduto'];
-	$valorProduto = $jsonEntrada['valorProduto'];
-	$fotoProduto = $jsonEntrada['fotoProduto']; - //foto
-	$destaque = $jsonEntrada['destaque'];
+    $imgProduto = $jsonEntrada['imgProduto'];
+    $idMarca = $jsonEntrada['idMarca'];
+    $precoProduto = $jsonEntrada['precoProduto'];
+    $ativoProduto = $jsonEntrada['ativoProduto'];
+    $propagandaProduto = $jsonEntrada['propagandaProduto'];
+    $descricaoProduto = $jsonEntrada['descricaoProduto'];
 
     
-    $sql = "INSERT INTO `produtos`(`nomeProduto`, `valorProduto`, `fotoProduto`, `destaque`) VALUES ('$nomeProduto','$valorProduto','$fotoProduto ','$destaque')";
+    $sql = "INSERT INTO produtos (`nomeProduto`,`imgProduto`,`idMarca`,`precoProduto`,`ativoProduto`,`propagandaProduto`,`descricaoProduto`) VALUES ('$nomeProduto','$imgProduto','$idMarca','$precoProduto','$ativoProduto','$propagandaProduto','$descricaoProduto')";
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(
             "status" => 200,

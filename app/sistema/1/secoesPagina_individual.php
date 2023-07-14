@@ -14,6 +14,9 @@ $sql = $sql ." order by secoespagina.ordem ";
 $rows = 0;
 $buscar = mysqli_query($conexao, $sql);
 while ($row = mysqli_fetch_array($buscar, MYSQLI_ASSOC)) {
+  if($row["parametros"]=="") {
+    $row["parametros"] = $row["parametrosPadrao"];
+  }
   array_push($secoespagina, $row);
   $rows = $rows + 1;
 }

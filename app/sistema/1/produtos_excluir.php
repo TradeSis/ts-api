@@ -1,13 +1,12 @@
 <?php
 //echo "-ENTRADA->".json_encode($jsonEntrada)."\n";
-
-
 $conexao = conectaMysql();
 if (isset($jsonEntrada['idProduto'])) {
 
     $idProduto = $jsonEntrada['idProduto'];
- 
-    $sql = "DELETE FROM produtos WHERE idProduto = $idProduto";
+
+    $sql = "DELETE FROM  produtos  WHERE idProduto = $idProduto ";
+
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(
             "status" => 200,

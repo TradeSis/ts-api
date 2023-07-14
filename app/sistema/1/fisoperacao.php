@@ -13,22 +13,36 @@ if (isset($jsonEntrada["idOperacao"])) {
   $sql = $sql . " where fisoperacao.idOperacao = " . $jsonEntrada["idOperacao"];
 } else {
   $where = " where ";
-
+  
   if (isset($jsonEntrada["idAtividade"])) {
     $sql = $sql . $where . " fisoperacao.idAtividade = " . $jsonEntrada["idAtividade"];
     $where = " and ";
   }
-
+  
   if (isset($jsonEntrada["idNatureza"])) {
     $sql = $sql . $where . " fisoperacao.idNatureza = " . $jsonEntrada["idNatureza"];
     $where = " and ";
   }
-
+  
   if (isset($jsonEntrada["idProcesso"])) {
     $sql = $sql . $where . " fisoperacao.idProcesso = " . $jsonEntrada["idProcesso"];
     $where = " and ";
   }
+  
+  if (isset($jsonEntrada["FiltroTipoOp"]) && $jsonEntrada["FiltroTipoOp"] == 'nomeOperacao') {
+    $sql = $sql . $where . " fisoperacao.nomeOperacao LIKE '%" . $jsonEntrada["dadosOp"] . "%'";
+    $where = " and ";
+  }
 
+  if (isset($jsonEntrada["FiltroTipoOp"]) && $jsonEntrada["FiltroTipoOp"] == 'idEntSai') {
+    $sql = $sql . $where . " fisoperacao.idEntSai = " . $jsonEntrada["idEntSai"];
+    $where = " and ";
+  }
+
+  if (isset($jsonEntrada["FiltroTipoOp"]) && $jsonEntrada["FiltroTipoOp"] == 'xfop') {
+    $sql = $sql . $where . " fisoperacao.xfop = " . $jsonEntrada["xfop"];
+    $where = " and ";
+  }
 }
 //echo "-SQL->".$sql."\n";
 

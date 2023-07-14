@@ -9,9 +9,11 @@ if (isset($jsonEntrada['idSecaoPagina'])) {
 	$idPagina = $jsonEntrada['idPagina'];
     $idSecao = $jsonEntrada['idSecao'];
 	$ordem = $jsonEntrada['ordem'];
+    $coluna = $jsonEntrada['coluna'];
     $parametros = $jsonEntrada['parametros'];
+    $listas = $jsonEntrada['listas'];
     
-    $sql = "UPDATE `secoespagina` SET `idPagina`='$idPagina', `idSecao`='$idSecao',`ordem`='$ordem',`parametros`='$parametros' WHERE idSecaoPagina = $idSecaoPagina";
+    $sql = "UPDATE `secoespagina` SET `idPagina`='$idPagina', `idSecao`='$idSecao',`ordem`='$ordem',`coluna`='$coluna',`parametros`='$parametros',`listas`='$listas' WHERE idSecaoPagina = $idSecaoPagina";
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(
             "status" => 200,

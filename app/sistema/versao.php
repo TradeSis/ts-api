@@ -2,7 +2,8 @@
 // helio 31012023 - incluido POST para inserir clientes
 // helio 26012023 18:10
 
-
+// NOVA VERSAO 
+//include  __DIR__ . "/../conexao.php";
 include "app/conexao.php";
 
 if ($versao==""){$versao="1";}

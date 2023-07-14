@@ -8,7 +8,7 @@ if (isset($jsonEntrada['idAplicativo'])) {
     $idAplicativo = $jsonEntrada['idAplicativo'];
     
     $sql = "DELETE FROM aplicativo WHERE idAplicativo = '$idAplicativo'";
-    echo "-SQL->".json_encode($sql)."\n";
+    //echo "-SQL->".json_encode($sql)."\n";
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(
             "status" => 200,

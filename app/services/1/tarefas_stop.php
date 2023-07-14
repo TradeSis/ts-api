@@ -1,24 +1,44 @@
 <?php
-//gabriel 07022023 16:25
 //echo "-ENTRADA->".json_encode($jsonEntrada)."\n";
+$ROOT = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
+$ROOTex = explode("/", $ROOT);
+$ROOTex = array_values(array_filter($ROOTex)); 
 
-date_default_timezone_set('America/Sao_Paulo'); 
+define('ROOT', $_SERVER['DOCUMENT_ROOT'] . '/' . $ROOTex[0]);
 
+require_once ROOT . '/config.php';
+
+date_default_timezone_set('America/Sao_Paulo');
 $conexao = conectaMysql();
+
 if (isset($jsonEntrada['idTarefa'])) {
     $idTarefa = $jsonEntrada['idTarefa'];
-    $dataInicio = $jsonEntrada['dataExecucaoInicio'];
-    $dataFim = date('Y-m-d H:i:00');
+    $horaFinalReal = date('H:i:00');
+    $idDemanda = $jsonEntrada['idDemanda'];
+    $idTipoStatus = $jsonEntrada['idTipoStatus'];
+    $tipoStatusDemanda = $jsonEntrada['tipoStatusDemanda'];
 
-    $calculo = "SELECT TIMEDIFF('$dataFim','$dataInicio') AS total";
-    $busca = mysqli_query($conexao, $calculo);
-    while ($row = mysqli_fetch_array($busca)) {
-        $duracao = $row['total'];
 
-        $sql = "UPDATE `tarefa` SET `dataStop`='$dataFim', `duracao` = '$duracao' WHERE idTarefa = $idTarefa";
+    $sql = "UPDATE `tarefa` SET `horaFinalReal`='$horaFinalReal' WHERE idTarefa = $idTarefa";
+    $atualizar = mysqli_query($conexao, $sql);
+
+    // busca dados tipostatus    
+    $sql2 = "SELECT * FROM tipostatus WHERE idTipoStatus = $idTipoStatus";
+    $buscar2 = mysqli_query($conexao, $sql2);
+    $row = mysqli_fetch_array($buscar2, MYSQLI_ASSOC);
+    $posicao = $row["mudaPosicaoPara"];
+    $statusDemanda = $row["mudaStatusPara"];
+
+
+    if ($tipoStatusDemanda == TIPOSTATUS_FAZENDO) {
+        $sql3 = "UPDATE demanda SET posicao=$posicao, idTipoStatus=$idTipoStatus, dataAtualizacaoAtendente=CURRENT_TIMESTAMP(), statusDemanda=$statusDemanda WHERE idDemanda = $idDemanda";
+        $atualizar3 = mysqli_query($conexao, $sql3);
+    } else {
+        $sql3 = "UPDATE demanda SET dataAtualizacaoAtendente=CURRENT_TIMESTAMP() WHERE idDemanda = $idDemanda";
+        $atualizar3 = mysqli_query($conexao, $sql3);
     }
-    echo $sql;
-    if ($atualizar = mysqli_query($conexao, $sql)) {
+
+    if ($atualizar && $atualizar3) {
         $jsonSaida = array(
             "status" => 200,
             "retorno" => "ok"
@@ -32,6 +52,6 @@ if (isset($jsonEntrada['idTarefa'])) {
 } else {
     $jsonSaida = array(
         "status" => 400,
-        "retorno" => "Faltaram parametros"
+        "retorno" => "Faltaram parâmetros"
     );
 }

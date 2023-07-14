@@ -3,21 +3,23 @@
 
 
 $conexao = conectaMysql();
-$posts = array();
+$marcas = array();
 
-$sql = "SELECT * FROM posts ORDER BY idPost DESC LIMIT 5 ";
+$sql = "SELECT * FROM marcas ";
+
+$sql = $sql . " where marcas.slug = '" . $jsonEntrada["slug"] . "'";
 
 $rows = 0;
 $buscar = mysqli_query($conexao, $sql);
 while ($row = mysqli_fetch_array($buscar, MYSQLI_ASSOC)) {
-  array_push($posts, $row);
+  array_push($marcas, $row);
   $rows = $rows + 1;
 }
 
 if ($rows==1) {
-  $posts = $posts[0];
+  $marcas = $marcas[0];
 }
-$jsonSaida = $posts;
+$jsonSaida = $marcas;
 
 //echo "-SAIDA->".json_encode(jsonSaida)."\n";
 

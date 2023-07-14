@@ -1,31 +1,22 @@
 <?php
 //echo "-ENTRADA->".json_encode($jsonEntrada)."\n";
-
-
 $conexao = conectaMysql();
 if (isset($jsonEntrada['nomeMarca'])) {
 
+    $slug = $jsonEntrada['slug'];
     $nomeMarca = $jsonEntrada['nomeMarca'];
-	$imgMarca = $jsonEntrada['imgMarca'];
-
-    if($imgMarca !== null) {
-        preg_match("/\.(png|jpg|jpeg|svg){1}$/i", $imgMarca["name"],$ext);
+    $imgMarca = $jsonEntrada['imgMarca'];
+    $bannerMarca = $jsonEntrada['bannerMarca'];
+    $descricaoMarca = $jsonEntrada['descricaoMarca'];
+    $cidadeMarca = $jsonEntrada['cidadeMarca'];
+    $estado = $jsonEntrada['estado'];
+    $urlMarca = $jsonEntrada['urlMarca'];
+    $ativoMarca = $jsonEntrada['ativoMarca'];
+    $catalogo = $jsonEntrada['catalogo'];
+    $lojasEspecializadas = $jsonEntrada['lojasEspecializadas'];
     
-        if($ext == true) {
-            $pasta = "../img/";
-            $nome_marca = md5(uniqid(time())) . "." . $ext[1];
-            
-            move_uploaded_file($imgMarca['tmp_name'], $pasta.$nome_marca);
     
-        }else{
-            $nome_marca = "sem_imgMarca";
-        }
-
-     
-    }
-
-    
-    $sql = "INSERT INTO `marcas`(`nomeMarca`, `imgMarca`) VALUES ('$nomeMarca', '$nome_marca')";
+    $sql = "INSERT INTO marcas (`slug`,`nomeMarca`,`imgMarca`,`bannerMarca`,`descricaoMarca`,`cidadeMarca`,`estado`,`urlMarca`,`ativoMarca`,`catalogo`,`lojasEspecializadas`) VALUES ('$slug','$nomeMarca','$imgMarca','$bannerMarca','$descricaoMarca','$cidadeMarca','$estado','$urlMarca','$ativoMarca','$catalogo','$lojasEspecializadas')";
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(
             "status" => 200,

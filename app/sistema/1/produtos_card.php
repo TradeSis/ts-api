@@ -5,7 +5,7 @@
 $conexao = conectaMysql();
 $produtos = array();
 
-$sql = "SELECT * FROM produtos WHERE destaque = 1 Limit 3 ";
+$sql = "SELECT * FROM produtos WHERE propagandaProduto = 1 AND ativoProduto = 1";
 
 $rows = 0;
 $buscar = mysqli_query($conexao, $sql);

@@ -1,17 +1,14 @@
 <?php
-//gabriel 07022023 16:25
 //echo "-ENTRADA->".json_encode($jsonEntrada)."\n";
 
-date_default_timezone_set('America/Sao_Paulo'); 
 
 $conexao = conectaMysql();
-if (isset($jsonEntrada['idTarefa'])) {
-    $idTarefa = $jsonEntrada['idTarefa'];
-    $dataStart = date('Y-m-d H:i:00');
+if (isset($jsonEntrada['idCategoria'])) {
 
+    $idCategoria = $jsonEntrada['idCategoria'];
 
-    $sql = "UPDATE `tarefa` SET `dataStart`='$dataStart' WHERE idTarefa = $idTarefa";
-    echo $sql;
+    
+    $sql = "DELETE FROM categoria WHERE idCategoria = $idCategoria";
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(
             "status" => 200,
@@ -28,4 +25,7 @@ if (isset($jsonEntrada['idTarefa'])) {
         "status" => 400,
         "retorno" => "Faltaram parametros"
     );
+
 }
+
+?>

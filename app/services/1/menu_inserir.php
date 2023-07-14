@@ -11,7 +11,7 @@ if (isset($jsonEntrada['nomeMenu'])) {
     $menuHeader = $jsonEntrada['menuHeader'];
     
     $sql = "INSERT INTO menu(nomeMenu, idAplicativo, nivelMenu, menuHeader) VALUES ('$nomeMenu','$idAplicativo',$nivelMenu, $menuHeader)";
-    echo "-SQL->".json_encode($sql)."\n";
+    //echo "-SQL->".json_encode($sql)."\n";
     if ($atualizar = mysqli_query($conexao, $sql)) {
         $jsonSaida = array(
             "status" => 200,
