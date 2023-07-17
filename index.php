@@ -172,11 +172,11 @@ $inicioUrl = false;
 $i = 0;
 foreach ($ex as $value) {
     //echo $i . "-" . $ex[$i] . "\n";
-    if ($value == "api"||$value == "apilebes"||$value == "apitsweb") {
+    if ($value == "api" || $value == "apilebes" || $value == "apitsweb") {
         $inicioUrl = true;
         unset($ex[$i]);
-      
-    }    
+
+    }
     if (substr($value, 0, 2) == 'V.') { // alterado para substring
         $versao = substr($value, 2, strlen($value));
         unset($ex[$i]);
@@ -184,8 +184,8 @@ foreach ($ex as $value) {
 
     if ($inicioUrl == false || $value == "") {
         unset($ex[$i]);
-    } 
-    
+    }
+
     $i = $i + 1;
 
 }
@@ -256,16 +256,16 @@ switch ($aplicacao) {
 
     case "services":
         // NOVA VERSAO - MOVER app/services para services/app
-        // include  __DIR__ . "/../services/app/versao.php";
-        include "app/services/versao.php";
+        include __DIR__ . "/../services/app/versao.php";
+        //include "app/services/versao.php";
         break;
 
     case "sistema":
         // NOVA VERSAO - MOVER app/sistema para sistema/app
-        //include  __DIR__ . "/../sistema/app/versao.php";
-        include "app/sistema/versao.php";        
+        include __DIR__ . "/../sistema/app/versao.php";
+        //include "app/sistema/versao.php";        
         break;
-        
+
     case "vendas":
         include "app/vendas/versao.php";
         break;
@@ -277,7 +277,12 @@ switch ($aplicacao) {
     case "crediario": // helio 28032023
         include "app/crediario/versao.php";
         break;
-    
+
+    case "fiscal":
+        // NOVA VERSAO - MOVER app/fiscal para fiscal/app
+        include __DIR__ . "/../impostos/app/versao.php";
+        //include "app/fiscal/versao.php";        
+        break;
 
     default:
         $jsonSaida = json_decode(
@@ -286,7 +291,9 @@ switch ($aplicacao) {
                     "status" => 400,
                     "retorno" => "Aplicacao " . $aplicacao . " Invalida"
                 )
-            ), TRUE);
+            ),
+            TRUE
+        );
         break;
 }
 
