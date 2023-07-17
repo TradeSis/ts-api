@@ -1,6 +1,6 @@
 <?php
-// NOVA VERSAO
-//include_once __DIR__ . "/../config.php";
+// NOVA VERSAO - 17/07/2023
+include_once __DIR__ . "/../config.php";
 
 // helio 26012023 18:10
 header("Access-Control-Allow-Origin: *");
