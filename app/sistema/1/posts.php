@@ -11,17 +11,21 @@ $sql = "SELECT posts.*, autor.*, categoria.* FROM posts
 if (isset($jsonEntrada["idPost"])) {
     $sql = $sql . " where posts.idPost = " . $jsonEntrada["idPost"];
 }
-$where = " where ";
-if (isset($jsonEntrada["idCategoria"]) && isset($jsonEntrada["qtdPosts"])) {
-    $sql = $sql . $where . " posts.idCategoria = " . $jsonEntrada["idCategoria"];
-    $sql = $sql . " ORDER BY idPost DESC LIMIT " . $jsonEntrada["qtdPosts"];
-    $where = " and ";
-  }elseif(isset($jsonEntrada["qtdPosts"])) {
-    $sql = $sql . " ORDER BY idPost DESC LIMIT " . $jsonEntrada["qtdPosts"];
-    $where = " and ";
-  } else {
-    $sql = $sql . $where . " posts.idCategoria = " . $jsonEntrada["idCategoria"] . " ORDER BY idPost DESC  ";
-  }
+  $where = " where ";
+  if (isset($jsonEntrada["idCategoria"]) && isset($jsonEntrada["qtdPosts"])) {
+      $sql = $sql . $where . " posts.idCategoria = " . $jsonEntrada["idCategoria"];
+      $sql = $sql . " ORDER BY idPost DESC LIMIT " . $jsonEntrada["qtdPosts"];
+      $where = " and ";
+    }elseif(isset($jsonEntrada["qtdPosts"])) {
+      $sql = $sql . " ORDER BY idPost DESC LIMIT " . $jsonEntrada["qtdPosts"];
+      $where = " and ";
+    } elseif (isset($jsonEntrada["idCategoria"])){
+      $sql = $sql . $where . " posts.idCategoria = " . $jsonEntrada["idCategoria"] . " ORDER BY idPost DESC  ";
+    }
+
+
+
+
   
 //echo $sql;
 $rows = 0;
