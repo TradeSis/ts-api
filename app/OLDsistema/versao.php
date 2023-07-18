@@ -3,8 +3,9 @@
 // helio 26012023 18:10
 
 // NOVA VERSAO 
-include  __DIR__ . "/../conexao.php";
-//include "app/conexao.php";
+//include  __DIR__ . "/../conexao.php";
+include "app/conexao.php";
+
 
 if ($versao==""){$versao="1";}
 
