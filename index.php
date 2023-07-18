@@ -184,7 +184,6 @@ foreach ($ex as $value) {
     if ($inicioUrl == false || $value == "") {
         unset($ex[$i]);
     }
-
     $i = $i + 1;
 }
 /*
@@ -253,37 +252,45 @@ switch ($aplicacao) {
 
     case "services":
         // NOVA VERSAO - MOVER app/services para services/app
-        // include  __DIR__ . "/../services/app/versao.php";
-        include "app/services/versao.php";
+        include __DIR__ . "/../services/app/versao.php";
+        //include "app/services/versao.php";
         break;
 
     case "sistema":
         // NOVA VERSAO - MOVER app/sistema para sistema/app
-        include  __DIR__ . "/../sistema/app/versao.php";
-        //include "app/sistema/versao.php";
+        include __DIR__ . "/../sistema/app/versao.php";
+        //include "app/sistema/versao.php";        
         break;
 
     case "vendas":
-        include "app/vendas/versao.php";
+        // NOVA VERSAO - MOVER app/vendas para vendas/app
+        include __DIR__ . "/../vendas/app/versao.php";
+        //include "app/vendas/versao.php";
         break;
 
     case "relatorios":
-        include "app/relatorios/versao.php";
+        // NOVA VERSAO - MOVER app/relatorios para relatorios/app
+        include __DIR__ . "/../relatorios/app/versao.php";
+        //include "app/relatorios/versao.php";
         break;
 
     case "crediario": // helio 28032023
-        include "app/crediario/versao.php";
+        // NOVA VERSAO - MOVER app/crediario para crediario/app
+        include __DIR__ . "/../crediario/app/versao.php";
+        //include "app/crediario/versao.php";
         break;
-//Lucas 18062023
+
+    case "impostos":
+        // NOVA VERSAO - MOVER app/fiscal para fiscal/app
+        include __DIR__ . "/../impostos/app/versao.php";
+        //include "app/fiscal/versao.php";        
+        break;
     case "paginas": 
         include  __DIR__ . "/../paginas/app/versao.php";
         break;
-
     case "cadastros":
         include  __DIR__ . "/../cadastros/app/versao.php";
         break;
-
-
 
     default:
         $jsonSaida = json_decode(
@@ -337,4 +344,4 @@ if ($log == "true") {
         echo json_encode($jsonSaida) . "\n";
     }
 }
-//teste
+?>
