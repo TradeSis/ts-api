@@ -267,15 +267,21 @@ switch ($aplicacao) {
         break;
 
     case "vendas":
-        include "app/vendas/versao.php";
+        // NOVA VERSAO - MOVER app/vendas para vendas/app
+        include __DIR__ . "/../vendas/app/versao.php";
+        //include "app/vendas/versao.php";
         break;
 
     case "relatorios":
-        include "app/relatorios/versao.php";
+        // NOVA VERSAO - MOVER app/relatorios para relatorios/app
+        include __DIR__ . "/../relatorios/app/versao.php";
+        //include "app/relatorios/versao.php";
         break;
 
     case "crediario": // helio 28032023
-        include "app/crediario/versao.php";
+        // NOVA VERSAO - MOVER app/crediario para crediario/app
+        include __DIR__ . "/../crediario/app/versao.php";
+        //include "app/crediario/versao.php";
         break;
 
     case "fiscal":
