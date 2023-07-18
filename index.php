@@ -274,8 +274,8 @@ switch ($aplicacao) {
     case "crediario": // helio 28032023
         include "app/crediario/versao.php";
         break;
-
-    case "paginas": //Lucas 17062023
+//Lucas 18062023
+    case "paginas": 
         include  __DIR__ . "/../paginas/app/versao.php";
         break;
 
