@@ -1,4 +1,7 @@
 <?php
+// NOVA VERSAO - 17/07/2023
+include_once __DIR__ . "/../config.php";
+
 // helio 26012023 18:10
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
@@ -169,11 +172,10 @@ $inicioUrl = false;
 $i = 0;
 foreach ($ex as $value) {
     //echo $i . "-" . $ex[$i] . "\n";
-    if ($value == "api"||$value == "apilebes"||$value == "apitsweb") {
+    if ($value == "api" || $value == "apilebes" || $value == "apitsweb") {
         $inicioUrl = true;
         unset($ex[$i]);
-      
-    }    
+    }
     if (substr($value, 0, 2) == 'V.') { // alterado para substring
         $versao = substr($value, 2, strlen($value));
         unset($ex[$i]);
@@ -181,10 +183,8 @@ foreach ($ex as $value) {
 
     if ($inicioUrl == false || $value == "") {
         unset($ex[$i]);
-    } 
-    
+    }
     $i = $i + 1;
-
 }
 /*
 for ($i = 0; $i < $unsetCount; $i++) {
@@ -210,7 +210,6 @@ if (isset($ex[2])) {
     if (isset($ex[4])) {
         $parametro = $parametro . "/" . $ex[4];
     }
-
 }
 
 
@@ -233,11 +232,11 @@ fwrite($arquivo,$log_datahora_ini."$acao"."-parametro->".json_encode($parametro)
 fwrite($arquivo,$log_datahora_ini."$acao"."-jsonEntrada->".json_encode($jsonEntrada)."\n");   
 fwrite($arquivo,$log_datahora_ini."$acao"."-metodo->".json_encode($metodo)."\n");   
 fclose($arquivo);
-**/
+ **/
 
 
-/*
-echo 'host='.$_SERVER['SERVER_ADDR']."\n";
+
+/* echo 'host='.$_SERVER['SERVER_ADDR']."\n";
 echo "aplicacao=".$aplicacao."\n";
 echo "versao=".$versao."\n";
 echo "funcao=".$funcao."\n";
@@ -245,32 +244,53 @@ echo "parametro=".$parametro."\n";
 echo "metodo=".$metodo."\n";
 echo "log=".$log."\n";
 echo "hml=".$hml."\n";
-*/
+ */
 
 
 
 switch ($aplicacao) {
 
     case "services":
-        include "app/services/versao.php";
+        // NOVA VERSAO - MOVER app/services para services/app
+        include __DIR__ . "/../services/app/versao.php";
+        //include "app/services/versao.php";
         break;
 
     case "sistema":
-           include "app/sistema/versao.php";        
+        // NOVA VERSAO - MOVER app/sistema para sistema/app
+        include __DIR__ . "/../sistema/app/versao.php";
+        //include "app/sistema/versao.php";        
         break;
-        
+
     case "vendas":
-        include "app/vendas/versao.php";
+        // NOVA VERSAO - MOVER app/vendas para vendas/app
+        include __DIR__ . "/../vendas/app/versao.php";
+        //include "app/vendas/versao.php";
         break;
 
     case "relatorios":
-        include "app/relatorios/versao.php";
+        // NOVA VERSAO - MOVER app/relatorios para relatorios/app
+        include __DIR__ . "/../relatorios/app/versao.php";
+        //include "app/relatorios/versao.php";
         break;
 
     case "crediario": // helio 28032023
-        include "app/crediario/versao.php";
+        // NOVA VERSAO - MOVER app/crediario para crediario/app
+        include __DIR__ . "/../crediario/app/versao.php";
+        //include "app/crediario/versao.php";
         break;
-    
+
+    case "impostos":
+        // NOVA VERSAO - MOVER app/fiscal para fiscal/app
+        include __DIR__ . "/../impostos/app/versao.php";
+        //include "app/fiscal/versao.php";        
+        break;
+    case "paginas": 
+        include  __DIR__ . "/../paginas/app/versao.php";
+        break;
+    case "cadastros":
+        include  __DIR__ . "/../cadastros/app/versao.php";
+        break;
 
     default:
         $jsonSaida = json_decode(
@@ -279,7 +299,9 @@ switch ($aplicacao) {
                     "status" => 400,
                     "retorno" => "Aplicacao " . $aplicacao . " Invalida"
                 )
-            ), TRUE);
+            ),
+            TRUE
+        );
         break;
 }
 
@@ -320,8 +342,6 @@ if ($log == "true") {
             retornaheader($jsonSaida["status"]);
         }
         echo json_encode($jsonSaida) . "\n";
-
     }
 }
-//teste
 ?>
