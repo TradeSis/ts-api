@@ -285,11 +285,21 @@ switch ($aplicacao) {
         include __DIR__ . "/../impostos/app/versao.php";
         //include "app/fiscal/versao.php";        
         break;
+
     case "paginas": 
         include  __DIR__ . "/../paginas/app/versao.php";
         break;
+
     case "cadastros":
         include  __DIR__ . "/../cadastros/app/versao.php";
+        break;
+
+    case "notas":
+        include  __DIR__ . "/../notas/app/versao.php";
+        break;
+
+    case "financeiro":
+        include  __DIR__ . "/../financeiro/app/versao.php";
         break;
 
     default:
