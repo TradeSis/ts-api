@@ -216,7 +216,8 @@ if (isset($ex[2])) {
 
 /**/
 $hml = false;
-if ($_SERVER['SERVER_ADDR'] == "10.2.0.233" || $_SERVER['SERVER_ADDR'] == "10.2.0.44") {
+if ($_SERVER['SERVER_ADDR'] == "10.2.0.233" || $_SERVER['SERVER_ADDR'] == "10.2.0.44" ||
+    $_SERVER['SERVER_ADDR'] == "10.145.0.60") {
     $hml = true;
 }
 
@@ -285,11 +286,21 @@ switch ($aplicacao) {
         include __DIR__ . "/../impostos/app/versao.php";
         //include "app/fiscal/versao.php";        
         break;
+
     case "paginas": 
         include  __DIR__ . "/../paginas/app/versao.php";
         break;
+
     case "cadastros":
         include  __DIR__ . "/../cadastros/app/versao.php";
+        break;
+
+    case "notas":
+        include  __DIR__ . "/../notas/app/versao.php";
+        break;
+
+    case "financeiro":
+        include  __DIR__ . "/../financeiro/app/versao.php";
         break;
 
     default:
